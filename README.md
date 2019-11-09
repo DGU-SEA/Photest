@@ -9,7 +9,7 @@
 
 ## 개발 환경
 <pre>
-- Develop Tool: Node.js, MySQL, aws ec2, aws RDS
+- Develop Tool: Django
 </pre>
 
 ## 팀원
