@@ -17,5 +17,5 @@
 김예지 : Front-end
 김혜지 : Back-end
 이선영 : Back-end
-신소희 : Front-end
+한유진 : Front-end
 </pre>
