@@ -18,3 +18,6 @@ class Photo(models.Model):
 
     class Meta: # ordering 정렬
         ordering = ['-created']
+
+    def get_absolute_url(self):
+        return reverse('photo:detail', args=[self.id])
