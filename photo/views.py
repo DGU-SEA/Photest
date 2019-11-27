@@ -29,6 +29,21 @@ def best(request):
 def hashtag_board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/hashtag_board.html', {}) #, {'posts': posts}
+<<<<<<< HEAD
+=======
+
+def upload(request):
+    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+    return render(request, 'photo/upload.html', {})
+
+def mypage(request):
+    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+    return render(request, 'photo/mypage.html', {})
+
+def edit_profile(request):
+#best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+ return render(request, 'photo/edit_profile.html', {})
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
 
 class PhotoList(ListView):
     model = Photo
@@ -39,7 +54,14 @@ class PhotoCreate(CreateView):
     fields=['text', 'image']
     template_name_suffix='_create'
     success_url='/'
+<<<<<<< HEAD
 
+=======
+    fields = ['author','text', 'image', 'hashtag']
+    template_name_suffix = '_create'
+    success_url = '/'
+    
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
     def form_valid(self, form):
         form.instance.author_id=self.request.user.author_id
         if form.is_valid():

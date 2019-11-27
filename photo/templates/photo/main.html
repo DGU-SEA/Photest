@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 {% load static %}
 <html>
@@ -8,6 +9,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">    
+=======
+{% load static %}
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
     </head>
     <body>
             <div class = "title">
@@ -27,11 +37,19 @@
                     wpcontext.fillRect(20, 20, 100, 100);
                 </script>
             
+<<<<<<< HEAD
                 <div class = "log" style="border:1px solid gray; height: 100px; width: 300px;">
                     &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
                     &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br>
                     <button id = "join_btn"> <a href="http://127.0.0.1:8000/join/">Join </a></button>
                     <button id = "login_btn"> Login </button>
+=======
+                <div class = "log" >
+                    <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
+                    &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
+                    <button id = "join_btn"> <a href="http://127.0.0.1:8000/join/">Join </a></button>
+                    <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
                 </div>
 
     <div class="content">
@@ -40,8 +58,11 @@
         </div>
 
         <div class="today-hashtag">
+<<<<<<< HEAD
            
             
+=======
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
             <h1><a href="http://127.0.0.1:8000/hashtag_board/"># 노을 </a></h1>
         </div>
         <Br><Br><br></br></br></br>
@@ -68,6 +89,7 @@
                 <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
                 <button id = "bsearch"> 검색 </button>
         </div>
+<<<<<<< HEAD
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -75,4 +97,8 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
 </body>
+=======
+    <!-- <script type="text/javascript" src = "{% static 'css/js/bootstrap.js' %}"></script> -->
+    </body>
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
 </html>
