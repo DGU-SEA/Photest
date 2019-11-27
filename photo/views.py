@@ -48,7 +48,6 @@ class PhotoCreate(CreateView):
     template_name_suffix='_create'
     success_url='/'
 
-    fields = ['author','text', 'image', 'hashtag']
     fields = ['author','text', 'image']
     template_name_suffix = '_create'
     success_url = '/'
