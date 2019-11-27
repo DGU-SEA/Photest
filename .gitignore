@@ -1,10 +1,12 @@
-<<<<<<< HEAD
+
 venv
-myvenv
 .DS_Store
+
+myvenv
+
 .vscode
  
-=======
+
 /venv
-.DS_Store
->>>>>>> a13b3326e16bf5bafbb6398be65a7081d441a576
+
+
