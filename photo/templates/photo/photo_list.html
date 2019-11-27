@@ -1,71 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="board.css">
-        <title> Photest </title>
-        <meta charset = "utf-8">
-       
-    </head>
-    <body>
-        <div id = "title">
-        <font size = "30" color = "gray"> Photest</font>
-        <font size = "5" color = "gray"> _Photo Contest </font>
-        </div>
-        <div id = "category">
-            <button id = "best_btn" class = "button"> Best </button> 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id = "mypage_btn" class = "button"> Mypage </button>
-        </div><br><br>
-
-        <!-- 오늘의 해시 태그 예지꺼 갖고오기 -->
-
-        <div id = "search">
-            <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
-            <button id = "bsearch"> 검색 </button>
-            My favorite Hashtag : 
-        </div>
-
-        <div id = "add">
-            <button class = "button"> + </button>
-        </div>
-
-
-    </body>
-</html>
+{% extends 'photo/board.html' %}
 
 {% block content %}
-<div class='container'>
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-5">
-            {% for object in object_list %}
-
-            <div class="card">
-                <div class="card-header">
-                    {{ object.author }}
+    
+            <div class='container'>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-5">
+                        {% for object in object_list %}
+            
+                        <div class="card">
+                            <div class="card-header">
+                                {{ object.author }}
+                            </div>
+                            <!-- <img src=" {{ object.image.url }}" class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                                <p class="card-text"> {{ object.text }} </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">생성일 : {{ object.created }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="http://127.0.0.1:8000/photo_detail" class="card-link">댓글달기</a>
+                                <a href="http://127.0.0.1:8000/photo_update" class="card-link">수정하기</a>
+                                <a href="http://127.0.0.1:8000/photo_delete" class="card-link">삭제하기</a>
+            
+                            </div>
+            
+                        </div>
+                        {% endfor %}
+            
+                    </div>
+            
+                    <div class="col">
+                    </div>
                 </div>
-                <img src=" {{ object.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text"> {{ object.text }} </p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">생성일 : {{ object.created }}</li>
-                </ul>
-                <div class="card-body">
-                    <a href="{% url 'photo:detail' object.id %}" class="card-link">댓글달기</a>
-                    <a href="{% url 'photo:update' object.id %}" class="card-link">수정하기</a>
-                    <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제하기</a>
-
-                </div>
-
             </div>
-            {% endfor %}
-
-        </div>
-
-        <div class="col">
-        </div>
-    </div>
-</div>
+   
 {% endblock %}
-
