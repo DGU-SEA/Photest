@@ -1,10 +1,62 @@
+.backLayer { 
+    display:none; 
+    background-color:black; 
+    position:absolute; 
+    left:0px; top:0px; 
+} 
+    
+#uploadDiv{ 
+    background-color:white; 
+    position: absolute; 
+    top : 70px;
+    left : 450px;
+    width:480px; 
+    height:600px; 
+    padding : 50px;
+}
+
+#uploadFrame {
+    position : relative;
+    border : 1px solid gray;
+    width : 430px;
+    height : 400px;
+    
+}
+
+.filebox label { 
+    display: inline-block; 
+    padding: .5em .75em; 
+    color: #999; 
+    font-size: inherit; 
+    line-height: normal; 
+    vertical-align: middle; 
+    background-color: #fdfdfd; 
+    cursor: pointer; 
+    border: 1px solid #ebebeb; 
+    border-bottom-color: #e2e2e2; 
+    border-radius: .25em; 
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */ 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0; 
+}
+
+
+
 html {
     scroll-behavior: smooth;
 }
 
-.title {
+.title{
     position : relative;
-    left : 400px;
+    left : 200px;
     top : 20px;
 }
 
@@ -20,20 +72,15 @@ html {
     border: 2px solid #ffffff; 
   }
 
-.today-hashtag-container {
-    position:relative;
-    left: 200px;
-    top: 5px;
-    color: gray;
-    font-size: 20pt;
-    /*padding: 0px 20px 10px 200px;*/
+#today {
+    position : relative;
+    top : 230px;
+    left : 140px;
 }
 
-.today-hashtag h1{
-    position:relative;
-    top: 0px;
-    text-align: center;
-    font-size: 40pt;
+#todayHash {
+    width : 300px;
+    height : 150px;
 }
 
 #add {
