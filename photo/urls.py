@@ -4,11 +4,8 @@ from .views import PhotoList, PhotoDelete, PhotoDetail, PhotoUpdate, PhotoCreate
 from . import views
 from .views import join, main, board, best, hashtag_board
 
-<<<<<<< HEAD
 #app_name="photo
-=======
 app_name="photo"
->>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
 urlpatterns = [
 
     path("photo_create/", PhotoCreate.as_view(), name='create'),
@@ -19,19 +16,13 @@ urlpatterns = [
     path('join/', views.join, name='join'),
     path('photo_list/', PhotoList.as_view(), name='photo_list'),
     path('best/', views.best, name='best'),
-<<<<<<< HEAD
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
-=======
     path('hashtag_board/', views.hashtag_board, name='hashtag_board'),
     path('mypage/', views.mypage, name='mypage'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
->>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
 ]
 
 from django.conf.urls.static import static
 from django.conf import settings
-<<<<<<< HEAD
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
