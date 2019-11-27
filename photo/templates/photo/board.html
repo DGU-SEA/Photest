@@ -1,23 +1,35 @@
-<!DOCTYPE html>
+{% load static %}
 <html>
     <head>
-        <link rel="stylesheet" href="board.css">
+        <link rel="stylesheet" href="{% static 'css/board.css' %}">
         <title> Photest </title>
         <meta charset = "utf-8">
-       
+        <style>
+            #frame { z-index: 1000}
+            #photos { z-index: 1001}
+            #frame img { z-index:1002}
+            </style>
     </head>
     <body>
-        <div id = "title">
-        <font size = "30" color = "gray"> Photest</font>
+        <div class = "title">
+        <font size = "30" color = "gray"><a href="/"> Photest </a></font>
         <font size = "5" color = "gray"> _Photo Contest </font>
         </div>
         <div id = "category">
-            <button id = "best_btn" class = "button"> Best </button> 
+            <button id = "best_btn" class = "button"><a href="http://127.0.0.1:8000/best/"> Best </a></button> 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id = "mypage_btn" class = "button"> Mypage </button>
+            <button id = "mypage_btn" class = "button"><a href="http://127.0.0.1:8000/mypage/"> Mypage </a></button>
         </div><br><br>
 
-        <!-- 오늘의 해시 태그 예지꺼 갖고오기 -->
+        <div class="today-hashtag-container">
+            <h2>오늘의 해시태그</h2>
+        </div>
+
+        <div class="today-hashtag">
+            
+            <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1>
+        </div>
+        <Br><Br><br></br></br></br>
 
         <div id = "search">
             <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
@@ -25,10 +37,44 @@
             My favorite Hashtag : 
         </div>
 
+        <div id = "board">
         <div id = "add">
-            <button class = "button"> + </button>
+            <button class = "button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
+        </div>
+
+        <div id = "frame">
+            <div id = "photos">
+                    <img src="{% static 'image/heart.png' %}" width=250px height=260px class="card-img-top" alt="...">
+            </div>
+            <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <div id = "frame">
+                <div id = "photos">
+                        <img src=" {{ object.image.url }}" class="card-img-top" alt="...">
+                </div>
+                <img src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+            </div>
+
+        <div id = "frame">
+                <div id = "photos">
+                </div>
+                <img src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+            </div>
+        </div>
+
+        <div id = "frame">
+                <div id = "photos">
+                </div>
+                <img src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+            </div>
         </div>
 
 
+
+
+    </div>
     </body>
 </html>

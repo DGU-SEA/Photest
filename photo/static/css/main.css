@@ -1,7 +1,7 @@
 html{
     scroll-behavior: smooth;
 }
-
+a { text-decoration:none }
 .title{
     position : relative;
     left : 200px;
@@ -47,7 +47,7 @@ input.underline {
     color: #777777;
     border: 2px solid #ffffff; 
   }
- 
+
 #join_btn {
     position : relative;
     top : 10px;
@@ -58,7 +58,7 @@ input.underline {
     background-color: white;
 }
 
-#login_btn {
+#login_btn{ 
     position : relative;
     top : 10px;
     left : 85px;
@@ -83,13 +83,13 @@ input.underline {
     color:red;  
     
 }
-
+ 
 #search {
     position : relative;
     height : 40px;
     width : 1080px;
     border : 1px solid gray;
-    top : 1100px;
+    top : 100px;
     left : 200px;
 }
  
@@ -110,12 +110,10 @@ input.underline {
     float: right;
 }
 
-a { text-decoration:none }
-
 .today-hashtag-container h2{
     position:relative;
     left: 200px;
-    top: -80px;
+    top: 5px;
     color: gray;
     font-size: 20pt;
     /*padding: 0px 20px 10px 200px;*/
@@ -164,5 +162,5 @@ a { text-decoration:none }
     height: 200px;
     width: 200px;
     overflow: hidden;
-    padding: 0px 90px 10px 0px;
+    padding: 0px 90px 10px 10px;
 }
