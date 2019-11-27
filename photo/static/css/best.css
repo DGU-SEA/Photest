@@ -1,0 +1,48 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.title{
+    position : relative;
+    left : 200px;
+    top : 20px;
+}
+
+#category {
+    position : relative;
+    top : 0px;
+    left : 1130px;
+}
+
+.button {
+    background-color: white;
+    color: #777777;
+    border: 2px solid #ffffff; 
+  }
+
+#day {
+    position : relative;
+    width : 800px;
+    height : 380px;
+    top : 10px;
+    border : 1px solid gray;
+    margin-right : 20px;
+    float : left;
+}
+
+#frame {
+    position : relative;
+    padding : 10px;
+    width : 200px;
+    height : 330px;
+    border : 1px solid gray;
+    float : left;
+    margin-right : 20px;
+}
+
+#photos {
+    width : 200px;
+    height : 260px;
+    position : relative;
+    border : 1px solid gray;
+}
