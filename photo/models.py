@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from django.contrib.postgres.fields import JSONField
 
 
 class Photo(models.Model):
@@ -10,7 +9,6 @@ class Photo(models.Model):
     image = models.ImageField(upload_to= 'timeline_photo/%Y/%m/%d')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    hashtag = models.JSONField(blank=True)
     
     # like = models.ManyToManyField(User, related_name='like_post', blank=True)
     # favorite = models.ManyToManyField(User, related_name='favorite_post', blank=True)
