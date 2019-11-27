@@ -44,15 +44,12 @@ class PhotoList(ListView):
 
 class PhotoCreate(CreateView):
     model = Photo
-<<<<<<< HEAD
     fields=['text', 'image']
     template_name_suffix='_create'
     success_url='/'
 
     fields = ['author','text', 'image', 'hashtag']
-=======
     fields = ['author','text', 'image']
->>>>>>> 1a76ca1daea81e8bb12da230e31c66a431801826
     template_name_suffix = '_create'
     success_url = '/'
     
