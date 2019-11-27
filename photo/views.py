@@ -13,9 +13,6 @@ from django.contrib import messages
 
 def main(request):
     return render(request, 'photo/main.html', {})
-
-def join(request):
-    return render(request, 'photo/join.html', {}) 
     
 def board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
@@ -24,8 +21,7 @@ def board(request):
 def best(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/best.html', {}) #, {'posts': posts}
-
-
+    
 def hashtag_board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/hashtag_board.html', {}) #, {'posts': posts}
@@ -48,10 +44,7 @@ class PhotoList(ListView):
 
 class PhotoCreate(CreateView):
     model = Photo
-    fields=['text', 'image']
-    template_name_suffix='_create'
-    success_url='/'
-    fields = ['author','text', 'image', 'hashtag']
+    fields = ['author','text', 'image']
     template_name_suffix = '_create'
     success_url = '/'
     

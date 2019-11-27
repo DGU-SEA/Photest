@@ -2,7 +2,7 @@ from django.urls import path
 from .views import PhotoList, PhotoDelete, PhotoDetail, PhotoUpdate, PhotoCreate
 
 from . import views
-from .views import join, main, board, best, hashtag_board
+from .views import main, board, best, hashtag_board
 
 app_name="photo"
 urlpatterns = [
@@ -12,7 +12,6 @@ urlpatterns = [
     path("photo_delete/<int:pk>/", PhotoDelete.as_view(), name='delete'),
     path("photo_update/<int:pk>/", PhotoUpdate.as_view(), name='update'),
     path('', views.main, name='main'),
-    path('join/', views.join, name='join'),
     path('photo_list/', PhotoList.as_view(), name='photo_list'),
     path('best/', views.best, name='best'),
     path('hashtag_board/', views.hashtag_board, name='hashtag_board'),
