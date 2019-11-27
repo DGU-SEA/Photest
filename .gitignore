@@ -1,2 +1,14 @@
+<<<<<<< HEAD
+venv
+<<<<<<< HEAD
+.DS_Store
+=======
+myvenv
+.DS_Store
+.vscode
+ 
+=======
 /venv
 .DS_Store
+>>>>>>> a13b3326e16bf5bafbb6398be65a7081d441a576
+>>>>>>> 100b5193dccca1985c60ab40e562092f3e0dc919

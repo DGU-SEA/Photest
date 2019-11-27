@@ -2,9 +2,15 @@ html {
     scroll-behavior: smooth;
 }
 
+<<<<<<< HEAD
+.title{
+    position : relative;
+    left : 200px;
+=======
 .title {
     position : relative;
     left : 400px;
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
     top : 20px;
 }
 
@@ -20,6 +26,17 @@ html {
     border: 2px solid #ffffff; 
   }
 
+<<<<<<< HEAD
+#today {
+    position : relative;
+    top : 230px;
+    left : 140px;
+}
+
+#todayHash {
+    width : 300px;
+    height : 150px;
+=======
 .today-hashtag-container {
     position:relative;
     left: 200px;
@@ -34,6 +51,7 @@ html {
     top: 0px;
     text-align: center;
     font-size: 40pt;
+>>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
 }
 
 #add {
