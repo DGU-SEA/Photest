@@ -85,3 +85,20 @@ class PhotoDelete(DeleteView):
 class PhotoDetail(DetailView):
     model = Photo
     template_name_suffix='_detail'
+
+
+# class PhotoLikeList(ListView):
+#     model = Photo
+#     template_name = 'photo/photo_list.html'
+
+#     def dispatch(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated:  # 로그인확인
+#             messages.warning(request, '로그인을 먼저하세요')
+#             return HttpResponseRedirect('/')
+#         return super(PhotoLikeList, self).dispatch(request, *args, **kwargs)
+
+#     def get_queryset(self):
+#         # 내가 좋아요한 글을 보여주
+#         user = self.request.user
+#         queryset = user.like_post.all()
+#         return queryset
