@@ -3,7 +3,6 @@ from django.db import models
 from django.urls import reverse
 import jsonfield
 
-
 class Photo(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     text = models.TextField(blank=True)
