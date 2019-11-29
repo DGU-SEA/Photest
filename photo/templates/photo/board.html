@@ -27,7 +27,7 @@
 
         <div class="today-hashtag">
             <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
-            <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1>
+            <!-- <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1> -->
         </div>
         <Br><Br><br></br></br></br>
 
@@ -48,11 +48,11 @@
         <div id = "frame">
             <div id = "photos">
             </div>
-            <img src=" {{ object.image.url }}" class="card-img-top" alt="..." align = "right" z-index="-1"/>
-
-                    <img src="{% static 'image/heart.png' %}" width=250px height=260px class="card-img-top" alt="...">
+            <!-- <img src=" {{ object.image.url }}" class="card-img-top" alt="..." align = "right" z-index="-1"/> -->
+                <img src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"class="card-img-top" alt="...">
+                <img src="{% static 'image/siren.png' %}" width = 30px height = 30px id = "report" >
             </div>
-            <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+            <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/> -->
             {% block content %}
             {% endblock %}
         </div>

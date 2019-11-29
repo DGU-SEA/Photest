@@ -43,14 +43,20 @@ a:hover, a:active { text-decoration: none; }
 
 #category {
     position : relative;
+    top : 0%;
+    left : 78%;
+}
+
+#board_btn {
+    position : relative;
     top : 3%;
-    left : 80%;
+    left : 0%;
 }
 
 #best_btn {
     position : relative;
     top : 3%;
-    left : 6%;
+    left : 0%;
 }
 
 .log {
@@ -77,21 +83,10 @@ input.underline {
     border: 3px solid #ffffff; 
 }
 
-#join_btn {
+#logout_btn {
     position : relative;
     top : 35%;
     left : 12%;
-    width : 30%;
-    height : 30%;
-    border-radius : 5px;
-    border-color : #CAB4D6;
-    background-color: white;
-}
-
-#login_btn{ 
-    position : relative;
-    top : 35%;
-    left : 26%;
     width : 30%;
     height : 30%;
     border-radius : 5px;
@@ -133,47 +128,45 @@ input.underline {
 .yesterday-first img{
     position:relative;
     left: 67%;
-    height: 300px; 
-    width: 300px;
+    top: 50%;
+    height: 50%; 
+    width: 50%;
 }
 
 .yesterday-else {
     position:relative;
     left: 10%;
-    top: -10%;
+    top: -100px;
+    
 }
 
 .yesterday-else img{
     height: 200px;
     width: 200px;
     overflow: hidden;
-    /* padding: 0px 50px 10px 10px; */
-    padding : 2%;
+    padding: 0px 90px 10px 10px;
 }
 
-/* 검색과 관련된 영역 */
 #search {
     position : relative;
-    height : 8%;
-    width : 82%;
+    height : 40px;
+    width : 1080px;
     border : 1px solid gray;
-    top : 0%;
-    left : 10%;
+    top : 100px;
+    left : 200px;
 }
  
-/* 검색 필드 */
 #isearch {
     font-size : 16px;
-    width : 80%;
+    width : 830px;
     padding : 10px;
     border : 0px;
     outline : none;
     float : left;
 }
 
-/* 검색 버튼 */
 #bsearch {
-    width : 8%;
+    width : 50px;
     height : 100%;
     border : 0px;
     outline: none;
