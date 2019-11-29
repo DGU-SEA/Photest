@@ -27,8 +27,14 @@
                 <div class = "log" >
                     <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
                     &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
+                    {% if user.is_authenticated %} 
+                        아이디 : {{user.username}} <br>
+                        rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
+                        로그아웃 버튼 만들어라
+                    {% else %}
                     <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
                     <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
+                    {% endif %}
 
                 </div>
 

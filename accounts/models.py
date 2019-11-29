@@ -6,4 +6,4 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     reportCnt = models.IntegerField(default=0)
-    likeCnt = models.IntegerField(default=0)
+    rewardCnt = models.IntegerField(default=0)
