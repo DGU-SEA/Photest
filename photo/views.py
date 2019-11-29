@@ -6,9 +6,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
-
 from django.http import HttpResponseRedirect
-
 from django.contrib import messages
 
 def main(request):
@@ -44,12 +42,8 @@ class PhotoList(ListView):
 
 class PhotoCreate(CreateView):
     model = Photo
-    fields=['text', 'image']
-    template_name_suffix='_create'
-    success_url='/'
-
+    
     fields = ['author','text', 'image', 'hashtag']
-    fields = ['author','text', 'image']
     template_name_suffix = '_create'
     success_url = '/'
     
