@@ -24,12 +24,14 @@
             <br><br><br><br>
         </div>
 
-        <div id = "join">
-            ID : <input type = "text" size = "20"> <button> 중복확인</button> <br><br>
-            Password : <input type = "text" size = "20"><br><br>
-            E-mail : <input type = "text" size = "20"> <br><br>
-        </div>
-
+        <form id = "join" method="POST" action="{%url 'accounts:join'%}">
+            {% csrf_token %}
+            ID : <input name="username" type = "text" size = "20"> <button> 중복확인</button> <br><br>
+            Password : <input name="password1" type = "password" size = "20"><br><br>
+            Comfirm Password : <input name="password2" type = "password" size = "20"><br><br>
+            E-mail : <input name="email" type = "E-mail" size = "20"> <br><br>
+            <input type="submit" value="join">
+        </form>
         <button> 취소 </button>
         <button> 확인 </button>
         </center>
