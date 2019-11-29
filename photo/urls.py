@@ -16,12 +16,10 @@ urlpatterns = [
     path('photo_list/', PhotoList.as_view(), name='photo_list'),
     path('best/', views.best, name='best'),
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
-    path('hashtag_board/', views.hashtag_board, name='hashtag_board'),
     path('mypage/', views.mypage, name='mypage'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
 ]
 
 from django.conf.urls.static import static
 from django.conf import settings
-urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
