@@ -15,13 +15,17 @@ def main(request):
     global hashtag
     hashtags = hashtag.objects.all()
     print(hashtag.objects.all())
-    print(datetime.now())
 
     todaytag = ""
-    for hashtag in hashtag.objects.all() :
-        if(hashtag.tagDate == datetime.now()) : 
-            todaytag = hashtag.tagName
+    todayDate = ""
+    for h in hashtag.objects.all() :
+        todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
+        if(str(h.tagDate) == todayDate) : 
+            todaytag = todayDate
+            
     
+    print(todayDate)
+    print(todaytag)
     return render(request, 'photo/main.html', {'todaytag' : "#sampleTag"})
     
 def board(request):

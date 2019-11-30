@@ -9,7 +9,3 @@ class hashtag(models.Model):
     tagCnt = models.IntegerField(default=0)
     likeCnt = models.IntegerField(default=0)
     tagDate = models.DateField(blank=True, null = True)
-
-
-
-
