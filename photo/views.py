@@ -14,19 +14,14 @@ from datetime import datetime
 def main(request):
     global hashtag
     hashtags = hashtag.objects.all()
-    print(hashtag.objects.all())
-
+    
     todaytag = ""
-    todayDate = ""
+    todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
+    dbDate = ""
     for h in hashtag.objects.all() :
-        todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
         if(str(h.tagDate) == todayDate) : 
             todaytag = todayDate
-            
-    
-    print(todayDate)
-    print(todaytag)
-    return render(request, 'photo/main.html', {'todaytag' : "#sampleTag"})
+    return render(request, 'photo/main.html', {'todaytag' : todaytag})
     
 def board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
