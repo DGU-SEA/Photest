@@ -10,18 +10,35 @@ from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from datetime import datetime
+from datetime import date, timedelta
+from django.db import connection
 
 def main(request):
     global hashtag
+    global Photo
     hashtags = hashtag.objects.all()
-    
+
+    # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
     todaytag = ""
     todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
     dbDate = ""
+
+    yesterdaytag = ""
+    today = date.today()
+    yesterday = str(date.today() - timedelta(1))
+
     for h in hashtag.objects.all() :
         if(str(h.tagDate) == todayDate) : 
-            todaytag = todayDate
-    return render(request, 'photo/main.html', {'todaytag' : todaytag})
+            todaytag = h.tagName
+        
+        if(str(h.tagDate) == yesterday) :
+            yesterdaytag = h.tagName
+    print(todaytag)
+    # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
+    orderedPhotos = Photo.objects.all()
+    print(orderedPhotos)
+
+    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag})
     
 def board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/

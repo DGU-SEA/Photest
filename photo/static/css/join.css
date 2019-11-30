@@ -17,6 +17,7 @@ a:hover, a:active { text-decoration: none; }
 #short-title {
     font-size : 250%;
     color : gray;
+    font-weight : bold;
 }
 
 #long-title {
