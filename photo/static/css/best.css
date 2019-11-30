@@ -1,17 +1,56 @@
-html {
+html{
     scroll-behavior: smooth;
 }
 
+a { text-decoration: none; color: gray; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
 .title{
     position : relative;
-    left : 200px;
-    top : 20px;
+    left : 7%;
+    top : 5%;
 }
 
+#short-title {
+    font-size : 250%;
+    color : gray;
+    font-weight : bold;
+}
+
+#long-title {
+    font-size : 100%;
+    color : gray;
+}
 #category {
     position : relative;
-    top : 0px;
-    left : 1130px;
+    top : 3%;
+    left : 71%;
+}
+
+#mypage_btn {
+    position : relative;
+    top : 3%;
+    left : 1%;
+}
+
+#board_btn {
+    position : relative;
+    top : 3%;
+    left : 4%;
+}
+
+#best_btn {
+    position : relative;
+    top : 3%;
+    left : 15%;
+}
+
+h1 {
+    position : relative;
+    left : 6%;
 }
 
 .button {
@@ -22,28 +61,27 @@ html {
 
 #day {
     position : relative;
-    width : 800px;
-    /* width : 1300px; */
-    height : 380px;
-    top : 10px;
-    border : 1px solid gray;
-    margin-right : 20px;
+    width : 95%;
+    left : 5%;
+    height : auto;
+    /* border : 1px solid gray; */
+    /* margin-right : 5%; */
     float : left;
 }
 
 #frame {
     position : relative;
-    padding : 10px;
-    width : 200px;
-    height : 330px;
+    padding : 0.5%;
+    width : 17%;
+    height : 50%;
     border : 1px solid gray;
     float : left;
-    margin-right : 20px;
+    margin-right : 1.2%;
 }
 
 #photos {
-    width : 200px;
-    height : 260px;
+    width : 98%;
+    height : 85%;
     position : relative;
     border : 1px solid gray;
 }

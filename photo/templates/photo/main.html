@@ -59,7 +59,7 @@
         <h2>오늘의 해시태그</h2>
     </div>
     <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/hashtag_board/"> #노을 </a></h1> <!-- 변수로 바꿔야 할 것 -->
+        <h1><a href="http://127.0.0.1:8000/hashtag_board/"> #{{todaytag}}</a></h1>
     </div>
     <Br><Br><br></br></br></br>
 
@@ -67,12 +67,12 @@
         <h4>어제의 해시태그</h4>
     </div>
     <div class="yesterday-hashtag">
-        <h2> #건후 </h2> <!-- 변수로 바꿔야 할 것 -->
+        <h2> #{{yesterdaytag}} </h2> <!-- 변수로 바꿔야 할 것 -->
     </div>
 
     <div class="yesterday-first">
-        <img src="{{Photo.image.url}}" alt="" />
-    </div>
+        <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
+        </div>
     <br></br>
     <div class="yesterday-else">
         <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
@@ -83,7 +83,7 @@
 
     <div id="search">
         <input type="text" id="isearch" placeholder="# Hashtag를 입력하세요">
-        <button id="bsearch"> Go! </button>
+        <button id="bsearch"><a href="http://127.0.0.1:8000/photo_list/"> Go! </a></button>
     </div>
 </body>
 </html>

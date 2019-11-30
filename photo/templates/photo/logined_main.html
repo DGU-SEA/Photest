@@ -12,7 +12,8 @@
         <font id="long-title">_Photo Contest </font>
     </div>
     <div id="category">
-            <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
+        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/"> MyPage </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
         <!-- 계정 권한이 있는 사람만 board 버튼을 눌렀을 때 연결이 되도록 설정해야함 -->
@@ -40,20 +41,9 @@
     </script>
 
     <div class="log">
-            <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
-            &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
-            <!-- {% if user.is_authenticated %} 
-                아이디 : {{user.username}} <br>
-                rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
-                로그아웃 버튼 만들어라
-            {% else %}
-            <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
-            <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
-            {% endif %} -->
         <center>
         <br>{{user.username}}님 환영합니다. <br><br>
         <button id="logout_btn"><a href="http://127.0.0.1:8000/" onclick="javascript:logout_btn()"> Logout </a></button>
-        <!-- <br><br> -->
     </center>
 
     </div>
