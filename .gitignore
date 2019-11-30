@@ -9,4 +9,5 @@ myvenv
 
 /venv
 
+__pycache__
 

@@ -6,11 +6,23 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
+from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from datetime import datetime
 
 def main(request):
-    return render(request, 'photo/main.html', {})
+    global hashtag
+    hashtags = hashtag.objects.all()
+    print(hashtag.objects.all())
+    print(datetime.now())
+
+    todaytag = ""
+    for hashtag in hashtag.objects.all() :
+        if(hashtag.tagDate == datetime.now()) : 
+            todaytag = hashtag.tagName
+    
+    return render(request, 'photo/main.html', {'todaytag' : "#sampleTag"})
     
 def board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
@@ -54,6 +66,8 @@ class PhotoCreate(CreateView):
             return redirect('/')
         else:
             return self.render_to_response({'form':form})
+
+
 
 class PhotoUpdate(UpdateView):
     model = Photo
