@@ -1,0 +1,81 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script> function logout_btn(){ alert('로그아웃 되었습니다'); } </script>
+</head>
+
+<body>
+    <div class="title">
+        <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
+        <font id="long-title">_Photo Contest </font>
+    </div>
+    <div id="category">
+            <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
+        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+        <!-- 계정 권한이 있는 사람만 board 버튼을 눌렀을 때 연결이 되도록 설정해야함 -->
+        <!-- {% if user == object.author %} -->
+        <!-- {% endif %} -->
+    </div><br><br>
+
+    <div id="intro">
+        <center>
+            <h3> 당신이 찍은 사진을 자유롭게 업로드, 다운로드 할 수 있습니다. <br><br>
+                오늘의 해시태그에 적합한 사진들을 랭크하는 사진 콘테스트 웹입니다. </h3>
+        </center>
+    </div>
+
+    <script type="text/javascript">
+        function div2Resize() {
+            var div2 = document.getElementById('div2');
+            div2.style.width = window.innerWidth - 200 + 'px';
+        }
+        window.onload = function () {
+            div2Resize();
+            // 브라우저 크기가 변할 시 동적으로 사이즈를 조절해야 하는 경우
+            window.addEventListener('resize', div2Resize);
+        }
+    </script>
+
+    <div class="log">
+        <!-- <br><br> -->
+        {{ object.author }} 님 환영합니다. 
+        <button id="logout_btn"><a href="http://127.0.0.1:8000/" onclick="javascript:logout_btn()"> Logout </a></button>
+        <!-- <br><br> -->
+
+    </div>
+
+    <div class="today-hashtag-container">
+        <h2>오늘의 해시태그</h2>
+    </div>
+    <div class="today-hashtag">
+        <h1><a href="http://127.0.0.1:8000/hashtag_board/"> #노을 </a></h1> <!-- 변수로 바꿔야 할 것 -->
+    </div>
+    <Br><Br><br></br></br></br>
+
+    <div class="yesterday-hashtag-container">
+        <h4>어제의 해시태그</h4>
+    </div>
+    <div class="yesterday-hashtag">
+        <h2> #건후 </h2> <!-- 변수로 바꿔야 할 것 -->
+    </div>
+
+    <div class="yesterday-first">
+        <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
+    </div>
+    <br></br>
+    <div class="yesterday-else">
+        <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
+        <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
+        <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
+        <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
+    </div>
+
+    <div id="search">
+        <input type="text" id="isearch" placeholder="# Hashtag를 입력하세요">
+        <button id="bsearch"> 검색 </button>
+    </div>
+</body>
+</html>

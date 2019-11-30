@@ -2,7 +2,7 @@ from django.urls import path
 from .views import PhotoList, PhotoDelete, PhotoDetail, PhotoUpdate, PhotoCreate
 
 from . import views
-from .views import main, board, best, hashtag_board
+from .views import main, board, best, hashtag_board, logined_main
 
 #app_name="photo
 app_name="photo"
@@ -18,8 +18,10 @@ urlpatterns = [
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
     path('mypage/', views.mypage, name='mypage'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('logined_main/', views.logined_main, name = 'logined_main'),
 ]
 
 from django.conf.urls.static import static
 from django.conf import settings
+
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

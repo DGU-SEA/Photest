@@ -22,11 +22,8 @@ html {
 
 #day {
     position : relative;
-<<<<<<< HEAD
     width : 800px;
-=======
-    width : 1300px;
->>>>>>> 09160de0773d203d81fab81e267985142f8c4beb
+    /* width : 1300px; */
     height : 380px;
     top : 10px;
     border : 1px solid gray;
