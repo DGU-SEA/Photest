@@ -6,36 +6,8 @@
         
     </head>
     <body>
-            <div class = "title">
-                <font size = "30" color = "gray"><a href="/" class="title-text">  Photest </a></font>
-                <font size = "5" color = "gray"> _Photo Contest </font>
-            </div>
-            <div id = "category">
-                <button id = "best_btn" class = "button"><a href="http://127.0.0.1:8000/best/"> Best </a></button> 
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id = "board_btn" class = "button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
-            </div><br><br>
-                    
-            <canvas id = "intro" width = "750" height = "100"></canvas>
-                <script type = "text/javascript">
-                    var wpcanvas = document.getElementById("cvs");
-                    var wpcontext = wpcanvas.getContext("2d");
-                    wpcontext.fillRect(20, 20, 100, 100);
-                </script>
             
-                <div class = "log" >
-                    <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
-                    &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
-                    {% if user.is_authenticated %} 
-                        아이디 : {{user.username}} <br>
-                        rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
-                        로그아웃 버튼 만들어라
-                    {% else %}
-                    <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
-                    <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
-                    {% endif %}
-
-                </div>
+                
 
 <head>
     <meta charset="utf-8">
@@ -71,10 +43,19 @@
         }
     </script>
 
-    <div class="log">
-        <!-- <br><br> -->
-        <button id="join_btn"> <a href="http://127.0.0.1:8000/accounts/join/"> Join </a></button>
-        <button id="login_btn"> <a href="http://127.0.0.1:8000/accounts/login/"> Login </a></button>
+    
+
+        <div class = "log" >
+            <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
+            &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
+            {% if user.is_authenticated %} 
+                아이디 : {{user.username}} <br>
+                rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
+                로그아웃 버튼 만들어라
+            {% else %}
+            <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
+            <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
+            {% endif %}
         <!-- <br><br> -->
     </div>
 
