@@ -75,19 +75,21 @@ class PhotoList(ListView):
 
 class PhotoCreate(CreateView):
     model = Photo
-    
-    fields = ['author','text', 'image', 'hashtag']
+    fields=['text', 'image']
+    template_name_suffix='_create'
+    success_url='/'
+
+    fields = ['author','text', 'image']
     template_name_suffix = '_create'
     success_url = '/'
     
     def form_valid(self, form):
-        form.instance.author_id=self.request.user.author_id
+        form.instance.author_id=self.request.user.id
         if form.is_valid():
             form.instance.save()
             return redirect('/')
         else:
             return self.render_to_response({'form':form})
-
 
 
 class PhotoUpdate(UpdateView):

@@ -34,19 +34,7 @@
             window.addEventListener('resize', div2Resize);
         }
     </script>
-        <!-- <div class = "log" > -->
-            <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
-            &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
-            <!-- {% if user.is_authenticated %} 
-                아이디 : {{user.username}} <br>
-                rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
-                로그아웃 버튼 만들어라
-            {% else %}
-            <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
-            <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
-            {% endif %} -->
-        <!-- <br><br> -->
-    <!-- </div> -->
+
     <div class="log">
         <!-- <br><br> -->
         <button id="join_btn"> <a href="http://127.0.0.1:8000/accounts/join/"> Join </a></button>
@@ -54,7 +42,6 @@
         <!-- <br><br> -->
     </div>
                 
-
     <div class="today-hashtag-container">
         <h2>오늘의 해시태그</h2>
     </div>
@@ -70,6 +57,7 @@
         <h2> #{{yesterdaytag}} </h2>
     </div>
 
+    <!-- image는 db가 된 다음에 해결 가능 -->
     <div class="yesterday-first">
         <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
         </div>
@@ -81,9 +69,15 @@
         <img src="C:\Users\dpwl2\Pictures\sample.jpg" alt="" />
     </div>
 
-    <div id="search">
-        <input type="text" id="isearch" placeholder="# Hashtag를 입력하세요">
-        <button id="bsearch"><a href="http://127.0.0.1:8000/photo_list/"> Go! </a></button>
+
+    <!-- post 방식 전송을 하기 위해서는 csrf_token 이 필요하다 -->
+    <form action="insert/" method="post">
+        <div id="search">
+        {% csrf_token %}
+        <!-- <label for="msg">메세지</label> -->
+        <input type="text" id="isearch" name = "isearch" placeholder="# Hashtag를 입력하세요"/>
+        <button type="submit" id ="bsearch"><a href="http://127.0.0.1:8000/photo_list/"> Go! </a></button>
     </div>
+    </form>
 </body>
 </html>
