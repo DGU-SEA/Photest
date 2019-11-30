@@ -28,8 +28,9 @@
         <br>
         <div id="join">
             <table boder="" cellspacing="10">
-                <FORM>
-                    <tr>
+                <form id = "join" method="POST" action="{%url 'accounts:join'%}">
+                    {% csrf_token %}
+                        <tr>
                         <td text-align="center"> ID : </td>
                         <td>
                             <input type="text" size="20" /> 
@@ -39,20 +40,34 @@
                     <tr>
                         <td> Password : &nbsp; </td>
                         <td> <input type="password" size="20" /> </td>
+                        <td>Comfirm Password : <input name="password2" type = "password" size = "20"><br><br> </td>
                     </tr>
 
                     <tr>
                         <td> E-mail : </td>
                         <td> <input type="text" size="40" /> </td>
-                    </tr>
 
+                    </tr>
+                    <input type="submit" value="join">
                 </FORM>
             </table>
         </div>
         <br>
         <button id = "cancel"><a href="http://127.0.0.1:8000/" onclick="javascript:cancel_btn()"> 취소 </a></button> &nbsp;
         <button id = "confirm"><a href="http://127.0.0.1:8000/" onclick="javascript:confirm_btn()"> 확인 </a></button>
-    </center>
+    <!-- </center>
 </body>
 
+        <form id = "join" method="POST" action="{%url 'accounts:join'%}">
+            {% csrf_token %}
+            ID : <input name="username" type = "text" size = "20"> <button> 중복확인</button> <br><br>
+            Password : <input name="password1" type = "password" size = "20"><br><br>
+            Comfirm Password : <input name="password2" type = "password" size = "20"><br><br>
+            E-mail : <input name="email" type = "E-mail" size = "20"> <br><br>
+            <input type="submit" value="join">
+        </form>
+        <button> 취소 </button>
+        <button> 확인 </button> -->
+        </center>
+    </body>
 </html>
