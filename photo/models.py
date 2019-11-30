@@ -10,7 +10,7 @@ class Photo(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     hashtag = jsonfield.JSONField(blank = True)
-    like = models.ManyToManyField(User, related_name='like_post', blank=True)
+    like = models.ManyToManyField(User, related_name = 'like_post' blank=True)
 
     # favorite = models.ManyToManyField(User, related_name='favorite_post', blank=True)
 
@@ -22,5 +22,4 @@ class Photo(models.Model):
 
     def get_absolute_url(self):
         return reverse('photo:detail', args=[self.id])
-
 

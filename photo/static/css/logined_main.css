@@ -17,6 +17,7 @@ a:hover, a:active { text-decoration: none; }
 #short-title {
     font-size : 250%;
     color : gray;
+    font-weight : bold;
 }
 
 #long-title {
@@ -41,13 +42,30 @@ a:hover, a:active { text-decoration: none; }
     color : white;
 }
 
+#logout_btn{ 
+    position : relative;
+    top : 35%;
+    left : 26%;
+    width : 30%;
+    height : 30%;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}
+
 #category {
     position : relative;
     top : 0%;
-    left : 78%;
+    left :65%;
 }
 
 #board_btn {
+    position : relative;
+    top : 3%;
+    left : 0%;
+}
+
+#mypage_btn {
     position : relative;
     top : 3%;
     left : 0%;

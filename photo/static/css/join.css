@@ -17,6 +17,7 @@ a:hover, a:active { text-decoration: none; }
 #short-title {
     font-size : 250%;
     color : gray;
+    font-weight : bold;
 }
 
 #long-title {
@@ -49,7 +50,7 @@ a:hover, a:active { text-decoration: none; }
     padding : 2%;
     border : 1px solid gray;
     width : 45%;
-    height : 20%;
+    height : 30%;
 }
 
 .button {

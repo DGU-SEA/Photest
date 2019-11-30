@@ -72,6 +72,7 @@ def logined_main(request):
  return render(request, 'photo/logined_main.html', {})
 
 
+
 class PhotoList(ListView):
     model = Photo
     template_name_suffix='_list'

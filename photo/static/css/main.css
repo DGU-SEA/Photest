@@ -17,6 +17,7 @@ a:hover, a:active { text-decoration: none; }
 #short-title {
     font-size : 250%;
     color : gray;
+    font-weight : bold;
 }
 
 #long-title {
@@ -44,13 +45,25 @@ a:hover, a:active { text-decoration: none; }
 #category {
     position : relative;
     top : 3%;
-    left : 80%;
+    left : 71%;
+}
+
+#mypage_btn {
+    position : relative;
+    top : 3%;
+    left : 1%;
+}
+
+#board_btn {
+    position : relative;
+    top : 3%;
+    left : 4%;
 }
 
 #best_btn {
     position : relative;
     top : 3%;
-    left : 6%;
+    left : 15%;
 }
 
 .log {
@@ -119,20 +132,30 @@ input.underline {
     left: 10%;
     top: -10%;
     font-size: 150%;
+    width : 300px;
     color : gray;
 }
 
 .yesterday-hashtag {
     position:relative;
-    left: 30%;
-    top: 10%;
+    left: 25%;
+    top: 8%;
     font-size: 125%;
+    width : 200px;
+    height : 100px;
+    float : left;
+    border : 1px solid black;
     /* padding: 40px 20px 10px 550px; */
+}
+
+.yesterday-hastag h2 {
+    text-align : center;
 }
 
 .yesterday-first img{
     position:relative;
-    left: 67%;
+    left: 50%;
+    top : 10%;
     height: 300px; 
     width: 300px;
 }
