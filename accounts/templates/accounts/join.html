@@ -1,0 +1,73 @@
+{% load static %}
+<html>
+
+<head>
+    <title> Join </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/join.css' %}">
+    <script> function confirm_btn(){ alert('회원가입이 완료 되었습니다'); } </script>
+    <script> function cancel_btn(){ alert('회원가입이 취소 되었습니다'); } </script>
+</head>
+
+<body>
+    <div class="title">
+        <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
+        <font id="long-title">_Photo Contest </font>
+    </div>
+    <div id="category">
+        <!-- <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button> -->
+        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+    </div><br><br>
+
+    <center>
+        <h2> 회원가입 </h2>
+        <div id="notice">
+            본 사이트에 올리는 사진은 다른 사용자가 자유롭게 다운로드 할 수 있습니다.
+            이에 동의하는 사람만 회원가입 하시기 바랍니다.
+        </div>
+        <br>
+        <div id="join">
+            <table boder="" cellspacing="10">
+                <form id = "join" method="POST" action="{%url 'accounts:join'%}">
+                    {% csrf_token %}
+                        <tr>
+                        <td text-align="center"> ID : </td>
+                        <td>
+                            <input type="text" size="20" /> 
+                            <button id = "dup-check"> 중복확인</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Password : &nbsp; </td>
+                        <td> <input type="password" size="20" /> </td>
+                        <td>Comfirm Password : <input name="password2" type = "password" size = "20"><br><br> </td>
+                    </tr>
+
+                    <tr>
+                        <td> E-mail : </td>
+                        <td> <input type="text" size="40" /> </td>
+
+                    </tr>
+                    <input type="submit" value="join">
+                </FORM>
+            </table>
+        </div>
+        <br>
+        <button id = "cancel"><a href="http://127.0.0.1:8000/" onclick="javascript:cancel_btn()"> 취소 </a></button> &nbsp;
+        <button id = "confirm"><a href="http://127.0.0.1:8000/" onclick="javascript:confirm_btn()"> 확인 </a></button>
+    <!-- </center>
+</body>
+
+        <form id = "join" method="POST" action="{%url 'accounts:join'%}">
+            {% csrf_token %}
+            ID : <input name="username" type = "text" size = "20"> <button> 중복확인</button> <br><br>
+            Password : <input name="password1" type = "password" size = "20"><br><br>
+            Comfirm Password : <input name="password2" type = "password" size = "20"><br><br>
+            E-mail : <input name="email" type = "E-mail" size = "20"> <br><br>
+            <input type="submit" value="join">
+        </form>
+        <button> 취소 </button>
+        <button> 확인 </button> -->
+        </center>
+    </body>
+</html>

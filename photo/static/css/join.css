@@ -1,0 +1,86 @@
+html{
+    scroll-behavior: smooth;
+}
+
+a { text-decoration: none; color: gray; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+.title{
+    position : relative;
+    left : 7%;
+    top : 5%;
+}
+
+#short-title {
+    font-size : 250%;
+    color : gray;
+}
+
+#long-title {
+    font-size : 100%;
+    color : gray;
+}
+
+#category {
+    position : relative;
+    top : 3%;
+    left : 80%;
+}
+
+#best_btn {
+    position : relative;
+    top : 3%;
+    left : 6%;
+}
+
+#notice {
+    position : relative;
+    border : 3px solid #CAB4D6;
+    width : 45%;
+    height : 8%;
+    padding : 2%;
+}
+
+#join {
+    position : relative;
+    padding : 2%;
+    border : 1px solid gray;
+    width : 45%;
+    height : 20%;
+}
+
+.button {
+    background-color: white;
+    color: #777777;
+    border: 2px solid #ffffff; 
+}
+
+#dup-check {
+    position : relative;
+    width : 30%;
+    height : 30%;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}
+
+#cancel {
+    position : relative;
+    width : 5%;
+    height : 5%;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}
+
+#confirm {
+    position : relative;
+    width : 5%;
+    height : 5%;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}

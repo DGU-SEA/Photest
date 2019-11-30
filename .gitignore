@@ -1,0 +1,12 @@
+
+venv
+.DS_Store
+
+myvenv
+
+.vscode
+ 
+
+/venv
+
+

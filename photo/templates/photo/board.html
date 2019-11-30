@@ -1,0 +1,70 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/board.css' %}">
+        <title> Photest </title>
+        <meta charset = "utf-8">
+        <style>
+            #frame { z-index: 1000}
+            #photos { z-index: 1001}
+            #frame img { z-index:1002}
+            </style>
+    </head>
+    <body>
+        <div class = "title">
+        <font size = "30" color = "gray"><a href="/"> Photest </a></font>
+        <font size = "5" color = "gray"> _Photo Contest </font>
+        </div>
+        <div id = "category">
+            <button id = "best_btn" class = "button"><a href="http://127.0.0.1:8000/best/"> Best </a></button> 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id = "mypage_btn" class = "button"><a href="http://127.0.0.1:8000/mypage/"> Mypage </a></button>
+        </div><br><br>
+
+        <div class="today-hashtag-container">
+            <h2>오늘의 해시태그</h2>
+        </div>
+
+        <div class="today-hashtag">
+            <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
+            <!-- <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1> -->
+        </div>
+        <Br><Br><br></br></br></br>
+
+        <div id = "search">
+            <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
+            <button id = "bsearch"> 검색 </button>
+            My favorite Hashtag : 
+        </div>
+
+        <div id = "board">
+        <div id = "add">
+
+
+            <button class = "button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
+
+        </div>
+
+        <div id = "frame">
+            <div id = "photos">
+            </div>
+            <!-- <img src=" {{ object.image.url }}" class="card-img-top" alt="..." align = "right" z-index="-1"/> -->
+                <img src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"class="card-img-top" alt="...">
+                <img src="{% static 'image/siren.png' %}" width = 30px height = 30px id = "report" >
+            </div>
+            <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/> -->
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        
+
+        
+        
+
+
+
+
+    </div>
+    </body>
+</html>

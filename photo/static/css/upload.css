@@ -1,0 +1,147 @@
+.backLayer { 
+    display:none; 
+    background-color:black; 
+    position:absolute; 
+    left:0px; top:0px; 
+} 
+    
+#uploadDiv{ 
+    background-color:white; 
+    position: absolute; 
+    top : 70px;
+    left : 450px;
+    width:480px; 
+    height:600px; 
+    padding : 50px;
+}
+
+#uploadFrame {
+    position : relative;
+    border : 1px solid gray;
+    width : 430px;
+    height : 400px;
+    
+}
+
+.filebox label { 
+    display: inline-block; 
+    padding: .5em .75em; 
+    color: #999; 
+    font-size: inherit; 
+    line-height: normal; 
+    vertical-align: middle; 
+    background-color: #fdfdfd; 
+    cursor: pointer; 
+    border: 1px solid #ebebeb; 
+    border-bottom-color: #e2e2e2; 
+    border-radius: .25em; 
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */ 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0; 
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.title{
+    position : relative;
+    left : 200px;
+    top : 20px;
+}
+
+#category {
+    position : relative;
+    top : 0px;
+    left : 1130px;
+}
+
+.button {
+    background-color: white;
+    color: #777777;
+    border: 2px solid #ffffff; 
+  }
+
+#today {
+    position : relative;
+    top : 230px;
+    left : 140px;
+}
+
+#todayHash {
+    width : 300px;
+    height : 150px;
+}
+
+#add {
+    position : relative;
+    padding : 10px;
+    left : 20px;
+    top : 180px;
+    width : 250px;
+    height : 330px;
+    border : 1px solid gray;
+    margin-right : 50px;
+    float : left;
+}
+
+#frame {
+    position : relative;
+    padding : 10px;
+    width : 250px;
+    top : 180px;
+    height : 330px;
+    border : 1px solid gray;
+    float : left;
+    margin-right : 50px;
+}
+
+#photos {
+    width : 250px;
+    height : 260px;
+    position : relative;
+    border : 1px solid gray;
+}
+
+#search {
+    position : relative;
+    height : 40px;
+    width : 900px;
+    border : 1px solid gray;
+    top : 120px;
+    left : 20px;
+}
+ 
+#isearch {
+    font-size : 16px;
+    width : 830px;
+    padding : 10px;
+    border : 0px;
+    outline : none;
+    float : left;
+}
+
+#bsearch {
+    width : 50px;
+    height : 100%;
+    border : 0px;
+    outline: none;
+    float: right;
+}
+
+#board {
+    width : 1300px;
+    height : 2000px;
+    border : 1px solid black;
+    
+}

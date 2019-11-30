@@ -1,0 +1,49 @@
+tml{
+    scroll-behavior: smooth;
+}
+
+.title{
+    position : relative;
+    left : 200px;
+    top : 20px;
+}
+
+#category {
+    position : relative;
+    top : 0px;
+    left : 1130px;
+}
+
+.button {
+    background-color: white;
+    color: #777777;
+    border: 2px solid #ffffff; 
+  }
+
+.ranking-reward font{
+    position : relative;
+    left : 450px;
+    top : 20px;
+    font-weight: lighter;
+    font-size: 15pt;
+}
+
+.ranking-reward-check img{
+    position : relative;
+    top : -5px;
+    left : 730px;
+    width: 26px;
+    height: 26px;
+    padding-right:100px;
+}
+
+.button button{
+    position : relative;
+    top : 100px;
+    left : 300px;
+    border-color: #CAB4D6;
+    background-color: white;
+    border-style : double;
+    width : 100px;
+    height : 40px;
+}
