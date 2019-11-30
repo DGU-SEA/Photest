@@ -40,10 +40,21 @@
     </script>
 
     <div class="log">
-        <!-- <br><br> -->
-        {{ object.author }} 님 환영합니다. 
+            <!-- &nbsp&nbsp&nbspID &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <input class="underline" type = "text" name = "user_id"> <br>
+            &nbsp&nbsp&nbspPassword &nbsp: <input class="underline" type = "text" name = "password"><br> -->
+            <!-- {% if user.is_authenticated %} 
+                아이디 : {{user.username}} <br>
+                rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
+                로그아웃 버튼 만들어라
+            {% else %}
+            <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
+            <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
+            {% endif %} -->
+        <center>
+        <br>{{user.username}}님 환영합니다. <br><br>
         <button id="logout_btn"><a href="http://127.0.0.1:8000/" onclick="javascript:logout_btn()"> Logout </a></button>
         <!-- <br><br> -->
+    </center>
 
     </div>
 
