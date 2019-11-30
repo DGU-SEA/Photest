@@ -35,8 +35,11 @@ def main(request):
             yesterdaytag = h.tagName
     print(todaytag)
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
-    orderedPhotos = Photo.objects.all()
-    print(orderedPhotos)
+    Photos = Photo.objects.all().order_by('-like')
+    print(Photos)
+
+    for p in Photos :
+        print(p.like.all())
 
     return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag})
     
