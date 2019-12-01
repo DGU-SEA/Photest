@@ -18,7 +18,7 @@ def main(request):
     global Photo
     hashtags = hashtag.objects.all()
 
-    # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
+    # # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
     todaytag = ""
     todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
     dbDate = ""
@@ -50,10 +50,6 @@ def main(request):
 
     return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'BestPhotos' : BestPhotos})
     
-def board(request):
-    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
-    return render(request, 'photo/board.html', {}) #, {'posts': posts}
-
 def best(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/best.html', {}) #, {'posts': posts}

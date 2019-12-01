@@ -1,5 +1,4 @@
 {% load static %}
-
 <html>
 
 <head>
@@ -19,8 +18,13 @@
         <font id="long-title">_Photo Contest </font>
     </div>
     <div id="category">
-        <!-- <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button> -->
+        {% if user.is_authenticated %}
+        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
+        <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        {% else %}
+        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        {% endif %}
     </div><br><br>
 
     <div class="today-hashtag-container">
@@ -41,10 +45,7 @@
 
     <div id="board">
         <div id="add">
-
-
             <button class="button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
-
         </div>
         {% for object in object_list %}
         <div id="frame">
@@ -58,7 +59,7 @@
 
                             <div class="card">
                                 <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
-                                    height=260px onclick="location.href='/detail/'" />
+                                    height=260px onclick="location.href='/photo_detail/'" />
 
                                 <!-- <ul class="list-group list-group-flush">
                                 <li class="list-group-item">생성일 : {{ object.created }}</li>

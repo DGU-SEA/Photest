@@ -73,7 +73,7 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     width : 20%;
     height : 18%;
-    top : -10%;
+    top : -15%;
     left : 72%; 
 }
 
@@ -186,7 +186,7 @@ input.underline {
 }
 
 /* 검색과 관련된 영역 */
-#search {
+#dsearch {
     position : relative;
     height : 8%;
     width : 82%;

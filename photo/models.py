@@ -10,7 +10,7 @@ class Photo(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     hashtag = jsonfield.JSONField(blank = True)
-    like = models.IntegerField(User, blank=True)
+    like = models.IntegerField(User, blank=True, default=0)
 
     # favorite = models.ManyToManyField(User, related_name='favorite_post', blank=True)
     def __str__(self): # admin 사이트 화면 표시 구현

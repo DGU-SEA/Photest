@@ -7,6 +7,9 @@ from .models import *
 
 def join(request):
     if request.method == "POST":
+        username = request.POST["username"]
+        if User.objects.filter(username=username).exists() :
+            return render(request, 'accounts/join.html', { 'is_used' : "rewrite username"})
         if request.POST["password1"] == request.POST["password2"]:
             user = User.objects.create_user(
                 username=request.POST["username"],
@@ -16,6 +19,10 @@ def join(request):
             profile.save()
             auth.login(request,user)
             # return HttpResponseRedirect(reverse('photo/main'))
-            return redirect('/')        
+            return redirect('/')  
         return render(request, 'accounts/join.html', {})
     return render(request, 'accounts/join.html', {})
+
+def logout(request):
+    auth.logout(request)  
+    return redirect('/')   
