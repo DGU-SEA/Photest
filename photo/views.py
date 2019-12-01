@@ -75,7 +75,6 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-
 class PhotoList(ListView):
     model = Photo
     template_name_suffix='_list'

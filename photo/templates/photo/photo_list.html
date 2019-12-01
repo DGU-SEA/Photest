@@ -1,6 +1,5 @@
 {% load static %}
 <html>
-
 <head>
     <link rel="stylesheet" href="{% static 'css/photo_list.css' %}">
     <title> Photest </title>
@@ -32,8 +31,7 @@
     </div>
 
     <div class="today-hashtag">
-        <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
-        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1>
+        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># {{todaytag}} </a></h1>
     </div>
     <Br><Br><br></br></br></br>
 
@@ -49,8 +47,6 @@
         {% for object in object_list %}
         <div id="frame">
             <div id="photos">
-                <!-- <img src=" {{ Photo.image.url }}" class="card-img-top" alt="..." z-index="-1"/> -->
-                <!-- <img src="D:\photest\Photest\media\timeline_photo\2019\11\19\IMG_2836.jpg" class="card-img-top" alt="..." z-index="1000000"/> -->
                 <div class='container'>
                     <div class="row">
                         <div class="col"></div>
@@ -59,20 +55,7 @@
                             <div class="card">
                                 <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
                                     height=260px onclick="location.href='/photo_detail/'" />
-
-                                <!-- <ul class="list-group list-group-flush">
-                                <li class="list-group-item">생성일 : {{ object.created }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="http://127.0.0.1:8000/photo_detail" class="card-link">댓글달기</a>
-                                <a href="http://127.0.0.1:8000/photo_update" class="card-link">수정하기</a>
-                                <a href="http://127.0.0.1:8000/photo_delete" class="card-link">삭제하기</a>
-            
-                            </div> -->
-
                             </div>
-
-
                         </div>
                     </div>
 
