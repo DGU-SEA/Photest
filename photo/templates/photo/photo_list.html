@@ -32,6 +32,7 @@
     </div>
 
     <div class="today-hashtag">
+
         <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
         <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"> #{{todaytag}} </a></h1>
     </div>
@@ -47,56 +48,47 @@
     </form>
 
     <div id="board">
+            
         <div id="add">
-            <button class="button"><a href="http://127.0.0.1:8000/photo_create/"><font size = "80" text-align= "center"> + </font></a></button>
+            <button class="button"><a href="http://127.0.0.1:8000/photo_create/">
+                    <font size="80" text-align="center"> + </font>
+                </a></button>
         </div>
         {% for object in object_list %}
-        <div id="frame">
-            <div id="photos">
-                <!-- <img src=" {{ Photo.image.url }}" class="card-img-top" alt="..." z-index="-1"/> -->
-                <!-- <img src="D:\photest\Photest\media\timeline_photo\2019\11\19\IMG_2836.jpg" class="card-img-top" alt="..." z-index="1000000"/> -->
-                <div class='container'>
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-5">
+        <div id="frame_frame">
+            <div id="frame">
+                <div id="photos">
+                    <div class='container'>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-5">
 
-                            <div class="card">
-                                <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
-                                    height=260px onclick="location.href='/photo_detail/'" />
-
-                                <!-- <ul class="list-group list-group-flush">
-                                <li class="list-group-item">생성일 : {{ object.created }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="http://127.0.0.1:8000/photo_detail" class="card-link">댓글달기</a>
-                                <a href="http://127.0.0.1:8000/photo_update" class="card-link">수정하기</a>
-                                <a href="http://127.0.0.1:8000/photo_delete" class="card-link">삭제하기</a>
-            
-                            </div> -->
-
+                                <div class="card">
+                                    <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
+                                        height=260px onclick="location.href='/photo_detail/'" />
+                                </div>
                             </div>
-
-
                         </div>
+
                     </div>
-
                 </div>
-            </div>
-            <a href="http://127.0.0.1:8000/photo_delete" class="card-link" onclick="remove_div(this)">삭제하기</a>
-            {% block content %}
-            {% endblock %}
-            <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" />
+                <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" />
 
-            <div class="card-header" align="left">
-                {{ object.author }}
-            </div>
-            <div class="card-body">
-                <p class="card-text"> {{ object.text }} </p>
-            </div>
-            {% endfor %}
+                <div class="card-header" align="left">
+                    {{ object.author }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text"> {{ object.text }} </p>
+                </div>
 
-
+            </div>
         </div>
+        <!-- {% block content %}
+            {% endblock %} -->
+        <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" /> -->
+
+        {% endfor %}
     </div>
 </body>
+
 </html>

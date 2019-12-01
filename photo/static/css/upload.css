@@ -1,3 +1,9 @@
+a { text-decoration: none; color: gray; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
 .backLayer { 
     display:none; 
     background-color:black; 
@@ -56,21 +62,50 @@ html {
 
 .title{
     position : relative;
-    left : 200px;
-    top : 20px;
+    left : 7%;
+    top : 5%;
+}
+
+#short-title {
+    font-size : 250%;
+    color : gray;
+    font-weight : bold;
+}
+
+#long-title {
+    font-size : 100%;
+    color : gray;
 }
 
 #category {
     position : relative;
-    top : 0px;
-    left : 1130px;
+    top : 3%;
+    left : 71%;
+}
+
+#mypage_btn {
+    position : relative;
+    top : 3%;
+    left : 1%;
+}
+
+#board_btn {
+    position : relative;
+    top : 3%;
+    left : 4%;
+}
+
+#best_btn {
+    position : relative;
+    top : 3%;
+    left : 6%;
 }
 
 .button {
     background-color: white;
     color: #777777;
-    border: 2px solid #ffffff; 
-  }
+    border: 3px solid #ffffff; 
+}
 
 #today {
     position : relative;
@@ -83,35 +118,7 @@ html {
     height : 150px;
 }
 
-#add {
-    position : relative;
-    padding : 10px;
-    left : 20px;
-    top : 180px;
-    width : 250px;
-    height : 330px;
-    border : 1px solid gray;
-    margin-right : 50px;
-    float : left;
-}
 
-#frame {
-    position : relative;
-    padding : 10px;
-    width : 250px;
-    top : 180px;
-    height : 330px;
-    border : 1px solid gray;
-    float : left;
-    margin-right : 50px;
-}
-
-#photos {
-    width : 250px;
-    height : 260px;
-    position : relative;
-    border : 1px solid gray;
-}
 
 #search {
     position : relative;
@@ -137,11 +144,4 @@ html {
     border : 0px;
     outline: none;
     float: right;
-}
-
-#board {
-    width : 1300px;
-    height : 2000px;
-    border : 1px solid black;
-    
 }
