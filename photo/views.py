@@ -52,6 +52,40 @@ def main(request):
     
 def best(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+    yesterday = date.today() - timedelta(1)
+    # print(str(yesterday))
+
+    days = [yesterday]
+    tags = []
+    bestPhotos =[]
+    temp = 0
+    for i in range(1, 7):
+        temp = yesterday - timedelta(i)
+        days.append(temp)
+
+    print(days)
+
+    for i in range(0, 7):
+        for h in hashtag.objects.all():
+            if (h.tagDate == days[i]):
+                tags.append(h.tagName)
+                print(h.tagName)
+
+
+    # Photos = Photo.objects.all().order_by('-like')
+    #
+    # index = 0
+    # for p in Photos:
+    #     BestPhotos.append(p)
+    #     index += 1
+    #
+    #     if (index == 5): break
+
+    # return render(request, 'photo/main.html',
+    #               context={'todaytag': todaytag, 'yesterdaytag': yesterdaytag, 'BestPhotos': BestPhotos})
+
+
+
     return render(request, 'photo/best.html', {}) #, {'posts': posts}
     
 def hashtag_board(request):
