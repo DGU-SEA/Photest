@@ -2,9 +2,8 @@ from django.urls import path
 from .views import PhotoList, PhotoDelete, PhotoDetail, PhotoUpdate, PhotoCreate
 
 from . import views
-from .views import main, board, best, hashtag_board, search
+from .views import main, best, hashtag_board, search
 
-#app_name="photo
 app_name="photo"
 urlpatterns = [
 
