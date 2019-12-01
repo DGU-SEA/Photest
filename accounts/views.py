@@ -19,3 +19,7 @@ def join(request):
             return redirect('/')        
         return render(request, 'accounts/join.html', {})
     return render(request, 'accounts/join.html', {})
+
+def logout(request):
+    auth.logout(request)  
+    return redirect('/')   
