@@ -18,7 +18,7 @@ urlpatterns = [
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
     path('mypage/', views.mypage, name='mypage'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
-    # path('logined_main/', views.logined_main, name = 'logined_main'),
+    path('detail/', views.detail, name='detail'),
 ]
 
 from django.conf.urls.static import static

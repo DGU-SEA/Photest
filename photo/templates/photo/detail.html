@@ -38,16 +38,16 @@
         });  */
     
         </script>
-        <!-- <style type="text/css">
+        <style type="text/css">
             #frame{
                 position : relative;
                 padding : 10px;
                 width : 250px;
-                /* top : 180px; */
+                /*top : 180px;*/
                 height : 330px;
                 border : 1px solid gray;
                 float : left;
-                /* margin-right : 50px; */
+                margin-right : 50px;
             }
         
             #photos {
@@ -56,7 +56,7 @@
                 position : relative;
                 border : 1px solid gray;
             }
-        </style> -->
+        </style>
     </head>
     <body>
         <div id = "title">
@@ -95,22 +95,21 @@
         <div class="backLayer"> 
         </div> 
 
-
         <center>
         
         <div id="uploadDiv"> 
             <div id = "uploadFrame">
-                +
+                    <img src=" {{ object.image.url }}" class="card-img-top" alt="...">
             </div>
             <br>
             <!-- <label for="ex_file">image</label> 
             <input type="file" id="ex_file"> <br><Br> -->
 
             <Br><Br>
-            {% block content %}
-            {% endblock %}
         </div>
+        
     </center>
+
     </div>
     </body>
 </html>
