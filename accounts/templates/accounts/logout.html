@@ -28,7 +28,9 @@
     .title {
         position: relative;
         /* left: 7%; */
+        vertical-align: middle;
         text-align: center;
+   
     }
 
     #short-title {
@@ -79,7 +81,7 @@
         </div>
         <!-- <div class="alert alert-primary" role="alert">
             로그아웃이 잘 되었습니다. </div> -->
-        <button id="main"> <a href="http://127.0.0.1:8000/"> Main Page </a></button>
+        <button id="main" onclick="location.href='/'" > Main Page </button>
         <button id="login_btn"> <a href="{% url 'accounts:login'%}" class="btn btn-outline-success">login</a></button>
 
     </div>
