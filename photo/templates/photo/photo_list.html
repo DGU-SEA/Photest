@@ -1,5 +1,6 @@
 {% load static %}
 <html>
+
 <head>
     <link rel="stylesheet" href="{% static 'css/photo_list.css' %}">
     <title> Photest </title>
@@ -31,53 +32,63 @@
     </div>
 
     <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># {{todaytag}} </a></h1>
+
+        <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
+        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"> #{{todaytag}} </a></h1>
     </div>
     <Br><Br><br></br></br></br>
 
-    <div id="search">
-        <input type="text" id="isearch" placeholder="# Hashtag를 입력하세요">
-        <button id="bsearch"> 검색 </button>
-    </div>
+    <form id="search" method="post">
+        <div id="dsearch">
+            {% csrf_token %}
+            <!-- <label for="msg">메세지</label> -->
+            <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id="bsearch"><a href="http://127.0.0.1:8000/photo_list/"> </a></button>
+        </div>
+    </form>
 
     <div id="board">
+            
         <div id="add">
-            <button class="button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
+            <button class="button"><a href="http://127.0.0.1:8000/photo_create/">
+                    <font size="80" text-align="center"> + </font>
+                </a></button>
         </div>
         {% for object in object_list %}
-        <div id="frame">
-            <div id="photos">
-                <div class='container'>
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-5">
+        <div id="frame_frame">
+            <div id="frame">
+                <div id="photos">
+                    <div class='container'>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-5">
 
-                            <div class="card">
-                                <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
-                                    height=260px onclick="location.href='/photo_detail/'" />
+                                <div class="card">
+                                    <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
+                                        height=260px onclick="location.href='/photo_detail/'" />
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
-            <a href="http://127.0.0.1:8000/photo_delete" class="card-link" onclick="remove_div(this)">삭제하기</a>
-            {% block content %}
-            {% endblock %}
-            <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" />
+                <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" />
 
-            <div class="card-header" align="left">
-                {{ object.author }}
-            </div>
-            <div class="card-body">
-                <p class="card-text"> {{ object.text }} </p>
-            </div>
-            {% endfor %}
+                <div class="card-header" align="left">
+                    {{ object.author }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text"> {{ object.text }} </p>
+                </div>
 
-
+            </div>
         </div>
+        <!-- {% block content %}
+            {% endblock %} -->
+        <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" /> -->
+
+        {% endfor %}
     </div>
 </body>
-
 
 </html>

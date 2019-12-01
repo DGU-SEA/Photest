@@ -89,7 +89,7 @@ class PhotoList(ListView):
 class PhotoCreate(CreateView):
     model = Photo
 
-    fields = ['author','text', 'image', 'hashgtag']
+    fields = ['author','text', 'image'] #'hashtag'
     template_name_suffix = '_create'
     success_url = '/'
     
