@@ -13,13 +13,16 @@
         <font id="long-title">_Photo Contest </font>
     </div>
     <div id="category">
+        {% if user.is_authenticated %} 
         <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/"></a> Mypage </button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
+        {% else %}
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        {% endif %} 
     </div><br><br>
 
     <!-- 해시태그랑 날짜는 변수로 바꿔야 할듯 -->
-    <h1> 2019년 11월 23일 &nbsp;&nbsp;&nbsp;#노을 </h1>
+    <h1> 2019년 11월 23일 &nbsp;&nbsp;&nbsp; # </h1>
 
     <!-- 매일 똑같은 형태가 반복되는 부분 -->
     <div id="day">

@@ -101,7 +101,7 @@ input.underline {
     border: 3px solid #ffffff; 
 }
 
-#logout_btn {
+#logoutbtn {
     position : relative;
     top : 35%;
     left : 12%;
