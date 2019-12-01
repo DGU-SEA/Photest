@@ -1,68 +1,66 @@
 {% load static %}
 
 <html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/board.css' %}">
-        <title> Photest </title>
-        <meta charset = "utf-8">
-        <script type="text/javascript">
-            function remove_div(obj){
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/photo_list.css' %}">
+    <title> Photest </title>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        function remove_div(obj) {
             document.getElementById('frame').removeChild(obj.parentNode);
-            }
-        </script>
-        <style>
-            #frame { z-index: 1000}
-            #photos { z-index: 1001}
-            #frame img { z-index:1002}
-            </style>
-    </head>
-    <body>
-            <div class="title">
-                    <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
-                    <font id="long-title">_Photo Contest </font>
-                </div>
-                <div id="category">
-                    <!-- <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button> -->
-                    <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-                </div><br><br>
+        }
+    </script>
+</head>
 
-        <div class="today-hashtag-container">
-            <h2>오늘의 해시태그</h2>
-        </div>
+<body>
+    <div class="title">
+        <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
+        <font id="long-title">_Photo Contest </font>
+    </div>
+    <div id="category">
+        <!-- <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button> -->
+        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+    </div><br><br>
 
-        <div class="today-hashtag">
-            <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
-            <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1>
-        </div>
-        <Br><Br><br></br></br></br>
+    <div class="today-hashtag-container">
+        <h2>오늘의 해시태그</h2>
+    </div>
 
-        <div id = "search">
-            <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
-            <button id = "bsearch"> 검색 </button>
-            <!-- My favorite Hashtag :  -->
-        </div>
+    <div class="today-hashtag">
+        <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
+        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1>
+    </div>
+    <Br><Br><br></br></br></br>
 
-        <div id = "board">
-        <div id = "add">
+    <div id="search">
+        <input type="text" id="isearch" placeholder="# Hashtag를 입력하세요">
+        <button id="bsearch"> 검색 </button>
+        My favorite Hashtag :
+    </div>
+
+    <div id="board">
+        <div id="add">
 
 
-            <button class = "button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
+            <button class="button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
 
         </div>
         {% for object in object_list %}
-        <div id = "frame">
-            <div id = "photos">
-                    <!-- <img src=" {{ Photo.image.url }}" class="card-img-top" alt="..." z-index="-1"/> -->
-                    <!-- <img src="D:\photest\Photest\media\timeline_photo\2019\11\19\IMG_2836.jpg" class="card-img-top" alt="..." z-index="1000000"/> -->
-            <div class='container'>
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col-5">
-            
-                        <div class="card">
-                            <img src=" {{ object.image.url }}" class="card-img-top" alt="...">
-                            
-                            <!-- <ul class="list-group list-group-flush">
+        <div id="frame">
+            <div id="photos">
+                <!-- <img src=" {{ Photo.image.url }}" class="card-img-top" alt="..." z-index="-1"/> -->
+                <!-- <img src="D:\photest\Photest\media\timeline_photo\2019\11\19\IMG_2836.jpg" class="card-img-top" alt="..." z-index="1000000"/> -->
+                <div class='container'>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col-5">
+
+                            <div class="card">
+                                <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
+                                    height=260px onclick="location.href='/detail/'" />
+
+                                <!-- <ul class="list-group list-group-flush">
                                 <li class="list-group-item">생성일 : {{ object.created }}</li>
                             </ul>
                             <div class="card-body">
@@ -71,19 +69,19 @@
                                 <a href="http://127.0.0.1:8000/photo_delete" class="card-link">삭제하기</a>
             
                             </div> -->
-            
+
+                            </div>
+
+
                         </div>
-                        
-            
                     </div>
+
                 </div>
-                
-            </div>
             </div>
             <a href="http://127.0.0.1:8000/photo_delete" class="card-link" onclick="remove_div(this)">삭제하기</a>
             {% block content %}
             {% endblock %}
-            <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+            <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" />
 
             <div class="card-header" align="left">
                 {{ object.author }}
@@ -92,11 +90,11 @@
                 <p class="card-text"> {{ object.text }} </p>
             </div>
             {% endfor %}
-        
-        
+
+
         </div>
     </div>
-    </body>
+</body>
 
 
 </html>
