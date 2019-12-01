@@ -50,7 +50,7 @@ a:hover, a:active { text-decoration: none; }
     padding : 2%;
     border : 1px solid gray;
     width : 45%;
-    height : 30%;
+    height : 35%;
 }
 
 .button {
@@ -59,10 +59,10 @@ a:hover, a:active { text-decoration: none; }
     border: 2px solid #ffffff; 
 }
 
-#dup-check {
+#join_btn {
     position : relative;
     width : 30%;
-    height : 30%;
+    height : 15%;
     border-radius : 5px;
     border-color : #CAB4D6;
     background-color: white;

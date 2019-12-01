@@ -63,7 +63,7 @@ a:hover, a:active { text-decoration: none; }
 #best_btn {
     position : relative;
     top : 3%;
-    left : 15%;
+    left : 6%;
 }
 
 .log {
@@ -73,7 +73,7 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     width : 20%;
     height : 18%;
-    top : -19%;
+    top : -10%;
     left : 72%; 
 }
 
@@ -105,6 +105,17 @@ input.underline {
     position : relative;
     top : 35%;
     left : 26%;
+    width : 30%;
+    height : 30%;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}
+
+#logout_btn{ 
+    position : relative;
+    top : 35%;
+    left : 0%;
     width : 30%;
     height : 30%;
     border-radius : 5px;

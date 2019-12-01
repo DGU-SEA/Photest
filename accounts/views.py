@@ -16,6 +16,6 @@ def join(request):
             profile.save()
             auth.login(request,user)
             # return HttpResponseRedirect(reverse('photo/main'))
-            return redirect('/')
+            return redirect('/')        
         return render(request, 'accounts/join.html', {})
     return render(request, 'accounts/join.html', {})
