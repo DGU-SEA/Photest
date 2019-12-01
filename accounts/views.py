@@ -9,7 +9,7 @@ def join(request):
     if request.method == "POST":
         username = request.POST["username"]
         if User.objects.filter(username=username).exists() :
-            return render(request, 'accounts/join.html', { 'is_used' : "rewrite username"})
+            return render(request, 'accounts/join.html', { 'is_used' : "중복된 ID 입니다."})
         if request.POST["password1"] == request.POST["password2"]:
             user = User.objects.create_user(
                 username=request.POST["username"],
