@@ -1,5 +1,9 @@
 {% load static %}
 <html>
+<<<<<<< HEAD
+
+=======
+>>>>>>> f0e740817052b90ff59a03e3181d5a2c03b820b4
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -44,9 +48,17 @@
         {% if user.is_authenticated %}
         <center>
             <br>{{user.username}}님 환영합니다. <br><br>
+<<<<<<< HEAD
             <!-- <button id="logout_btn"><a href="http://127.0.0.1:8000/accounts/logout/"> Logout </a></button> -->
             <!-- <button id="logout_btn" method="POST" action="{%url 'accounts:logout'%}"> Logout </button> -->
             <button id="logout_btn"><a href="{% url 'accounts:logout'%}">Logout </a></button>
+=======
+<<<<<<< HEAD
+            <button id="logout_btn"><a href="/" onclick="javascript:logout_btn()"> Logout </a></button>
+=======
+            <button id="logout_btn" method="POST" action="{%url 'accounts:logout'%}"><a href="/" onclick="javascript:logout_btn()" > Logout </a></button>
+>>>>>>> f0e740817052b90ff59a03e3181d5a2c03b820b4
+>>>>>>> 8186798cec07362b610aa841aa40235b18f4c422
         </center>
         {% else %}
         <button id="join_btn"> <a href="http://127.0.0.1:8000/accounts/join/"> Join </a></button>
@@ -71,6 +83,16 @@
 
     <!-- image는 db가 된 다음에 해결 가능 -->
     <div class="yesterday-first">
+<<<<<<< HEAD
+        <img src="{{ BestPhotos.0.image.url }}" alt="" />
+    </div>
+    <br></br>
+    <div class="yesterday-else">
+        <img src="{{ BestPhotos.1.image.url }}" alt="" />
+        <img src="{{ BestPhotos.2.image.url }}" alt="" />
+        <img src="{{ BestPhotos.3.image.url }}" alt="" />
+        <img src="{{ BestPhotos.4.image.url }}" alt="" />
+=======
         <img src="{{ BestPhotos.0.image.url }}"/>
     </div>
     <br></br>
@@ -79,6 +101,7 @@
         <img src="{{ BestPhotos.2.image.url }}"/>
         <img src="{{ BestPhotos.3.image.url }}"/>
         <img src="{{ BestPhotos.4.image.url }}"/>
+>>>>>>> f0e740817052b90ff59a03e3181d5a2c03b820b4
     </div>
 
     <!-- post 방식 전송을 하기 위해서는 csrf_token 이 필요하다 -->
@@ -87,8 +110,17 @@
             {% csrf_token %}
             <!-- <label for="msg">메세지</label> -->
             <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
+<<<<<<< HEAD
             <input type="submit" value="search" id = "bsearch" onclick="location.href='/photo_list/'"/>
+=======
+            <input type="submit" value="search" id = "bsearch"><a href="http://127.0.0.1:8000/photo_list/"> </a></button>
+<<<<<<< HEAD
+            <!-- <td><input type="submit" value="join" id="join_btn"></td> -->
+=======
+>>>>>>> f0e740817052b90ff59a03e3181d5a2c03b820b4
+>>>>>>> 8186798cec07362b610aa841aa40235b18f4c422
         </div>
     </form>
 </body>
+
 </html>
