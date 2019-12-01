@@ -33,22 +33,22 @@
 
     <div class="today-hashtag">
         <!-- <h1><a href="/" style="color:black"># 노을 </a></h1> -->
-        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"># 노을 </a></h1>
+        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"> #{{todaytag}} </a></h1>
     </div>
     <Br><Br><br></br></br></br>
 
-    <div id="search">
-        <input type="text" id="isearch" placeholder="# Hashtag를 입력하세요">
-        <button id="bsearch"> 검색 </button>
-        My favorite Hashtag :
-    </div>
+    <form id="search" method="post">
+        <div id="dsearch">
+            {% csrf_token %}
+            <!-- <label for="msg">메세지</label> -->
+            <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id="bsearch"><a href="http://127.0.0.1:8000/photo_list/"> </a></button>
+        </div>
+    </form>
 
     <div id="board">
         <div id="add">
-
-
-            <button class="button"><a href="http://127.0.0.1:8000/photo_create/"> + </a></button>
-
+            <button class="button"><a href="http://127.0.0.1:8000/photo_create/"><font size = "80" text-align= "center"> + </font></a></button>
         </div>
         {% for object in object_list %}
         <div id="frame">
@@ -99,6 +99,4 @@
         </div>
     </div>
 </body>
-
-
 </html>

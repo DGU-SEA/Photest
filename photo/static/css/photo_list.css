@@ -17,6 +17,7 @@ a:hover, a:active { text-decoration: none; }
 #short-title {
     font-size : 250%;
     color : gray;
+    font-weight : bold;
 }
 
 #long-title {
@@ -54,32 +55,40 @@ a:hover, a:active { text-decoration: none; }
     border: 3px solid #ffffff; 
 }
 
-
 .today-hashtag-container {
     position:relative;
-    left: 200px;
-    top: 5px;
+    left: 10%;
+    top: 0%;
     color: gray;
     font-size: 20pt;
     /*padding: 0px 20px 10px 200px;*/
 }
 
-.today-hashtag h1{
+.today-hashtag {
     position:relative;
-    top: 0px;
-    text-align: center;
-    font-size: 40pt;
+    /* text-align: center; */
+    left : 40%;
+}
+
+#board {
+    position : relative;
+    width : 90%;
+    left : 8%;
+    top : -15%;
+    /* height : 2000px; */
+    border : 1px solid black;
+    float : left;
 }
 
 #add {
     position : relative;
-    padding : 10px;
-    left : 20px;
-    top : 180px;
-    width : 250px;
-    height : 330px;
+    padding : 2%;
+    left : 2%;
+    top : 130px;
+    width : 20%;
+    height : 53%;
     border : 1px solid gray;
-    margin-right : 50px;
+    margin-right : 3%;
     float : left;
 }
 
@@ -101,35 +110,32 @@ a:hover, a:active { text-decoration: none; }
     border : 1px solid gray;
 }
 
-#search {
+/* 검색과 관련된 영역 */
+#dsearch {
     position : relative;
-    height : 40px;
-    width : 900px;
+    height : 8%;
+    width : 82%;
     border : 1px solid gray;
-    top : 120px;
-    left : 20px;
+    top : 0%;
+    left : 12%;
 }
  
+/* 검색 필드 */
 #isearch {
     font-size : 16px;
-    width : 830px;
+    width : 80%;
     padding : 10px;
     border : 0px;
     outline : none;
     float : left;
 }
 
+/* 검색 버튼 */
 #bsearch {
-    width : 50px;
+    width : 8%;
     height : 100%;
     border : 0px;
     outline: none;
     float: right;
 }
 
-#board {
-    width : 1300px;
-    height : 2000px;
-    border : 1px solid black;
-    float : left;
-}

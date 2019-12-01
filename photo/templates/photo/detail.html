@@ -1,115 +1,65 @@
+{%extends 'photo/detail_view.html'%}
+{%block content%}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/upload.css' %}">
-        <title> Photest </title>
-        <meta charset = "utf-8">
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        
-        <script type="text/javascript"> //window onload 
-        $(document).ready(function(){ 
-            
-                var width = $(window).width(); 
-                var height = $(window).height(); //화면을 가리는 레이어의 사이즈 조정 
-                $(".backLayer").width(width); 
-                $(".backLayer").height(height); //화면을 가리는 레이어를 보여준다 (0.5초동안 30%의 농도의 투명도) 
-                $(".backLayer").fadeTo(500, 0.3); //팝업 레이어 보이게 
-                var uploadDivObj = $("#uploadDiv"); 
-               // uploadDivObj.css("top", $(document).height()/2-150); 
-               // uploadDivObj.css("left",$(document).width()/2-150); 
-                uploadDivObj.fadeIn(500); 
-       
-        });
-        
-        function add_div(){
-            var div = document.createElement('div');
-            div.innerHTML = document.getElementById('frame').innerHTML;
-            document.getElementById('frame').appendChild(div);
-        }
+<style type="text/css">
+    #report {
+        position: relative;
+        height: 30px;
+        width: 50px;
+        top: -360px;
+        left: 190px;
+        z-index: 100;
+    }
 
-        
+    #author {
+        position: relative;
+        height: 30px;
+        width: 50px;
+        top: -360px;
+        left: 500px;
+        z-index: 100;
+    }
 
-     /*   //X 클릭하면 화면 잠근 풀기로바꿔야함!!!!!!!!
-        $(document).onclick(function(event){ 
-            if(event.which=='27'){ 
-                $("#loadingDiv").fadeOut(300); 
-                $(".backLayer").fadeOut(1000); 
-            }
-        });  */
-    
-        </script>
-        <style type="text/css">
-            #frame{
-                position : relative;
-                padding : 10px;
-                width : 250px;
-                /*top : 180px;*/
-                height : 330px;
-                border : 1px solid gray;
-                float : left;
-                margin-right : 50px;
-            }
-        
-            #photos {
-                width : 250px;
-                height : 260px;
-                position : relative;
-                border : 1px solid gray;
-            }
-        </style>
-    </head>
-    <body>
-        <div id = "title">
-        <font size = "30" color = "gray"> Photest</font>
-        <font size = "5" color = "gray"> _Photo Contest </font>
-        </div>
-        <div id = "category">
-            <button id = "best_btn" class = "button"> Best </button> 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id = "mypage_btn" class = "button"> Mypage </button>
-        </div><br><br>
+    #heart {
+        position: relative;
+        height: 30px;
+        width: 30px;
+        top: 0px;
+        left: 25px;
+    }
 
-        <div class="today-hashtag-container">
-            <h2>오늘의 해시태그</h2>
-        </div>
+    #download {
+        position: relative;
+        height: 30px;
+        width: 30px;
+        top: 0px;
+        left: 390px;
+    }
+</style>
+<button id="report" class="button"> 신고 </button>
 
-        <div class="today-hashtag">
-            <h1><a href="/" style="color:black"># 노을 </a></h1>
-        </div>
-        <Br><Br><br></br></br></br>
+<div class="author" align="left">
+    {{ object.author }}
+</div>
 
-        <div id = "search">
-            <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
-            <button id = "bsearch"> 검색 </button>
-            My favorite Hashtag : 
-        </div>
+<div id="uploadDiv">
 
-        <div id = "board">
-        <div id = "add">
-            <button class = "button"> + </button>
-        </div>
+    <div id="uploadFrame">
+        <img src=" {{ object.image.url }}" class="card-img-top" alt="...">
+    </div>
 
-       
+    <br>
 
+    <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px />
+    <img id="download" src="{% static 'image/download.png' %}" width=30px height=30px />
 
-        <div class="backLayer"> 
-        </div> 
-
-        <center>
-        
-        <div id="uploadDiv"> 
-            <div id = "uploadFrame">
-                    <img src=" {{ object.image.url }}" class="card-img-top" alt="...">
-            </div>
-            <br>
-            <!-- <label for="ex_file">image</label> 
+    <!-- <label for="ex_file">image</label> 
             <input type="file" id="ex_file"> <br><Br> -->
 
-            <Br><Br>
-        </div>
-        
-    </center>
+    <Br><Br>
+</div>
+<!-- </center> -->
 
-    </div>
-    </body>
-</html>
+
+</div>
+{%endblock%}

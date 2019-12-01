@@ -73,7 +73,7 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     width : 20%;
     height : 18%;
-    top : -10%;
+    top : -15%;
     left : 72%; 
 }
 
@@ -161,12 +161,13 @@ input.underline {
 
 .yesterday-hastag h2 {
     text-align : center;
+    border : 1px solid black;
 }
 
 .yesterday-first img{
     position:relative;
-    left: 50%;
-    top : 10%;
+    left: 45%;
+    top : 0%;
     height: 300px; 
     width: 300px;
 }
