@@ -86,13 +86,11 @@
     </div>
 
     <!-- post 방식 전송을 하기 위해서는 csrf_token 이 필요하다 -->
-    <form id = "search" method="post" action="">
+    <form id="search" method="POST" action="{%url 'photo:search'%}">
         <div id="dsearch">
             {% csrf_token %}
-            <input type="search" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
-            <input type="submit" value="search" id = "bsearch"><a href="http://127.0.0.1:8000/photo_list/"></a>
-        </div>
-    </form>
+            <input type="text" id="isearch" name="search" value = "{{search}}" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id = "bsearch"/>
+    </div>
 </body>
-
 </html>

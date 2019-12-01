@@ -12,3 +12,4 @@ urlpatterns = [
     path('join/', views.join, name='join'),
 ]
 
+

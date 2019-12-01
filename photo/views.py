@@ -75,6 +75,10 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
+def search(request):
+    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+    return render(request, 'photo/search_list.html', {})
+
 class PhotoList(ListView):
     model = Photo
     template_name_suffix='_list'
