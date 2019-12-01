@@ -25,7 +25,7 @@
                 $("#div3").toggle();
             });
         });
-      
+
     </script>
 </head>
 
@@ -35,11 +35,15 @@
         <font id="long-title">_Photo Contest </font>
     </div>
     <div id="category">
-        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/"></a> Mypage </button>
+        {% if user.is_authenticated %}
+        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        {% else %}
+        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
+        {% endif %}
     </div><br><br>
-    <br><br>
+
     <div class="ranking-reward">
         <font> Ranking Reward</font>
         <div class="ranking-reward-check">
@@ -63,15 +67,16 @@
         <button id="confirm"> 확인 </button>
     </div>
 
-    <div id = "div2">
+    <div id="div2">
         <h2> 내 게시글 </h2>
 
     </div>
 
-    <div id = "div3">
+    <div id="div3">
         <h2> 신고 당한 횟수 </h2>
         {{user.profile.reportCnt}} 번
     </div>
 
 </body>
+
 </html>

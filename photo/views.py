@@ -75,10 +75,10 @@ def edit_profile(request):
 #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
  return render(request, 'photo/edit_profile.html', {})
 
-def logined_main(request):
-#best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
- return render(request, 'photo/logined_main.html', {})
-
+def detail(request):
+    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+    model = Photo
+    return render(request, 'photo/detail.html', {})
 
 
 class PhotoList(ListView):

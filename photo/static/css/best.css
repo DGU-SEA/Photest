@@ -24,6 +24,7 @@ a:hover, a:active { text-decoration: none; }
     font-size : 100%;
     color : gray;
 }
+
 #category {
     position : relative;
     top : 3%;
@@ -45,7 +46,7 @@ a:hover, a:active { text-decoration: none; }
 #best_btn {
     position : relative;
     top : 3%;
-    left : 7%;
+    left : 6%;
 }
 
 h1 {

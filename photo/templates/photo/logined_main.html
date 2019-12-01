@@ -19,6 +19,16 @@
         <!-- 계정 권한이 있는 사람만 board 버튼을 눌렀을 때 연결이 되도록 설정해야함 -->
         <!-- {% if user == object.author %} -->
         <!-- {% endif %} -->
+        <!-- {% if user.is_authenticated %} 
+        아이디 : {{user.username}} <br>
+        rewardCnt 예시 -> {{user.profile.rewardCnt}} <br>
+        로그아웃 버튼 만들어라
+    {% else %}
+    <button id = "join_btn"> <a href="http://127.0.0.1:8000/accounts/join/">Join </a></button>
+    <button id = "login_btn"> <a href="http://127.0.0.1:8000/accounts/login/">Login </a></button>
+    {% endif %} -->
+
+
     </div><br><br>
 
     <div id="intro">
