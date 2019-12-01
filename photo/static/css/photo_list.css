@@ -27,7 +27,25 @@ a:hover, a:active { text-decoration: none; }
 #category {
     position : relative;
     top : 3%;
-    left : 80%;
+    left : 71%;
+}
+
+#mypage_btn {
+    position : relative;
+    top : 3%;
+    left : 1%;
+}
+
+#board_btn {
+    position : relative;
+    top : 3%;
+    left : 4%;
+}
+
+#best_btn {
+    position : relative;
+    top : 3%;
+    left : 6%;
 }
 
 .button {
@@ -36,11 +54,6 @@ a:hover, a:active { text-decoration: none; }
     border: 3px solid #ffffff; 
 }
 
-#best_btn {
-    position : relative;
-    top : 0%;
-    left : 6%;
-}
 
 .today-hashtag-container {
     position:relative;
