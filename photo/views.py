@@ -40,7 +40,6 @@ def main(request):
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
     BestPhotos = list()
-    print(Photos)
 
     index = 0
     for p in Photos :
@@ -85,13 +84,17 @@ class PhotoList(ListView):
     model = Photo
     template_name_suffix='_list'
 
+    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+    for p in Photos : 
+        print(p.hashtag)
+
+
 class PhotoCreate(CreateView):
     model = Photo
-    fields=['text', 'image']
-    template_name_suffix='_create'
-    success_url='/'
 
-    fields = ['author','text', 'image']
+    fields = ['author','text', 'image', 'hashgtag']
     template_name_suffix = '_create'
     success_url = '/'
     
