@@ -43,7 +43,8 @@ def main(request):
 
     index = 0
     for p in Photos :
-        BestPhotos.append(p)
+        for(t in p.hashtag['tag']) :
+            if(t == yesterdaytag) : BestPhotos.append(p)
         index += 1
         
         if(index == 5) : break
@@ -76,16 +77,22 @@ def detail(request):
     return render(request, 'photo/detail.html', {})
 
 
-class PhotoList(ListView):
+class PhotoList(ListView) :
     model = Photo
     template_name_suffix='_list'
 
     # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
+    search ="cute"
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
-    for p in Photos : 
-        print(p.hashtag)
-
+    
+    index = 0
+    for p in Photos :
+        print(p.hashtag['tag'])
+        for t in p.hashtag['tag'] :
+            print(t)
+            if(t == search) : PhotosWithHashtag.append(p)
+    return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
 class PhotoCreate(CreateView):
     model = Photo
