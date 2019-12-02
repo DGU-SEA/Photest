@@ -5,17 +5,15 @@ import jsonfield
 
 class Photo(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
-    text = models.TextField(blank=True)
     image = models.ImageField(upload_to= 'timeline_photo/%Y/%m/%d')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     hashtag = jsonfield.JSONField(blank = True)
-    like = models.IntegerField(User, blank=True, default=0)
-
-    # favorite = models.ManyToManyField(User, related_name='favorite_post', blank=True)
-    
+    like = models.ManyToManyField(User, blank=True)
+    # favorite=models.IntegerField(User,blank=True, default=0)
+   
     def __str__(self): # admin 사이트 화면 표시 구현
-        return "text : "+self.text
+        return "author : "+str(self.author)
 
     class Meta: # ordering 정렬
         ordering = ['-created']

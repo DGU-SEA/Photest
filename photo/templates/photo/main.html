@@ -13,7 +13,7 @@
     </div>
     <div id="category">
         {% if user.is_authenticated %}
-        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
+        <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% else %}
@@ -61,7 +61,7 @@
         <h2>오늘의 해시태그</h2>
     </div>
     <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"> #{{todaytag}}</a></h1>
+        <h1><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{todaytag}}</a></h1>
     </div>
     <Br><Br><br></br></br></br>
 
@@ -69,7 +69,7 @@
         <h4>어제의 해시태그</h4>
     </div>
     <div class="yesterday-hashtag">
-        <h2><a href="http://127.0.0.1:8000/hashtag_board/" style="color:black"> #{{yesterdaytag}} </a></h2> 
+        <h2><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{yesterdaytag}} </a></h2> 
     </div>
 
     <div class="yesterday-first">
@@ -84,6 +84,7 @@
     </div>
     <br></br>
     </div>
+
 
     <!-- methond = "post" -->
     <form id="search" action="{%url 'photo:photo_list'%}">
