@@ -10,9 +10,35 @@
             document.getElementById('frame').removeChild(obj.parentNode);
         }
     </script>
+     
+        
 </head>
 
 <body>
+    {% load static %}
+        <style>
+                .btn-like{
+                    display: inline-block;
+                    width: 50px;
+                    height: 50px;
+                    background:url({% static 'images/heart.png' %});
+                    background-position: -100px -400px;
+                    text-indent: -9999px;
+                    overflow:hidden;
+                    border:none;
+                }
+            
+                .btn-like.active{
+                display: inline-block;
+                    width: 50px;
+                    height: 50px;
+                    background:url({% static 'images/shaded_heart.png' %});
+                    background-position: -50px -400px;
+                    text-indent: -9999px;
+                    overflow:hidden;
+                    border:none;
+                }
+                </style>
     <div class="title">
         <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
         <font id="long-title">_Photo Contest </font>
@@ -57,28 +83,32 @@
         {% for object in object_list %}
         <div id="frame_frame">
             <div id="frame">
+                    <button id="report"> <a href="http://127.0.0.1:8000/accounts/report/"> 신고 </a></button> 
+                <div class="card">
                 <div id="photos">
                     <div class='container'>
                         <div class="row">
                             <div class="col"></div>
                             <div class="col-5">
-
-                                <div class="card">
-                                    <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
-                                        height=260px onclick="location.href='/photo_detail/'" />
+                                    <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px height=260px />
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" />
+                {{likecnt}} <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px align="right"/><a href="다운로드 받을 경로" download="photo.jpg"></a>
+                <img id="heart" src="{% static 'image/heart.png' %}" width=25px height=25px align="right" />
+                {% if object.like.all.count%} 
+                {{object.like.all.count}}
+                {% endif %}
 
                 <div class="card-header" align="left">
-                    {{ object.author }}
+                        {{ object.author }} >
                 </div>
+                
                 <div class="card-body">
-                    <p class="card-text"> {{ object.text }} </p>
+                    <p class="card-text" align="left"> {{ object.text }} </p>
                 </div>
 
             </div>
