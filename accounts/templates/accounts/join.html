@@ -27,10 +27,13 @@
             <table boder="" cellspacing="10">
                 <form id="join" method="POST" action="{%url 'accounts:join'%}">
                     {% csrf_token %}
+                    <tr>  
+                    <td>{{is_used}}</td>
+                    </tr>
                     <tr>
                         <td>ID : </td>
                         <td><input name="username" type="text" size="20"></td> 
-                        <td>{{is_used}}</td>
+                        
                     </tr>
 
                     <tr>
