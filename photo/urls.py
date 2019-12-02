@@ -14,7 +14,6 @@ urlpatterns = [
     path('photo_list/', PhotoList.as_view(), name='photo_list'),
     path('best/', views.best, name='best'),
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
-    path('mypage/', views.mypage, name='mypage'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('detail/', views.detail, name='detail'),
     path("photo_like/<int:photo_id>/", PhotoLike.as_view(), name = 'photo_like'),

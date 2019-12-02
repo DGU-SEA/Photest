@@ -13,7 +13,7 @@
     </div>
     <div id="category">
         {% if user.is_authenticated %}
-        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
+        <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% else %}
@@ -85,6 +85,15 @@
     <br></br>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- methond = "post" -->
+    <form id="search" action="{%url 'photo:photo_list'%}">
+        <div id="dsearch">
+            <input type="text" id="isearch" name="search" value = "{{search}}" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id = "bsearch"/>
+        </div>
+    </form>
+>>>>>>> 48063177193487fe326b33aaa26c88a571e59553
 </body>
-
 </html>

@@ -96,9 +96,6 @@ def upload(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/upload.html', {})
 
-def mypage(request):
-    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
-    return render(request, 'photo/mypage.html', {})
 
 def edit_profile(request):
 #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
