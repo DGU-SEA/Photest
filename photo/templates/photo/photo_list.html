@@ -119,8 +119,10 @@
 
                     </div>
                 </div>
-                {{likecnt}} <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px
-                    align="right" /><a href="다운로드 받을 경로" download="photo.jpg"></a>
+                {{likecnt}} 
+                 <a href="{{object.image.url}}" download="photo.jpg">
+                    <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px align="right"></img>
+                </a>
                 <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=25px height=25px align="right" /> -->
                 <li class="list-group-item">
                     <a href="{% url 'photo:like' object.id %}"
