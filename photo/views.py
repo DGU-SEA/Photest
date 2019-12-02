@@ -22,12 +22,12 @@ def main(request):
     todaytag = ""
     todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
     dbDate = ""
-    print(todayDate)
+    # print(todayDate)
 
     yesterdaytag = ""
     today = date.today()
     yesterday = str(date.today() - timedelta(1))
-    print(yesterday)
+    # print(yesterday)
 
     for h in hashtag.objects.all() :
         if(h.tagDate == todayDate) : 
@@ -36,19 +36,21 @@ def main(request):
         if(str(h.tagDate) == yesterday) :
             yesterdaytag = h.tagName
 
-    print(todaytag)
+    # print(todaytag)
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
-    BestPhotos = list()
+    bestPhotos = list()
 
     index = 0
     for p in Photos :
-        BestPhotos.append(p)
-        index += 1
-        
-        if(index == 5) : break
+        for t in p.hashtag['tag'] :
+            if(t == yesterdaytag) : 
+                bestPhotos.append(p)
+                index += 1
+                if(index == 5) : 
+                    break
 
-    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'BestPhotos' : BestPhotos})
+    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'bestPhotos' : bestPhotos})
     
 def best(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
@@ -63,30 +65,27 @@ def best(request):
         temp = yesterday - timedelta(i)
         days.append(temp)
 
-    print(days)
+    # print(days)
 
     for i in range(0, 7):
         for h in hashtag.objects.all():
             if (h.tagDate == days[i]):
                 tags.append(h.tagName)
-                print(h.tagName)
+                # print(h.tagName)
 
+    photos = Photo.objects.all().order_by('-like')
 
-    # Photos = Photo.objects.all().order_by('-like')
-    #
-    # index = 0
-    # for p in Photos:
-    #     BestPhotos.append(p)
-    #     index += 1
-    #
-    #     if (index == 5): break
+    index = 0
+    for i in tags :
+        for p in photos :
+            if (p.hashtag['tag'] == i):
+                bestPhotos.append(p)
+                index +1
+                if index == 5 :
+                    break
+    # print(bestPhotos)
 
-    # return render(request, 'photo/main.html',
-    #               context={'todaytag': todaytag, 'yesterdaytag': yesterdaytag, 'BestPhotos': BestPhotos})
-
-
-
-    return render(request, 'photo/best.html', {}) #, {'posts': posts}
+    return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
     
 def hashtag_board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
@@ -113,8 +112,8 @@ class PhotoList(ListView):
     # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
-    for p in Photos : 
-        print(p.hashtag)
+    # for p in Photos : 
+        # print(p.hashtag)
 
 
 class PhotoCreate(CreateView):
