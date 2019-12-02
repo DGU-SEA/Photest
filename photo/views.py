@@ -20,22 +20,20 @@ def main(request):
 
     # # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
     todaytag = ""
-    todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
+    todayDate = str(date.today())
+    # todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
     dbDate = ""
-    # print(todayDate)
 
     yesterdaytag = ""
     today = date.today()
     yesterday = str(date.today() - timedelta(1))
-    # print(yesterday)
 
     for h in hashtag.objects.all() :
-        if(h.tagDate == todayDate) : 
+        if(str(h.tagDate) == todayDate) : 
             todaytag = h.tagName
         
         if(str(h.tagDate) == yesterday) :
             yesterdaytag = h.tagName
-
     # print(todaytag)
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
@@ -44,12 +42,19 @@ def main(request):
     index = 0
     for p in Photos :
         for t in p.hashtag['tag'] :
+            print(p.hashtag)
+            print(t)
             if(t == yesterdaytag) : 
                 bestPhotos.append(p)
                 index += 1
-                if(index == 5) : 
-                    break
+                break
+            if(index == 5) : break
 
+    print(bestPhotos[0])
+    print(bestPhotos[1])
+    print(bestPhotos[2])
+    print(bestPhotos[3])
+    print(bestPhotos[4])
     return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'bestPhotos' : bestPhotos})
     
 def best(request):
@@ -105,15 +110,24 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-class PhotoList(ListView):
+class PhotoList(ListView) :
     model = Photo
     template_name_suffix='_list'
 
     # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
+    search ="cute"
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
-    # for p in Photos : 
-        # print(p.hashtag)
+    
+    index = 0
+    for p in Photos :
+        print(p.hashtag['tag'])
+        for t in p.hashtag['tag'] :
+            print(t)
+            if(t == search) : 
+                PhotosWithHashtag.append(p)
+    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+
 
 
 class PhotoCreate(CreateView):
