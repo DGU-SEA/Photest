@@ -13,11 +13,12 @@
 
     <style>
         .btn-like {
+            position: relative;
             display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: url(/static/images/heart.png);
-            background-position: -100px -400px;
+            width: 25px;
+            height: 25px;
+            background: url("/static/images/heart.png");
+            background-position: -30% -10%;
             text-indent: -9999px;
             overflow: hidden;
             border: none;
@@ -85,12 +86,12 @@
     </div>
     <Br><Br><br></br></br></br>
 
-    <form id="search" method="post">
+    </form>
+
+    <form id="search" action="{%url 'photo:photo_list'%}">
         <div id="dsearch">
-            {% csrf_token %}
-            <!-- <label for="msg">메세지</label> -->
-            <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
-            <input type="submit" value="search" id="bsearch"><a href="http://127.0.0.1:8000/photo_list/"> </a></button>
+            <input type="text" id="isearch" name="search" value = "{{search}}" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id = "bsearch"/>
         </div>
     </form>
 
