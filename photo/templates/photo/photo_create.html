@@ -1,20 +1,39 @@
 {%extends 'photo/upload.html'%}
 {%block content%}
+<!-- <style type="text/css">
+    #frame {
+        position: relative;
+        padding: 1%;
+        width: 250px;
+        top: 130px;
+        height: 330px;
+        border: 1px solid gray;
+        float: left;
+        margin-right: 3%;
+    }
+
+    #photos {
+        width: 250px;
+        height: 260px;
+        position: relative;
+        border: 1px solid gray;
+    }
+</style> -->
 <div class="row">
     <div class="col"></div>
     <div class="col-12 col-xl-8 col-md-8">
-    
+
         <form action="" method="post" enctype='multipart/form-data'>
             {%csrf_token%}
 
             {{form.as_p}}
             <!-- <input type="submit" value="POST" class="btn btn-primary" > -->
             <button type="submit" id="post" onclick="add_div()"> POST </button>
-            <div id = "frame" >
+            <!-- <div id = "frame" >
                 <div id = "photos">
                     <img src="{{ object.image.url }}" class="card-img-top" alt="..." z-index="-1"/>
                 </div>
-            </div>
+            </div> -->
         </form>
     </div>
     <div class="col"></div>

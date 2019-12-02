@@ -43,7 +43,7 @@ def main(request):
 
     index = 0
     for p in Photos :
-        for(t in p.hashtag['tag']) :
+        for t in p.hashtag['tag'] :
             if(t == yesterdaytag) : BestPhotos.append(p)
         index += 1
         
@@ -92,7 +92,12 @@ class PhotoList(ListView) :
         for t in p.hashtag['tag'] :
             print(t)
             if(t == search) : PhotosWithHashtag.append(p)
-    return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+
+    def get_context_data(self, **kwargs) :
+        context = super().get_context_data(**kwargs)
+        context["PhotosWithHashtag"] = PhotosWithHashtag
+        return context
+    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
 class PhotoCreate(CreateView):
     model = Photo
@@ -141,19 +146,28 @@ class PhotoDetail(DetailView):
     model = Photo
     template_name_suffix='_detail'
 
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from urllib.parse import urlparse
 
-# class PhotoLikeList(ListView):
-#     model = Photo
-#     template_name = 'photo/photo_list.html'
+class PhotoLike(ListView):
+    model = Photo
+    template_name_suffix='_like'
 
-#     def dispatch(self, request, *args, **kwargs):
-#         if not request.user.is_authenticated:  # 로그인확인
-#             messages.warning(request, '로그인을 먼저하세요')
-#             return HttpResponseRedirect('/')
-#         return super(PhotoLikeList, self).dispatch(request, *args, **kwargs)
-
-#     def get_queryset(self):
-#         # 내가 좋아요한 글을 보여주
-#         user = self.request.user
-#         queryset = user.like_post.all()
-#         return queryset
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인확인
+            messages.warning(request, '로그인을 먼저하세요')
+            return HttpResponseRedirect('/') # 로그인 되어 있지 않으면 메인 화면으로 보내기
+        else:
+            if 'photo_id' in kwargs:
+                photo_id = kwargs['photo_id']
+                photo = Photo.objects.get(pk=photo_id)
+                user = request.user
+                if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
+                    photo.like.remove(user) 
+                else: # 새로운 user가 좋아요 한 것이라면 +1
+                    photo.like.add(user) 
+            # referer_url = request.META.get('HTTP_REFERER')
+            # path = urlparse(referer_url).path
+            # return HttpResponseRedirect(path)
+            return super(PhotoLike, self).get(request, *args, **kwargs)
