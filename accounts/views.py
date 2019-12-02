@@ -23,9 +23,9 @@ def join(request):
         return render(request, 'accounts/join.html', {})
     return render(request, 'accounts/join.html', {})
 
-# def logout(request):
-#     auth.logout(request)  
-#     return redirect('/')   
+def logout(request):
+    auth.logout(request)  
+    return redirect('/')   
 
 def mypage(request):
     if not request.user.is_authenticated:
