@@ -167,7 +167,6 @@ class PhotoDetail(DetailView):
     model = Photo
     template_name_suffix='_detail'
 
-
 # class PhotoLikeList(ListView):
 #     model = Photo
 #     template_name = 'photo/photo_list.html'
@@ -183,3 +182,25 @@ class PhotoDetail(DetailView):
 #         user = self.request.user
 #         queryset = user.like_post.all()
 #         return queryset
+
+class PhotoLike(ListView):
+    model = Photo
+    template_name_suffix='_like'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인확인
+            messages.warning(request, '로그인을 먼저하세요')
+            return HttpResponseRedirect('/') # 로그인 되어 있지 않으면 메인 화면으로 보내기
+        else:
+            if 'photo_id' in kwargs:
+                photo_id = kwargs['photo_id']
+                photo = Photo.objects.get(pk=photo_id)
+                user = request.user
+                if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
+                    photo.like.remove(user) 
+                else: # 새로운 user가 좋아요 한 것이라면 +1
+                    photo.like.add(user) 
+            # referer_url = request.META.get('HTTP_REFERER')
+            # path = urlparse(referer_url).path
+            return super(PhotoLike, self).get(request, *args, **kwargs)
+    
