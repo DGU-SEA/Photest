@@ -16,7 +16,8 @@ urlpatterns = [
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('detail/', views.detail, name='detail'),
-    path("photo_like/<int:photo_id>/", PhotoLike.as_view(), name = 'photo_like'),
+    path("like/<int:photo_id>/", PhotoLike.as_view(), name = 'like'),
+    # path("favorite/<int:photo_id>/",PhotoFavorite.as_view(), name='favorite')
 ]
 
 from django.conf.urls.static import static

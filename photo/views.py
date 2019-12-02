@@ -180,6 +180,10 @@ class PhotoDetail(DetailView):
 #         queryset = user.like_post.all()
 #         return queryset
 
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from urllib.parse import urlparse
+
 class PhotoLike(ListView):
     model = Photo
     template_name_suffix='_like'
@@ -199,5 +203,22 @@ class PhotoLike(ListView):
                     photo.like.add(user) 
             # referer_url = request.META.get('HTTP_REFERER')
             # path = urlparse(referer_url).path
+            # return HttpResponseRedirect(path)
             return super(PhotoLike, self).get(request, *args, **kwargs)
-    
+
+# class PhotoFavorite(ListView):
+#     def get(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated:    #로그인확인
+#             return HttpResponseForbidden()
+#         else:
+#             if 'photo_id' in kwargs:
+#                 photo_id = kwargs['photo_id']
+#                 photo = Photo.objects.get(pk=photo_id)
+#                 user = request.user
+#                 if user in photo.favorite.all():
+#                     photo.favorite.remove(user)
+#                 else:
+#                     photo.favorite.add(user)
+#             referer_url = request.META.get('HTTP_REFERER')
+#             path = urlparse(referer_url).path
+#             return HttpResponseRedirect(path)
