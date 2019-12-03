@@ -11,12 +11,13 @@ urlpatterns = [
     path("photo_delete/<int:pk>/", PhotoDelete.as_view(), name='delete'),
     path("photo_update/<int:pk>/", PhotoUpdate.as_view(), name='update'),
     path('', views.main, name='main'),
-    path('photo_list/', PhotoList.as_view(), name='photo_list'),
+    #path('photo_list/', PhotoList.as_view(), name='photo_list'),
     path('best/', views.best, name='best'),
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('detail/', views.detail, name='detail'),
     path("like/<int:photo_id>/", PhotoLike.as_view(), name = 'like'),
+    path('search/', views.search_list, name='search'),
     # path("favorite/<int:photo_id>/",PhotoFavorite.as_view(), name='favorite')
 ]
 
