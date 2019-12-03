@@ -240,7 +240,6 @@ class PhotoCreate(CreateView):
 
     fields = ['author', 'image']
     template_name_suffix = '_create'
-    # success_url = '/'
     success_url = '/'
 
     def gethashtag(request) :
