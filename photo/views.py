@@ -124,7 +124,7 @@ def search_list(request):
                 PhotosWithHashtag.append(p)
 
 
-    return render(request, 'photo/photo_list.html', {
+    return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag
     })
 
