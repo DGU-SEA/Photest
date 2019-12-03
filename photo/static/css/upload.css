@@ -151,12 +151,10 @@ html {
     top:40%;
 }
 
-#hashtag1{
+.underline{
     width:20%;
-}
-#hashtag2{
-    width:20%;
-}
-#hashtag3{
-    width:20%;
+    border-left-width:0px;
+    border-right-width:0px;
+    border-top-width:0px;
+    border-bottom-width:2px;
 }

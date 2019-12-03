@@ -12,6 +12,7 @@ from django.contrib import messages
 from datetime import datetime
 from datetime import date, timedelta
 from django.db import connection
+import json
 
 def main(request):
     global hashtag
@@ -22,7 +23,6 @@ def main(request):
     todaytag = ""
     todayDate = str(date.today())
     # todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
-    dbDate = ""
 
     yesterdaytag = ""
     today = date.today()
@@ -115,6 +115,9 @@ def search_list(request):
             if(t == search) : 
                 PhotosWithHashtag.append(p)
 
+    print(PhotosWithHashtag)
+    print(search)
+
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
         'search' : search
@@ -126,15 +129,25 @@ def today_hashtag_click(request) :
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
 
-    todayhashtag = request.GET.get('todayhasgtag', '')
+    global hashtag
+    hashtags = hashtag.objects.all()
+    todaytag = ""
+    todayDate = str(date.today())
+
+    for h in hashtag.objects.all() :
+        if(str(h.tagDate) == todayDate) : 
+            todaytag = h.tagName
+
+    print(todaytag)
+    
     for p in Photos :
         for t in p.hashtag['tag'] :
-            if(t == todayhashtag) :
+            if(t == todaytag) :
                 PhotosWithHashtag.append(p)
     
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
-        'search' : todayhashtag
+        'search' : todaytag
     })
 
 def yesterday_hashtag_click(request) :
@@ -142,21 +155,45 @@ def yesterday_hashtag_click(request) :
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
 
-    yesterdayhashtag = request.GET.get('yesterdayhasgtag', '')
+    yesterdaytag = ""
+    today = date.today()
+    yesterday = str(date.today() - timedelta(1))
+
+    for h in hashtag.objects.all() :        
+        if(str(h.tagDate) == yesterday) :
+            yesterdaytag = h.tagName
+    
+    print(yesterdaytag)
+    
     for p in Photos :
         for t in p.hashtag['tag'] :
-            if(t == yesterdayhashtag) :
+            if(t == yesterdaytag) :
                 PhotosWithHashtag.append(p)
     
+
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
-        'search' : yesterdayhashtag
+        'search' : yesterdaytag
     })
 
-def board_search(request) :
+def board_search(self, request, *args, **kwargs) :
     print('board search')
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
+
+    # if 'photo_id' in kwargs:
+    #     photo_id = kwargs['photo_id']
+    #     photo = Photo.objects.get(pk=photo_id)
+    #     user = request.user
+    #     if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
+    #         photo.like.remove(user) 
+    #     else: # 새로운 user가 좋아요 한 것이라면 +1
+    #         photo.like.add(user) 
+            
+    #     referer_url = request.META.get('HTTP_REFERER')
+    #     path = urlparse(referer_url).path
+    #     # return HttpResponseRedirect(path)
+    #     return super(PhotoLike, self).get(request, *args, **kwargs)
 
     search = request.GET.get('search', '')
     for p in Photos :
@@ -202,9 +239,29 @@ class PhotoList(ListView) :
 class PhotoCreate(CreateView):
     model = Photo
 
-    fields = ['author', 'image'] #'hashtag'
+    fields = ['author', 'image']
     template_name_suffix = '_create'
     success_url = '/'
+
+    def gethashtag(request) :
+        index = 0
+        hashtag1 = request.GET["hashtag1"]
+        hashtag2 = request.GET["hashtag2"]
+        hashtag3 = request.GET["hashtag3"]
+
+        hashtag = {
+            'tag' : []
+        }
+
+        if(hashtag1 != "") :
+            hashtag['tag'].append[hashtag1]
+        if(hashtag2 != "") :
+            hashtag['tag'].append[hashtag2]
+        if(hashtag3 != "") :
+            hashtag['tag'].append[hashtag3]
+
+        Photo.objects._create()
+        
     
     def form_valid(self, form):
         form.instance.author_id=self.request.user.id
@@ -213,6 +270,7 @@ class PhotoCreate(CreateView):
             return redirect('/')
         else:
             return self.render_to_response({'form':form})
+
 
 
 class PhotoUpdate(UpdateView):
