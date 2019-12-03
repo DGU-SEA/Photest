@@ -45,10 +45,6 @@
         {% if user.is_authenticated %}
         <center>
             <br>{{user.username}}님 환영합니다. <br><br>
-            <!-- <button id="logout_btn"> Logout </a></button> -->
-
-            <!-- <button id="logout_btn"><a href="http://127.0.0.1:8000/accounts/logout/"> Logout </a></button> -->
-            <!-- <button id="logout_btn" method="POST" action="{%url 'accounts:logout'%}"> Logout </button> -->
             <button id="logout_btn"><a href="{% url 'accounts:logout'%}">Logout </a></button>
 
         </center>
@@ -68,18 +64,14 @@
     </div>
     </form> -->
 
-    <form id="search" action="{% url 'photo:search' %}" method="get">
-        #<a href="#" onclick="document.forms['search'].submit();"> {{todaytag}}</a>
-    </form>
+    <a href="#" onclick="document.forms['search'].submit();"> {{todaytag}}</a>
     <br><br><br></br></br></br>
 
     <div class="yesterday-hashtag-container">
         <h4>어제의 해시태그</h4>
     </div>
 
-    <form id="search" action="{% url 'photo:search' %}" method="get">
-        <a href="#" onclick="document.forms['search'].submit();"> # {{yesterdaytag}}</a>
-    </form>
+    <a href="http://127.0.0.1:8000/search/"> # {{yesterdaytag}}</a>
 
     <div class="yesterday-first">
         <img src="{{ BestPhotos.0.image.url }}" />
