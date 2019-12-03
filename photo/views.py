@@ -108,7 +108,6 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-
 def search_list(request):
     print('search list')
     Photos = Photo.objects.all()
@@ -186,20 +185,6 @@ def board_search(self, request, *args, **kwargs) :
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
 
-    # if 'photo_id' in kwargs:
-    #     photo_id = kwargs['photo_id']
-    #     photo = Photo.objects.get(pk=photo_id)
-    #     user = request.user
-    #     if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
-    #         photo.like.remove(user) 
-    #     else: # 새로운 user가 좋아요 한 것이라면 +1
-    #         photo.like.add(user) 
-            
-    #     referer_url = request.META.get('HTTP_REFERER')
-    #     path = urlparse(referer_url).path
-    #     # return HttpResponseRedirect(path)
-    #     return super(PhotoLike, self).get(request, *args, **kwargs)
-
     search = request.GET.get('search', '')
     for p in Photos :
         for t in p.hashtag['tag'] :
@@ -211,6 +196,32 @@ def board_search(self, request, *args, **kwargs) :
         'search' : search
     })
 
+def photo_list(request) :
+    print('photo list')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    global hashtag
+    hashtags = hashtag.objects.all()
+    todaytag = ""
+    todayDate = str(date.today())
+
+    for h in hashtag.objects.all() :
+        if(str(h.tagDate) == todayDate) : 
+            todaytag = h.tagName
+
+    print(todaytag)
+    
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == 'today') :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/photo_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'todaytag' : todaytag
+    })
+
 class PhotoList(ListView) :
     print('PhotoList')
     model = Photo
@@ -218,20 +229,20 @@ class PhotoList(ListView) :
 
     # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
 
-    def photo_list(request) :
-        search = request.GET.get('search')
-        print(search)
+    # def photo_list(request) :
+    #     search = request.GET.get('search')
+    #     print(search)
 
-        Photos = Photo.objects.all()
-        PhotosWithHashtag = list()
+    #     Photos = Photo.objects.all()
+    #     PhotosWithHashtag = list()
     
-        index = 0
-        for p in Photos :
-            for t in p.hashtag['tag'] :
-                if(t == search) : 
-                    PhotosWithHashtag.append(p)
+    #     index = 0
+    #     for p in Photos :
+    #         for t in p.hashtag['tag'] :
+    #             if(t == search) : 
+    #                 PhotosWithHashtag.append(p)
 
-        return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+    #     return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
     def search(request) :
         # search = request.POST.['search']

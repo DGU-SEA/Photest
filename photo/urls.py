@@ -11,7 +11,7 @@ urlpatterns = [
     path("photo_delete/<int:pk>/", PhotoDelete.as_view(), name='delete'),
     path("photo_update/<int:pk>/", PhotoUpdate.as_view(), name='update'),
     path('', views.main, name='main'),
-    path('photo_list/', PhotoList.as_view(), name='photo_list'),
+    path('photo_list/', views.photo_list, name='photo_list'),
     path('best/', views.best, name='best'),
     path('hashtag_board', views.hashtag_board, name='hashtag_board'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
@@ -20,6 +20,7 @@ urlpatterns = [
     path('upload/',views.upload, name='upload'),
     path('search/', views.search_list, name='search'),
     path('today_hashtag_search/', views.today_hashtag_click, name='today_hashtag_search'),
+    path('yesterday_hashtag_search/', views.yesterday_hashtag_click, name='yesterday_hashtag_search'),
     # path("favorite/<int:photo_id>/",PhotoFavorite.as_view(), name='favorite')
 ]
 
