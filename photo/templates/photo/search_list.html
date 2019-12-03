@@ -1,5 +1,6 @@
 {% load static %}
 <html>
+
 <head>
     <link rel="stylesheet" href="{% static 'css/searchlist.css' %}">
     <title> Photest </title>
@@ -10,7 +11,7 @@
         }
     </script>
 
-<style>
+    <style>
         .btn-like {
             position: relative;
             display: inline-block;
@@ -18,7 +19,7 @@
             height: 25px;
             background: url("/static/images/heart.png");
             /* background-position: -30% -10%;*/
-            text-indent: -9999px; 
+            text-indent: -9999px;
             overflow: hidden;
             border: none;
         }
@@ -33,10 +34,10 @@
             overflow: hidden;
             border: none;
         }
-        </style>
+    </style>
 </head>
 
-<body>
+<body style="overflow-x:hidden">
     <div class="title">
         <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
         <font id="long-title">_Photo Contest </font>
@@ -46,8 +47,6 @@
         <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-        {% else %}
-        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% endif %}
     </div><br><br>
 
@@ -56,17 +55,19 @@
         <h1> # {{search}} </h1>
     </div>
     <br><br>
+    <div> <div>
     <div>
-    <form id="search" action="{% url 'photo:search' %}" method="get">
-        <div id="dsearch">
-            <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
-            <input type="submit" value="search" id="bsearch" />
-        </div>
-    </form>
+        <form id="search" action="{% url 'photo:search' %}" method="get">
+            <div id="dsearch">
+                <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
+                <input type="submit" value="search" id="bsearch" />
+            </div>
+        </form>
     </div>
-
+</div>
+</div>
     <div id="board">
-    <!-- 
+        <!-- 
         <div id="add">
             <button class="button"><a href="http://127.0.0.1:8000/photo_create/">
                 <font size="80" text-align="center"> + </font>

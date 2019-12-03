@@ -7,7 +7,7 @@
     <meta charset="utf-8">
 </head>
 
-<body>
+<body style="overflow-x:hidden">
     <div class="title">
         <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
         <font id="long-title">_Photo Contest </font>
@@ -17,13 +17,11 @@
         <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-        {% else %}
-        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% endif %}
     </div><br><br>
 
     <div id="date">
-        <h2>{{ days.0 }} {{ tags.0 }}</h2>
+        <h2>{{ days.0 }} # {{ tags.0 }}</h2>
     </div>
     <div id="day">
         <div id="frame">
@@ -65,7 +63,7 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div id = "date">
-            <h2>{{ days.1 }} {{ tags.1 }}</h2>
+            <h2>{{ days.1 }} # {{ tags.1 }}</h2>
         </div>
         <div id="day">
             <div id="frame">
@@ -109,7 +107,7 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     
     <div id = "date">
-            <h2>{{ days.2 }} {{ tags.2 }}</h2>
+            <h2>{{ days.2 }} # {{ tags.2 }}</h2>
         </div>
         <div id="day">
             <div id="frame">
@@ -153,7 +151,7 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     
     <div id = "date">
-            <h2>{{ days.3 }} {{ tags.3 }}</h2>
+            <h2>{{ days.3 }} # {{ tags.3 }}</h2>
         </div>
         <div id="day">
             <div id="frame">
@@ -197,7 +195,7 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div id = "date">
-            <h2>{{ days.4 }} {{ tags.4 }}</h2>
+            <h2>{{ days.4 }} # {{ tags.4 }}</h2>
         </div>
         <div id="day">
             <div id="frame">
@@ -241,7 +239,7 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div id = "date">
-            <h2>{{ days.5 }} {{ tags.5 }}</h2>
+            <h2>{{ days.5 }} # {{ tags.5 }}</h2>
         </div>
         <div id="day">
             <div id="frame">
@@ -284,7 +282,7 @@
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div id = "date">
-            <h2>{{ days.6 }} {{ tags.6 }}</h2>
+            <h2>{{ days.6 }} # {{ tags.6 }}</h2>
         </div>
         <div id="day">
             <div id="frame">

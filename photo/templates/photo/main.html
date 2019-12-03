@@ -4,20 +4,17 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <script> function logout_btn() { alert('로그아웃 되었습니다'); } </script>
 </head>
 
-<body>
+<body style="overflow-x:hidden">
     <div class="title">
         <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
         <font id="long-title">_Photo Contest </font>
-    </div>
+    </div><br>
     <div id="category">
         {% if user.is_authenticated %}
         <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
-        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-        {% else %}
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% endif %}
     </div><br><br>
@@ -46,7 +43,6 @@
         <center>
             <br>{{user.username}}님 환영합니다. <br><br>
             <button id="logout_btn"><a href="{% url 'accounts:logout'%}">Logout </a></button>
-
         </center>
         {% else %}
         <button id="join_btn"> <a href="http://127.0.0.1:8000/accounts/join/"> Join </a></button>
@@ -57,38 +53,57 @@
     <div class="today-hashtag-container">
         <h2>오늘의 해시태그</h2>
     </div>
-
     <div class="today-hashtag">
+        {% if user.is_authenticated %}
         <h1><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:black"> # {{todaytag}}</a></h1>
-    </div>
-    <br><br><br>
-
-    <div class="yesterday-hashtag-container">
-        <h4>어제의 해시태그</h4>
+        {% else %}
+        <h1> # {{todaytag}} </h1>
+        {% endif %}
     </div>
 
-    <div class="yesterday-hashtag">
-        <h1><a href="http://127.0.0.1:8000/yesterday_hashtag_search/" style="color:black"> # {{yesterdaytag}}</a></h1>
-    </div>
-
-    <div class="yesterday-first">
-        <img src="{{ BestPhotos.0.image.url }}" />
-    </div>
-    <br></br>
-    <div class="yesterday-else">
-        <img src="{{ BestPhotos.1.image.url }}" />
-        <img src="{{ BestPhotos.2.image.url }}" />
-        <img src="{{ BestPhotos.3.image.url }}" />
-        <img src="{{ BestPhotos.4.image.url }}" />
-    </div>
-    <br></br>
-
+    {% if user.is_authenticated %}
     <form id="search" action="{% url 'photo:search' %}" method="get">
+        {% endif %}
         <div id="dsearch">
             <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
             <input type="submit" value="search" id="bsearch" />
         </div>
     </form>
+    <br>
+    <div class="yesterday-hashtag-container">
+        <h4>어제의 해시태그</h4>
+    </div>
+
+    <div class="yesterday-hashtag">
+        {% if user.is_authenticated %}
+        <h1><a href="http://127.0.0.1:8000/yesterday_hashtag_search/" style="color:black"> # {{yesterdaytag}}</a></h1>
+        {% else %}
+        <h1> # {{yesterdaytag}} </h1>
+        {% endif %}
+    </div>
+
+    <br><br><br><br><br>
+    <div><img src="{% static 'image/crown.png' %}" id="first-rank">
+        <h2> 1등 : </h2> <!-- 1등 username 뽑아주기 -->
+    </div>
+
+    <div class="yesterday-first">
+        <img src="{{ BestPhotos.0.image.url }}" />
+    </div>
+
+    <div class="yesterday-else">
+        <img src="{{ BestPhotos.1.image.url }}" />
+        <img src="{{ BestPhotos.2.image.url }}" />
+        <br>
+        <img src="{{ BestPhotos.3.image.url }}" />
+        <img src="{{ BestPhotos.4.image.url }}" />
+    </div>
+
+    <div id = "banner">
+        
+    </div>
+
+
 </body>
 
 </html>

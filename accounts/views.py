@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-# from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect
 # from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -45,18 +45,24 @@ def mypage(request):
         password=request.POST["password"]
         email=request.POST["email"]
 
-        if password != "":
-            print(password)
-            # request.user.password = password
+        if (password != "" and email != "") or password != "" :
             request.user.set_password(password)
-            print(request.user.password)
-
+            request.user.save() 
+            return redirect('/')  
         if email != "":
-            print(email)
             request.user.email = email
-            print(request.user.email)
-
-        request.user.save()
-        return redirect('/')
+            request.user.save()
+            return render(request, 'accounts/mypage.html', {})
+        return render(request, 'accounts/mypage.html', {})
+        
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'accounts/mypage.html', {})
+
+def report(request) :
+    if request.method == "GET":
+        author = request.GET['author']
+        user = User.objects.get(username=author)
+        user.profile.reportCnt += 1
+        user.profile.save()
+        return HttpResponseRedirect(request.GET['path'])
+
