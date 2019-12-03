@@ -213,9 +213,7 @@ def photo_list(request) :
     print(todaytag)
     
     for p in Photos :
-        for t in p.hashtag['tag'] :
-            if(t == 'today') :
-                PhotosWithHashtag.append(p)
+        PhotosWithHashtag.append(p)
     
     return render(request, 'photo/photo_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
