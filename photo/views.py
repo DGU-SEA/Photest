@@ -103,6 +103,15 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
+class PhotoList(ListView) :
+    print('come on') #지워야할것
+    
+    model = Photo
+    template_name_suffix='_list'
+
+    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
+    search ="cute"
+
 def search_list(request):
     print('search list')
     Photos = Photo.objects.all()
@@ -187,7 +196,13 @@ class PhotoList(ListView) :
 
         return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
-
+    def search(request) :
+        # search = request.POST.['search']
+        print(' def fun inside')
+        return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+    
+    # context_object_name = PhotosWithHashtag
+    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
 class PhotoCreate(CreateView):
     model = Photo
@@ -273,10 +288,12 @@ class PhotoLike(ListView):
                     photo.like.remove(user) 
                 else: # 새로운 user가 좋아요 한 것이라면 +1
                     photo.like.add(user) 
-            # referer_url = request.META.get('HTTP_REFERER')
-            # path = urlparse(referer_url).path
-            # return HttpResponseRedirect(path)
-            return super(PhotoLike, self).get(request, *args, **kwargs)
+            
+    
+            referer_url = request.META.get('HTTP_REFERER')
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)
+            # return super(PhotoLike, self).get(request, *args, **kwargs)
 
 # class PhotoFavorite(ListView):
 #     def get(self, request, *args, **kwargs):

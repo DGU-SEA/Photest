@@ -83,6 +83,17 @@ a:hover, a:active { text-decoration: none; }
     margin-right : 10px;
 }
 
+#ok_btn{
+    position : relative;
+    top : 35%;
+    left : 20%;
+    width : 60px;
+    height : 30px;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}
+
 .buttons button{
     position : relative;
     top : 10%;
