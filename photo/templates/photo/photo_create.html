@@ -17,21 +17,15 @@
     # <input class="underline" name="hashtag3" type="text">
     {%csrf_token%}
 
-<<<<<<< HEAD
-    {{form.as_p}}
-    <input type="submit" value="POST" onclick="add_div()" class="btn btn-primary">
-</form>
-{%endblock%}
-=======
+
         <form action="" method="post" enctype='multipart/form-data'>
             {%csrf_token%}
 
             {{form.as_p}}
             <button type="submit" id="post" onclick="add_div()"> POST </button>
         </form>
-    </div>
     <div class="col"></div>
 </div>
 
 {%endblock%}
->>>>>>> 059ee93d9533b9833f43b546f5ce0a73df459775
+

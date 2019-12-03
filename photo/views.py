@@ -241,10 +241,8 @@ class PhotoCreate(CreateView):
 
     fields = ['author', 'image']
     template_name_suffix = '_create'
-<<<<<<< HEAD
-    # success_url = '/'
-=======
-    success_url = '/'
+
+    success_url = '/photo_list/'
 
     def gethashtag(request) :
         index = 0
@@ -255,7 +253,6 @@ class PhotoCreate(CreateView):
         hashtag = {
             'tag' : []
         }
-
         if(hashtag1 != "") :
             hashtag['tag'].append[hashtag1]
         if(hashtag2 != "") :
@@ -264,9 +261,7 @@ class PhotoCreate(CreateView):
             hashtag['tag'].append[hashtag3]
 
         Photo.objects._create()
-        
->>>>>>> 059ee93d9533b9833f43b546f5ce0a73df459775
-    
+
     def form_valid(self, form):
         form.instance.author_id=self.request.user.id
         if form.is_valid():
