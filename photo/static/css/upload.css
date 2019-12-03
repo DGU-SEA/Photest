@@ -145,3 +145,18 @@ html {
     outline: none;
     float: right;
 }
+
+#plus{
+    position:relative;
+    top:40%;
+}
+
+#hashtag1{
+    width:20%;
+}
+#hashtag2{
+    width:20%;
+}
+#hashtag3{
+    width:20%;
+}

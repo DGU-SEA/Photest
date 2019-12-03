@@ -2,7 +2,7 @@ from django.urls import path
 from .views import PhotoList, PhotoDelete, PhotoDetail, PhotoUpdate, PhotoCreate, PhotoLike
 
 from . import views
-from .views import main, best, hashtag_board, searchlist
+from .views import main, best, hashtag_board, search_list
 
 app_name="photo"
 urlpatterns = [
@@ -17,9 +17,9 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('detail/', views.detail, name='detail'),
     path("like/<int:photo_id>/", PhotoLike.as_view(), name = 'like'),
-    path('search/', PhotoList.as_view(), name='search'),
-    path('searchlist/', views.searchlist, name='searchlist'),
-
+    
+    path('upload/',views.upload, name='upload'),
+    path('search/', views.search_list, name='search'),
     # path("favorite/<int:photo_id>/",PhotoFavorite.as_view(), name='favorite')
 ]
 

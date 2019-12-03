@@ -1,5 +1,6 @@
 {% load static %}
 <html>
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -69,11 +70,11 @@
         <h4>어제의 해시태그</h4>
     </div>
     <div class="yesterday-hashtag">
-        <h2><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{yesterdaytag}} </a></h2> 
+        <h2><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{yesterdaytag}} </a></h2>
     </div>
 
     <div class="yesterday-first">
-    <img src="{{ BestPhotos.0.image.url }}" />
+        <img src="{{ BestPhotos.0.image.url }}" />
     </div>
     <br></br>
     <div class="yesterday-else">
@@ -83,13 +84,13 @@
         <img src="{{ BestPhotos.4.image.url }}" />
     </div>
     <br></br>
-    </div>
 
-    <form id="search" action="{% url 'photo:search' %}" method = "get">
-        <div id="dsearch">
-            <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
-            <input type="submit" value="search" id = "bsearch"/>
-        </div>
-    </form>
+        <form id="search" action="{% url 'photo:search' %}" method="get">
+            <div id="dsearch">
+                <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
+                <input type="submit" value="search" id="bsearch" />
+            </div>
+        </form>
 </body>
+
 </html>

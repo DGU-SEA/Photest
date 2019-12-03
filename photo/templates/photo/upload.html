@@ -73,14 +73,19 @@
         <center>
         
         <div id="uploadDiv"> 
-            <div id = "uploadFrame">
-                +
+            <div id = "uploadFrame"><a href="http://127.0.0.1:8000/photo_create/">
+                <font id="plus" size=80px>+</font>
+            </a>
             </div>
             <br>
             <!-- <label for="ex_file">image</label> 
             <input type="file" id="ex_file"> <br><Br> -->
-
-            <Br><Br>
+            <form class="hashtag" action="{%url 'photo:photo_list'%}">
+                Hashtag : 
+                # <input id="hashtag1" type="text" value="{{hashtag1}}">
+                # <input id="hashtag2" type="text" value="{{hashtag2}}">
+                # <input id="hashtag3" type="text" value="{{hashtag3}}">
+            </form>
             {% block content %}
             {% endblock %}
         </div>
