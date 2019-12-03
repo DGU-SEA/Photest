@@ -150,18 +150,12 @@ input.underline {
 .yesterday-hashtag {
     position:relative;
     left: 25%;
-    top: 8%;
+    top: 38%;
     font-size: 125%;
     width : 200px;
     height : 100px;
     float : left;
-    border : 1px solid black;
     /* padding: 40px 20px 10px 550px; */
-}
-
-.yesterday-hastag h2 {
-    text-align : center;
-    border : 1px solid black;
 }
 
 .yesterday-first img{
@@ -213,4 +207,10 @@ input.underline {
     border : 0px;
     outline: none;
     float: right;
+}
+
+#hashbutton {
+    background-color: white;
+    color: #777777;
+    border: 3px solid #ffffff; 
 }

@@ -37,18 +37,18 @@ def main(request):
     # print(todaytag)
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
-    bestPhotos = list()
+    BestPhotos = list()
 
     index = 0
     for p in Photos :
         for t in p.hashtag['tag'] :
             if(t == yesterdaytag) : 
-                bestPhotos.append(p)
+                BestPhotos.append(p)
                 index += 1
                 break
             if(index == 5) : break
 
-    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'bestPhotos' : bestPhotos})
+    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'BestPhotos' : BestPhotos})
     
 def best(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
@@ -103,29 +103,86 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-class PhotoList(ListView) :
-    print('come on') #지워야할것
-    
-    model = Photo
-    template_name_suffix='_list'
-
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-    search ="cute"
-
 def search_list(request):
     print('search list')
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
     search = request.GET.get('search', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
-    index = 0
+    
     for p in Photos :
         for t in p.hashtag['tag'] :
             if(t == search) : 
                 PhotosWithHashtag.append(p)
 
+    print(PhotosWithHashtag)
+    print(search)
 
     return render(request, 'photo/search_list.html', {
-        'PhotosWithHashtag' : PhotosWithHashtag
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : search
+    })
+
+
+def today_hashtag_click(request) :
+    print('today hashtag click')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    todayhashtag = request.GET.get('todayhasgtag', '')
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == todayhashtag) :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : todayhashtag
+    })
+
+def yesterday_hashtag_click(request) :
+    print('yesterday hashtag click')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    yesterdayhashtag = request.GET.get('yesterdayhasgtag', '')
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == yesterdayhashtag) :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : yesterdayhashtag
+    })
+
+def board_search(self, request, *args, **kwargs) :
+    print('board search')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    # if 'photo_id' in kwargs:
+    #     photo_id = kwargs['photo_id']
+    #     photo = Photo.objects.get(pk=photo_id)
+    #     user = request.user
+    #     if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
+    #         photo.like.remove(user) 
+    #     else: # 새로운 user가 좋아요 한 것이라면 +1
+    #         photo.like.add(user) 
+            
+    #     referer_url = request.META.get('HTTP_REFERER')
+    #     path = urlparse(referer_url).path
+    #     # return HttpResponseRedirect(path)
+    #     return super(PhotoLike, self).get(request, *args, **kwargs)
+
+    search = request.GET.get('search', '')
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == search) :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : search
     })
 
 class PhotoList(ListView) :
