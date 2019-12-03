@@ -20,6 +20,7 @@ urlpatterns = [
     path('upload/',views.upload, name='upload'),
     path('search/', views.search_list, name='search'),
     path('today_hashtag_search/', views.today_hashtag_click, name='today_hashtag_search'),
+    path('yesterday_hashtag_search/', views.yesterday_hashtag_click, name='yesterday_hashtag_search'),
     # path("favorite/<int:photo_id>/",PhotoFavorite.as_view(), name='favorite')
 ]
 

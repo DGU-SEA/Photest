@@ -57,16 +57,18 @@
     <div class="today-hashtag-container">
         <h2>오늘의 해시태그</h2>
     </div>
+
     <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:black"> #{{todaytag}}</a></h1>
+        <h1><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:black"> # {{todaytag}}</a></h1>
     </div>
-    <Br><Br><br></br></br></br>
+    <br><br><br>
 
     <div class="yesterday-hashtag-container">
         <h4>어제의 해시태그</h4>
     </div>
+
     <div class="yesterday-hashtag">
-        <h2><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{yesterdaytag}} </a></h2>
+        <h1><a href="http://127.0.0.1:8000/yesterday_hashtag_search/" style="color:black"> # {{yesterdaytag}}</a></h1>
     </div>
 
     <div class="yesterday-first">
@@ -81,12 +83,12 @@
     </div>
     <br></br>
 
-        <form id="search" action="{% url 'photo:search' %}" method="get">
-            <div id="dsearch">
-                <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
-                <input type="submit" value="search" id="bsearch" />
-            </div>
-        </form>
+    <form id="search" action="{% url 'photo:search' %}" method="get">
+        <div id="dsearch">
+            <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id="bsearch" />
+        </div>
+    </form>
 </body>
 
 </html>

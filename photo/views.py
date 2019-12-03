@@ -103,7 +103,6 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-
 def search_list(request):
     print('search list')
     Photos = Photo.objects.all()
@@ -243,6 +242,7 @@ class PhotoCreate(CreateView):
     template_name_suffix = '_create'
 
     success_url = '/photo_list/'
+
 
     def gethashtag(request) :
         index = 0
