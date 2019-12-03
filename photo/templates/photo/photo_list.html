@@ -56,7 +56,7 @@
     </div>
 
     <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{todaytag}} </a></h1>
+        <h1><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{object.todaytag}} </a></h1>
     </div>
     <Br><Br><br></br></br></br>
 
@@ -68,20 +68,64 @@
                 <input type="submit" value="search" id="bsearch" />
         </form>
 
-        <div id="board">
 
-            <div id="add">
-                <button class="button">
-                    <font size="80" text-align="center">
-                        <a href="http://127.0.0.1:8000/upload/"> + </a>
+
+        <div id="add">
+            <button class="button">
+                <div class="plus">
+                    <font size=80px >
+                        <a href="http://127.0.0.1:8000/photo_create/"> + </a>
                     </font>
+<<<<<<< HEAD
+                </div>
+            </button>
+        </div>
+        {% for object in PhotosWithHashtag %}
+        <div id="frame_frame">
+            <div id="frame">
+                <form method="GET" action="">
+                    <button id="report"> <a href=""> 신고 </a></button>
+                </form>
+
+                <div id="photos">
+                    <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px height=260px />
+                </div>
+
+                <a href="{{object.image.url}}" download="photo.jpg">
+                    <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px
+                        align="right"></img>
+
+                    <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=25px height=25px align="right" /> -->
+                    <li class="list-group-item">
+                        {%if user in object.like.all %}
+                        <a href="{% url 'photo:like' object.id %}">
+                            <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px
+                                height=25px align="right"></img></a>
+                        {% else %}
+                        <a href="{% url 'photo:like' object.id %}">
+                            <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px
+                                align="right"></img></a>
+                        {%endif%}
+                        {% if object.like.all.count %}
+                        <span class="float-right">
+                            {{object.like.all.count}}
+                        </span>
+                        {%endif%}
+                    </li>
+
+                    <div class="card-header" align="left">
+                        {{ object.author }} >
+=======
                 </button>
             </div>
             {% for object in PhotosWithHashtag %}
             <div id="frame_frame">
                 <div id="frame">
-                    <form method="GET" action="">
-                        <button id="report"> <a href=""> 신고 </a></button>
+                    <form method="GET" action="{% url 'accounts:report' %}">
+                        <input type="hidden" name="path" value="{{request.path}}"/>
+                        <input type="hidden" name="author" value="{{object.author}}"/>
+                        <button id="report">신고</button> 
+                        <!-- <button id="report"> <a href="{}"> 신고 </a></button> -->
                     </form>
                     <div class="card">
                         <div id="photos">
@@ -96,45 +140,19 @@
                             </div>
 
                         </div>
+>>>>>>> 6a82b087a077b483c03890ba47673525117ff664
                     </div>
-                    <a href="{{object.image.url}}" download="photo.jpg">
-                        <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px
-                            align="right"></img>
 
-                        <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=25px height=25px align="right" /> -->
-                        <li class="list-group-item">
-                            {%if user in object.like.all %}
-                            <a href="{% url 'photo:like' object.id %}">
-                                <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px
-                                    height=25px align="right"></img></a>
-                            {% else %}
-                            <a href="{% url 'photo:like' object.id %}">
-                                <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px
-                                    align="right"></img></a>
-                            {%endif%}
-                            {% if object.like.all.count %}
-                            <span class="float-left" text-align="right">
-                                {{object.like.all.count}}
-                            </span>
-                            {%endif%}
-                        </li>
+                    <div class="card-body">
+                        <p class="card-text" align="left"> # {{ object.hashtag.tag.0 }} # {{object.hashtag.tag.1}} #
+                            {{object.hashtag.tag.2}} </p>
+                    </div>
 
-                        <div class="card-header" align="left">
-                            {{ object.author }} >
-                        </div>
-
-                        <div class="card-body">
-                            <p class="card-text" align="left"> # {{ object.hashtag.tag.0 }} # {{object.hashtag.tag.1}} # {{object.hashtag.tag.2}} </p>
-                        </div>
-
-                </div>
             </div>
-            <!-- {% block content %}
-            {% endblock %} -->
-            <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align="right" /> -->
-
-            {% endfor %}
         </div>
+
+        {% endfor %}
+
     </div>
 </body>
 

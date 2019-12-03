@@ -14,47 +14,16 @@ a:hover, a:active { text-decoration: none; }
 #uploadDiv{ 
     background-color:white; 
     position: absolute; 
-    top : 70px;
+    top : 200px;
     left : 450px;
     width:480px; 
-    height:600px; 
+    height:300px; 
     padding : 50px;
 }
 
-#uploadFrame {
-    position : relative;
-    border : 1px solid gray;
-    width : 430px;
-    height : 400px;
-    
+.data{
+    padding: 100px 0px 0px 0px;
 }
-
-.filebox label { 
-    display: inline-block; 
-    padding: .5em .75em; 
-    color: #999; 
-    font-size: inherit; 
-    line-height: normal; 
-    vertical-align: middle; 
-    background-color: #fdfdfd; 
-    cursor: pointer; 
-    border: 1px solid #ebebeb; 
-    border-bottom-color: #e2e2e2; 
-    border-radius: .25em; 
-}
-
-.filebox input[type="file"] { /* 파일 필드 숨기기 */ 
-    position: absolute; 
-    width: 1px; 
-    height: 1px; 
-    padding: 0; 
-    margin: -1px; 
-    overflow: hidden; 
-    clip:rect(0,0,0,0); 
-    border: 0; 
-}
-
-
 
 html {
     scroll-behavior: smooth;
@@ -75,80 +44,6 @@ html {
 #long-title {
     font-size : 100%;
     color : gray;
-}
-
-#category {
-    position : relative;
-    top : 3%;
-    left : 71%;
-}
-
-#mypage_btn {
-    position : relative;
-    top : 3%;
-    left : 1%;
-}
-
-#board_btn {
-    position : relative;
-    top : 3%;
-    left : 4%;
-}
-
-#best_btn {
-    position : relative;
-    top : 3%;
-    left : 6%;
-}
-
-.button {
-    background-color: white;
-    color: #777777;
-    border: 3px solid #ffffff; 
-}
-
-#today {
-    position : relative;
-    top : 230px;
-    left : 140px;
-}
-
-#todayHash {
-    width : 300px;
-    height : 150px;
-}
-
-
-
-#search {
-    position : relative;
-    height : 40px;
-    width : 900px;
-    border : 1px solid gray;
-    top : 120px;
-    left : 20px;
-}
- 
-#isearch {
-    font-size : 16px;
-    width : 830px;
-    padding : 10px;
-    border : 0px;
-    outline : none;
-    float : left;
-}
-
-#bsearch {
-    width : 50px;
-    height : 100%;
-    border : 0px;
-    outline: none;
-    float: right;
-}
-
-#plus{
-    position:relative;
-    top:40%;
 }
 
 .underline{

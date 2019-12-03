@@ -55,6 +55,11 @@ a:hover, a:active { text-decoration: none; }
     border: 3px solid #ffffff; 
 }
 
+.plus{
+    padding: 160px 0px 0px 105px;
+    text-align: center;
+}
+
 #report {
     position : relative;
     top:5%;
@@ -103,13 +108,14 @@ a:hover, a:active { text-decoration: none; }
     height : 350px;
     border : 1px solid gray;
     margin-right : -3.5%;
-    margin-bottom: 5%;
+    margin-bottom: 0%;
+    margin-left: 4.5%;
     float : left;
 }
 
 #frame_frame{
     position : relative;
-    top:30%;
+    top:0%;
     /* left:-9%;
     right:-5%; */
 }
@@ -132,7 +138,7 @@ a:hover, a:active { text-decoration: none; }
     width : 250px;
     height : 260px;
     position : relative;
-    border : 1px solid gray;
+    /* border : 1px solid gray; */
 }
 
 /* 검색과 관련된 영역 */
@@ -164,3 +170,6 @@ a:hover, a:active { text-decoration: none; }
     float: right;
 }
 
+.float-right{
+    float:right;
+}
