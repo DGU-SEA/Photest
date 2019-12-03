@@ -58,20 +58,18 @@
         <h2>오늘의 해시태그</h2>
     </div>
 
-    <!-- <form id="search" action="{% url 'photo:search' %}" method="get">
     <div class="today-hashtag">
-        <input type = "submit" id = "hashbutton" style='font-size:40pt;color:black'  value = "# {{todaytag}}"> 
+        <h1><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:black"> # {{todaytag}}</a></h1>
     </div>
-    </form> -->
-
-    <a href="#" onclick="document.forms['search'].submit();"> {{todaytag}}</a>
-    <br><br><br></br></br></br>
+    <br><br><br>
 
     <div class="yesterday-hashtag-container">
         <h4>어제의 해시태그</h4>
     </div>
 
-    <a href="http://127.0.0.1:8000/search/"> # {{yesterdaytag}}</a>
+    <div class="yesterday-hashtag">
+        <h1><a href="http://127.0.0.1:8000/yesterday_hashtag_search/" style="color:black"> # {{yesterdaytag}}</a></h1>
+    </div>
 
     <div class="yesterday-first">
         <img src="{{ BestPhotos.0.image.url }}" />
