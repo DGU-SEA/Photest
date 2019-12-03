@@ -70,19 +70,24 @@ h1 {
     float : left;
 }
 
+#date {
+    position : relative;
+    left : 5%;
+}
+
 #frame {
     position : relative;
     padding : 0.5%;
-    width : 17%;
-    height : 50%;
+    width : 200px;
+    height : 260px;
     border : 1px solid gray;
     float : left;
     margin-right : 1.2%;
 }
 
 #photos {
-    width : 98%;
-    height : 85%;
+    width : 200px;
+    height : 220px;
     position : relative;
     border : 1px solid gray;
 }

@@ -1,8 +1,7 @@
 {% load static %}
 <html>
-
 <head>
-    <link rel="stylesheet" href="{% static 'css/photo_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/searchlist.css' %}">
     <title> Photest </title>
     <meta charset="utf-8">
     <script type="text/javascript">
@@ -10,32 +9,6 @@
             document.getElementById('frame').removeChild(obj.parentNode);
         }
     </script>
-
-    <style>
-        .btn-like {
-            position: relative;
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            background: url("/static/images/heart.png");
-            /* background-position: -30% -10%; */
-            text-indent: -9999px; 
-            overflow: hidden;
-            border: none;
-        }
-
-        .btn-like.active {
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            background: url("/static/images/shaded_heart.png");
-            /* background-position: -50px -400px; */
-            text-indent: -9999px;
-            overflow: hidden;
-            border: none;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -54,35 +27,27 @@
     </div><br><br>
 
     <div class="today-hashtag-container">
-        <h2>오늘의 해시태그</h2>
+        <h1> 검색결과 : </h1>
     </div>
 
-    <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/photo_list/" style="color:black"> #{{todaytag}} </a></h1>
-    </div>
-    <Br><Br><br></br></br></br>
-
-    
-<div id="board">
-        <form id="search" action="{% url 'photo:search' %}" method="get">
-                <div id="dsearch">
-                    <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
-                    <input type="submit" value="search" id="bsearch" />
-            </form>
+    <form id="search" action="{% url 'photo:search' %}" method="get">
+        <div id="dsearch">
+            <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
+            <input type="submit" value="search" id="bsearch" />
+        </div>
+    </form>
 
     <div id="board">
 
         <div id="add">
-            <button class="button"><a href="http://127.0.0.1:8000/upload/">
+            <button class="button"><a href="http://127.0.0.1:8000/photo_create/">
                     <font size="80" text-align="center"> + </font>
                 </a></button>
         </div>
         {% for object in object_list %}
         <div id="frame_frame">
             <div id="frame">
-                <form method="GET" action="">
-                    <button id="report"> <a href="{% url 'account:report' object.id %}"> 신고 </a></button>
-                </form>
+                <button id="report"> <a href="http://127.0.0.1:8000/accounts/report/"> 신고 </a></button>
                 <div class="card">
                     <div id="photos">
                         <div class='container'>
@@ -101,20 +66,15 @@
                 <a href="{{object.image.url}}" download="photo.jpg">
                     <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px
                         align="right"></img>
-            
+                </a>
                 <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=25px height=25px align="right" /> -->
                 <li class="list-group-item">
-                    {%if user in object.like.all %}                    
-                    <a href="{% url 'photo:like' object.id %}" >
-                        <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px height=25px align="right"></img></a>
-                    {% else %}
-                        <a href="{% url 'photo:like' object.id %}" >
-                            <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px align="right"></img></a>
-                    {%endif%}
+                    <a href="{% url 'photo:like' object.id %}"
+                        class="float-left btn-like {%if user in object.like.all %} active {%endif%}">좋아요!</a>
                     {% if object.like.all.count %}
-                        <span class="float-left" text-align="right">
-                           {{object.like.all.count}}
-                        </span>
+                    <span class="float-left">
+                        {{object.like.all.count}}
+                    </span>
                     {%endif%}
                 </li>
 
@@ -123,7 +83,7 @@
                 </div>
 
                 <div class="card-body">
-                    <p class="card-text" align="left"> # {{ tag.0 }} # {{tag.1}} # {{tag.2}} </p>
+                    <p class="card-text" align="left"> {{ object.text }} </p>
                 </div>
 
             </div>
@@ -134,7 +94,6 @@
 
         {% endfor %}
     </div>
-</div>
 </body>
 
 </html>

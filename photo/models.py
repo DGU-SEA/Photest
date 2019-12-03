@@ -12,7 +12,6 @@ class Photo(models.Model):
     like = models.ManyToManyField(User, related_name='like_post', blank=True)
     # favorite=models.IntegerField(User,blank=True, default=0)
    
-
     def __str__(self): # admin 사이트 화면 표시 구현
         return "author : "+str(self.author)
 

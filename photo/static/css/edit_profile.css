@@ -90,3 +90,13 @@ html{
     height : 40px;
 }
 
+.button button{
+    position : relative;
+    top : 100px;
+    left : 300px;
+    border-color: #CAB4D6;
+    background-color: white;
+    border-style : double;
+    width : 100px;
+    height : 40px;
+}
