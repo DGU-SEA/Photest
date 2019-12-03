@@ -108,16 +108,62 @@ def search_list(request):
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
     search = request.GET.get('search', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
-    index = 0
+    
     for p in Photos :
         for t in p.hashtag['tag'] :
             if(t == search) : 
                 PhotosWithHashtag.append(p)
 
-
     return render(request, 'photo/photo_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag
     })
+
+
+def today_hashtag_click(request) :
+    print('today hashtag click')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    todayhashtag = request.GET.get('todayhasgtag', '')
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == todayhashtag) :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/photo_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag
+    })
+
+def yesterday_hashtag_click(request) :
+    print('yesterday hashtag click')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    yesterdayhashtag = request.GET.get('yesterdayhasgtag', '')
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == yesterdayhashtag) :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/photo_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag
+    })
+
+def board_search(request) :
+    print('board search')
+    Photos = Photo.objects.all()
+    PhotosWithHashtag = list()
+
+    search = request.GET.get('search', '')
+    for p in Photos :
+        for t in p.hashtag['tag'] :
+            if(t == search) :
+                PhotosWithHashtag.append(p)
+    
+    return render(request, 'photo/photo_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag
+    })
+
 
 class PhotoList(ListView) :
     print('PhotoList')
