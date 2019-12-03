@@ -37,18 +37,18 @@ def main(request):
     # print(todaytag)
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
-    bestPhotos = list()
+    BestPhotos = list()
 
     index = 0
     for p in Photos :
         for t in p.hashtag['tag'] :
             if(t == yesterdaytag) : 
-                bestPhotos.append(p)
+                BestPhotos.append(p)
                 index += 1
                 break
             if(index == 5) : break
 
-    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'bestPhotos' : bestPhotos})
+    return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'BestPhotos' : BestPhotos})
     
 def best(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
@@ -103,14 +103,6 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-class PhotoList(ListView) :
-    print('come on') #지워야할것
-    
-    model = Photo
-    template_name_suffix='_list'
-
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-    search ="cute"
 
 def search_list(request):
     print('search list')
@@ -123,8 +115,9 @@ def search_list(request):
             if(t == search) : 
                 PhotosWithHashtag.append(p)
 
-    return render(request, 'photo/photo_list.html', {
-        'PhotosWithHashtag' : PhotosWithHashtag
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : search
     })
 
 
@@ -139,8 +132,9 @@ def today_hashtag_click(request) :
             if(t == todayhashtag) :
                 PhotosWithHashtag.append(p)
     
-    return render(request, 'photo/photo_list.html', {
-        'PhotosWithHashtag' : PhotosWithHashtag
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : todayhashtag
     })
 
 def yesterday_hashtag_click(request) :
@@ -154,9 +148,20 @@ def yesterday_hashtag_click(request) :
             if(t == yesterdayhashtag) :
                 PhotosWithHashtag.append(p)
     
-    return render(request, 'photo/photo_list.html', {
-        'PhotosWithHashtag' : PhotosWithHashtag
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : yesterdayhashtag
     })
+
+class PhotoList(ListView) :
+    print('come on') #지워야할것
+    
+    model = Photo
+    template_name_suffix='_list'
+
+    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
+    search ="cute"
+
 
 def board_search(request) :
     print('board search')
