@@ -73,23 +73,21 @@
     </div>
 
     <div class="yesterday-first">
-    <img src="{{ BestPhotos.0.image.url }}" alt="" />
+    <img src="{{ BestPhotos.0.image.url }}" />
     </div>
     <br></br>
     <div class="yesterday-else">
-        <img src="{{ BestPhotos.1.image.url }}" alt="" />
-        <img src="{{ BestPhotos.2.image.url }}" alt="" />
-        <img src="{{ BestPhotos.3.image.url }}" alt="" />
-        <img src="{{ BestPhotos.4.image.url }}" alt="" />
+        <img src="{{ BestPhotos.1.image.url }}" />
+        <img src="{{ BestPhotos.2.image.url }}" />
+        <img src="{{ BestPhotos.3.image.url }}" />
+        <img src="{{ BestPhotos.4.image.url }}" />
     </div>
     <br></br>
     </div>
 
-
-    <!-- methond = "post" -->
-    <form id="search" action="{%url 'photo:photo_list'%}">
+    <form id="search" action="{% url 'photo:search' %}" method = "get">
         <div id="dsearch">
-            <input type="text" id="isearch" name="search" value = "{{search}}" placeholder="# Hashtag를 입력하세요" />
+            <input type="text" id="isearch" name="search" placeholder="# Hashtag를 입력하세요" />
             <input type="submit" value="search" id = "bsearch"/>
         </div>
     </form>

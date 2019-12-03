@@ -58,15 +58,18 @@
         <button id="myphoto" type="button"> 내 게시글 </button><br><br><br>
         <button id="report" type="button"> 신고 </button><br><br><br>
     </div><br><br>
-    <div id="div1">
-        <h2> 개인 정보 수정 </h2>
-        User ID : <input type="text" size="20" placeholder="{{user.username}}">&nbsp;<br><br>
-        Password : </td><td><input type="password" size="20"><br><br>
-        E-mail : </td><td><input type="text" size="40" placeholder="{{user.email}}"> <br><br>
-        <button id="cancel"> 취소 </button>
-        <button id="confirm"> 확인 </button>
-    </div>
-
+    <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div id="div1">
+            <h2> 개인 정보 수정 </h2>
+            User ID : {{user.username}} <br><br>
+            Password : <input type="password" size="20"><br><br>
+            E-mail : <input type="text" size="40" placeholder="{{user.email}}"> <br><br>
+            <!-- <button id="cancel"> 취소 </button> -->
+            <input type="submit" value="OK" id="ok_btn" />
+        </div>
+    </form>
     <div id="div2">
         <h2> 내 게시글 </h2>
 

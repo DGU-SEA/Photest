@@ -70,6 +70,11 @@ h1 {
     float : left;
 }
 
+#date {
+    position : relative;
+    left : 5%;
+}
+
 #frame {
     position : relative;
     padding : 0.5%;

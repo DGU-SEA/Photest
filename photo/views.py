@@ -49,12 +49,6 @@ def main(request):
                 index += 1
                 break
             if(index == 5) : break
-
-    print(bestPhotos[0])
-    print(bestPhotos[1])
-    print(bestPhotos[2])
-    print(bestPhotos[3])
-    print(bestPhotos[4])
     return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'bestPhotos' : bestPhotos})
     
 def best(request):
@@ -110,7 +104,13 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
+def searchlist(request):
+#best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
+ return render(request, 'photo/searchlist.html', {})
+
 class PhotoList(ListView) :
+    print('come on') #지워야할것
+    
     model = Photo
     template_name_suffix='_list'
 
@@ -126,9 +126,14 @@ class PhotoList(ListView) :
             print(t)
             if(t == search) : 
                 PhotosWithHashtag.append(p)
+
+    def search(request) :
+        # search = request.POST.['search']
+        print(' def fun inside')
+        return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+    
+    # context_object_name = PhotosWithHashtag
     # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-
-
 
 class PhotoCreate(CreateView):
     model = Photo
