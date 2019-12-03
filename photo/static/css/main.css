@@ -175,7 +175,7 @@ input.underline {
 .yesterday-else {
     position:relative;
     left: 10%;
-    top: -10%;
+    top: 0%;
 }
 
 .yesterday-else img{

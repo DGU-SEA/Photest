@@ -18,7 +18,7 @@
             width: 25px;
             height: 25px;
             background: url("/static/images/heart.png");
-            /* background-position: -30% -10%;*/
+            /* background-position: -30% -10%; */
             text-indent: -9999px; 
             overflow: hidden;
             border: none;
@@ -34,28 +34,6 @@
             overflow: hidden;
             border: none;
         }
-
-        /* .btn-favorite {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background:url(/static/images/heart.png);
-            background-position: -515px -150px;
-            text-indent: -9999px;
-            overflow: hidden;
-            border: none;
-        }
-
-        .btn-favorite.active {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background:url(/static/images/heart.png);
-            background-position: -515px -100px;
-            text-indent: -9999px;
-            overflow: hidden;
-            border: none;
-        } */
     </style>
 
 </head>
@@ -67,7 +45,7 @@
     </div>
     <div id="category">
         {% if user.is_authenticated %}
-        <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
+        <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% else %}
@@ -107,7 +85,9 @@
         {% for object in object_list %}
         <div id="frame_frame">
             <div id="frame">
-                <button id="report"> <a href="http://127.0.0.1:8000/accounts/report/"> 신고 </a></button>
+                <form method="GET" action="">
+                    <button id="report"> <a href="{% url 'account:report' object.id %}"> 신고 </a></button>
+                </form>
                 <div class="card">
                     <div id="photos">
                         <div class='container'>
@@ -135,8 +115,8 @@
                             <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px align="right"></img></a>
                     {%endif%}
                     {% if object.like.all.count %}
-                        <span class="float-left">
-                            {{object.like.all.count}}
+                        <span class="float-left" text-align="right">
+                           {{object.like.all.count}}
                         </span>
                     {%endif%}
                 </li>
@@ -146,7 +126,7 @@
                 </div>
 
                 <div class="card-body">
-                    <p class="card-text" align="left"> {{ object.text }} </p>
+                    <p class="card-text" align="left"> # {{ tag.0 }} # {{tag.1}} # {{tag.2}} </p>
                 </div>
 
             </div>

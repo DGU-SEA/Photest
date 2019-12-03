@@ -2,8 +2,12 @@
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'css/upload.css' %}">
-        <title> Photest </title>
+        <title> Photest </title> 
         <meta charset = "utf-8">
+        <!-- <style>
+            input.underline {border:0px; border-bottom:5px;}
+        </style> -->
+
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         
         <script type="text/javascript"> //window onload 
@@ -80,11 +84,11 @@
             <br>
             <!-- <label for="ex_file">image</label> 
             <input type="file" id="ex_file"> <br><Br> -->
-            <form class="hashtag" action="{%url 'photo:photo_list'%}">
+            <form class="hashtag" method="GET" action="">
                 Hashtag : 
-                # <input id="hashtag1" type="text" value="{{hashtag1}}">
-                # <input id="hashtag2" type="text" value="{{hashtag2}}">
-                # <input id="hashtag3" type="text" value="{{hashtag3}}">
+                # <input class="underline" name="hashtag1" type="text" value="{{tag.0}}">
+                # <input class="underline" name="hashtag2" type="text" value="{{tag.1}}">
+                # <input class="underline" name="hashtag3" type="text" value="{{tag.2}}">
             </form>
             {% block content %}
             {% endblock %}

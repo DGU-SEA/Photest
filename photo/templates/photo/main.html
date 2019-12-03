@@ -44,10 +44,6 @@
         {% if user.is_authenticated %}
         <center>
             <br>{{user.username}}님 환영합니다. <br><br>
-            <!-- <button id="logout_btn"> Logout </a></button> -->
-
-            <!-- <button id="logout_btn"><a href="http://127.0.0.1:8000/accounts/logout/"> Logout </a></button> -->
-            <!-- <button id="logout_btn" method="POST" action="{%url 'accounts:logout'%}"> Logout </button> -->
             <button id="logout_btn"><a href="{% url 'accounts:logout'%}">Logout </a></button>
 
         </center>
