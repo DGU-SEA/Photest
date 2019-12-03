@@ -12,6 +12,7 @@ from django.contrib import messages
 from datetime import datetime
 from datetime import date, timedelta
 from django.db import connection
+import json
 
 def main(request):
     global hashtag
@@ -22,7 +23,6 @@ def main(request):
     todaytag = ""
     todayDate = str(date.today())
     # todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
-    dbDate = ""
 
     yesterdaytag = ""
     today = date.today()
@@ -84,7 +84,7 @@ def best(request):
     # print(bestPhotos)
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
-
+    
 def hashtag_board(request):
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/hashtag_board.html', {}) #, {'posts': posts}
@@ -115,6 +115,9 @@ def search_list(request):
             if(t == search) : 
                 PhotosWithHashtag.append(p)
 
+    print(PhotosWithHashtag)
+    print(search)
+
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
         'search' : search
@@ -126,15 +129,25 @@ def today_hashtag_click(request) :
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
 
-    todayhashtag = request.GET.get('todayhasgtag', '')
+    global hashtag
+    hashtags = hashtag.objects.all()
+    todaytag = ""
+    todayDate = str(date.today())
+
+    for h in hashtag.objects.all() :
+        if(str(h.tagDate) == todayDate) : 
+            todaytag = h.tagName
+
+    print(todaytag)
+    
     for p in Photos :
         for t in p.hashtag['tag'] :
-            if(t == todayhashtag) :
+            if(t == todaytag) :
                 PhotosWithHashtag.append(p)
     
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
-        'search' : todayhashtag
+        'search' : todaytag
     })
 
 def yesterday_hashtag_click(request) :
@@ -142,31 +155,45 @@ def yesterday_hashtag_click(request) :
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
 
-    yesterdayhashtag = request.GET.get('yesterdayhasgtag', '')
+    yesterdaytag = ""
+    today = date.today()
+    yesterday = str(date.today() - timedelta(1))
+
+    for h in hashtag.objects.all() :        
+        if(str(h.tagDate) == yesterday) :
+            yesterdaytag = h.tagName
+    
+    print(yesterdaytag)
+    
     for p in Photos :
         for t in p.hashtag['tag'] :
-            if(t == yesterdayhashtag) :
+            if(t == yesterdaytag) :
                 PhotosWithHashtag.append(p)
     
+
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,
-        'search' : yesterdayhashtag
+        'search' : yesterdaytag
     })
 
-class PhotoList(ListView) :
-    print('come on') #지워야할것
-    
-    model = Photo
-    template_name_suffix='_list'
-
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-    search ="cute"
-
-
-def board_search(request) :
+def board_search(self, request, *args, **kwargs) :
     print('board search')
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
+
+    # if 'photo_id' in kwargs:
+    #     photo_id = kwargs['photo_id']
+    #     photo = Photo.objects.get(pk=photo_id)
+    #     user = request.user
+    #     if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
+    #         photo.like.remove(user) 
+    #     else: # 새로운 user가 좋아요 한 것이라면 +1
+    #         photo.like.add(user) 
+            
+    #     referer_url = request.META.get('HTTP_REFERER')
+    #     path = urlparse(referer_url).path
+    #     # return HttpResponseRedirect(path)
+    #     return super(PhotoLike, self).get(request, *args, **kwargs)
 
     search = request.GET.get('search', '')
     for p in Photos :
@@ -174,10 +201,10 @@ def board_search(request) :
             if(t == search) :
                 PhotosWithHashtag.append(p)
     
-    return render(request, 'photo/photo_list.html', {
-        'PhotosWithHashtag' : PhotosWithHashtag
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : search
     })
-
 
 class PhotoList(ListView) :
     print('PhotoList')
@@ -212,9 +239,33 @@ class PhotoList(ListView) :
 class PhotoCreate(CreateView):
     model = Photo
 
-    fields = ['author', 'image'] #'hashtag'
+    fields = ['author', 'image']
     template_name_suffix = '_create'
+<<<<<<< HEAD
     # success_url = '/'
+=======
+    success_url = '/'
+
+    def gethashtag(request) :
+        index = 0
+        hashtag1 = request.GET["hashtag1"]
+        hashtag2 = request.GET["hashtag2"]
+        hashtag3 = request.GET["hashtag3"]
+
+        hashtag = {
+            'tag' : []
+        }
+
+        if(hashtag1 != "") :
+            hashtag['tag'].append[hashtag1]
+        if(hashtag2 != "") :
+            hashtag['tag'].append[hashtag2]
+        if(hashtag3 != "") :
+            hashtag['tag'].append[hashtag3]
+
+        Photo.objects._create()
+        
+>>>>>>> 059ee93d9533b9833f43b546f5ce0a73df459775
     
     def form_valid(self, form):
         form.instance.author_id=self.request.user.id
@@ -223,6 +274,7 @@ class PhotoCreate(CreateView):
             return redirect('/')
         else:
             return self.render_to_response({'form':form})
+
 
 
 class PhotoUpdate(UpdateView):
@@ -256,6 +308,22 @@ class PhotoDetail(DetailView):
     model = Photo
     template_name_suffix='_detail'
 
+# class PhotoLikeList(ListView):
+#     model = Photo
+#     template_name = 'photo/photo_list.html'
+
+#     def dispatch(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated:  # 로그인확인
+#             messages.warning(request, '로그인을 먼저하세요')
+#             return HttpResponseRedirect('/')
+#         return super(PhotoLikeList, self).dispatch(request, *args, **kwargs)
+
+#     def get_queryset(self):
+#         # 내가 좋아요한 글을 보여주
+#         user = self.request.user
+#         queryset = user.like_post.all()
+#         return queryset
+
 from django.views.generic.base import View
 from django.http import HttpResponseForbidden
 from urllib.parse import urlparse
@@ -282,3 +350,21 @@ class PhotoLike(ListView):
             referer_url = request.META.get('HTTP_REFERER')
             path = urlparse(referer_url).path
             return HttpResponseRedirect(path)
+            # return super(PhotoLike, self).get(request, *args, **kwargs)
+
+# class PhotoFavorite(ListView):
+#     def get(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated:    #로그인확인
+#             return HttpResponseForbidden()
+#         else:
+#             if 'photo_id' in kwargs:
+#                 photo_id = kwargs['photo_id']
+#                 photo = Photo.objects.get(pk=photo_id)
+#                 user = request.user
+#                 if user in photo.favorite.all():
+#                     photo.favorite.remove(user)
+#                 else:
+#                     photo.favorite.add(user)
+#             referer_url = request.META.get('HTTP_REFERER')
+#             path = urlparse(referer_url).path
+#             return HttpResponseRedirect(path)
