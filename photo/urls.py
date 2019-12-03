@@ -18,6 +18,7 @@ urlpatterns = [
     path('detail/', views.detail, name='detail'),
     path("like/<int:photo_id>/", PhotoLike.as_view(), name = 'like'),
     path('upload/',views.upload, name='upload'),
+    path('search/', views.search_list, name='search'),
     # path("favorite/<int:photo_id>/",PhotoFavorite.as_view(), name='favorite')
 ]
 

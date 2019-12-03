@@ -42,19 +42,12 @@ def main(request):
     index = 0
     for p in Photos :
         for t in p.hashtag['tag'] :
-            print(p.hashtag)
-            print(t)
             if(t == yesterdaytag) : 
                 bestPhotos.append(p)
                 index += 1
                 break
             if(index == 5) : break
 
-    print(bestPhotos[0])
-    print(bestPhotos[1])
-    print(bestPhotos[2])
-    print(bestPhotos[3])
-    print(bestPhotos[4])
     return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'bestPhotos' : bestPhotos})
     
 def best(request):
@@ -110,23 +103,43 @@ def detail(request):
     model = Photo
     return render(request, 'photo/detail.html', {})
 
-class PhotoList(ListView) :
-    model = Photo
-    template_name_suffix='_list'
-
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-    search ="cute"
+def search_list(request):
+    print('search list')
     Photos = Photo.objects.all()
     PhotosWithHashtag = list()
-    
+    search = request.GET.get('search', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     index = 0
     for p in Photos :
-        print(p.hashtag['tag'])
         for t in p.hashtag['tag'] :
-            print(t)
             if(t == search) : 
                 PhotosWithHashtag.append(p)
-    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+
+
+    return render(request, 'photo/photo_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag
+    })
+
+class PhotoList(ListView) :
+    print('PhotoList')
+    model = Photo
+    emplate_name_suffix='_list'
+
+    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
+
+    def photo_list(request) :
+        search = request.GET.get('search')
+        print(search)
+
+        Photos = Photo.objects.all()
+        PhotosWithHashtag = list()
+    
+        index = 0
+        for p in Photos :
+            for t in p.hashtag['tag'] :
+                if(t == search) : 
+                    PhotosWithHashtag.append(p)
+
+        return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
 
 
