@@ -56,6 +56,10 @@
     <div class="buttons">
         <button id="myinfo" type="button"> 개인정보 수정 </button><br><br><br>
         <button id="myphoto" type="button"> 내 게시글 </button><br><br><br>
+        {% for object in photos %}
+        {{object.author}}
+        {{object.image.url}}
+        {% endfor %}
         <button id="report" type="button"> 신고 </button><br><br><br>
     </div><br><br>
     <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
