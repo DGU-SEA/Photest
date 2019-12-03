@@ -240,6 +240,9 @@ class PhotoCreate(CreateView):
 
     fields = ['author', 'image']
     template_name_suffix = '_create'
+<<<<<<< HEAD
+    # success_url = '/'
+=======
     success_url = '/'
 
     def gethashtag(request) :
@@ -261,6 +264,7 @@ class PhotoCreate(CreateView):
 
         Photo.objects._create()
         
+>>>>>>> 059ee93d9533b9833f43b546f5ce0a73df459775
     
     def form_valid(self, form):
         form.instance.author_id=self.request.user.id

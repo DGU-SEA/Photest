@@ -4,9 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import * 
+from django.contrib.auth.hashers import check_password
 
 def join(request):
-
     if request.method == "POST":
 
         username = request.POST["username"]
@@ -40,6 +40,23 @@ def logout(request):
 def mypage(request):
     if not request.user.is_authenticated:
         print("usernone")
+        return redirect('/')
+    if request.method == "POST":
+        password=request.POST["password"]
+        email=request.POST["email"]
+
+        if password != "":
+            print(password)
+            # request.user.password = password
+            request.user.set_password(password)
+            print(request.user.password)
+
+        if email != "":
+            print(email)
+            request.user.email = email
+            print(request.user.email)
+
+        request.user.save()
         return redirect('/')
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'accounts/mypage.html', {})
