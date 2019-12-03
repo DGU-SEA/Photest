@@ -214,10 +214,10 @@ class PhotoLike(ListView):
                     photo.like.remove(user) 
                 else: # 새로운 user가 좋아요 한 것이라면 +1
                     photo.like.add(user) 
-            # referer_url = request.META.get('HTTP_REFERER')
-            # path = urlparse(referer_url).path
-            # return HttpResponseRedirect(path)
-            return super(PhotoLike, self).get(request, *args, **kwargs)
+            referer_url = request.META.get('HTTP_REFERER')
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)
+            # return super(PhotoLike, self).get(request, *args, **kwargs)
 
 # class PhotoFavorite(ListView):
 #     def get(self, request, *args, **kwargs):

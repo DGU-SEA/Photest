@@ -70,24 +70,24 @@ a:hover, a:active { text-decoration: none; }
 
 .today-hashtag-container {
     position:relative;
-    left: 10%;
+    left: 20%;
     top: 0%;
     color: gray;
-    font-size: 20pt;
+    font-size: 15pt;
     /*padding: 0px 20px 10px 200px;*/
 }
 
 .today-hashtag {
     position:relative;
     /* text-align: center; */
-    left : 40%;
+    text-align: center;
 }
 
 #board {
     position : relative;
     width : 90%;
-    left : 8%;
-    top : -15%;
+    left : 4%;
+    /* top : -50%; */
     /* height : 2000px; */
     /* border : 1px solid black; */
     float : left;
@@ -98,7 +98,7 @@ a:hover, a:active { text-decoration: none; }
     /* padding : 1%; */
     padding: 0% 1% 2% 1%;
     left : 4.3%;
-    top : 130px;
+    top : 50px;
     width : 250px;
     height : 350px;
     border : 1px solid gray;
@@ -109,7 +109,7 @@ a:hover, a:active { text-decoration: none; }
 
 #frame_frame{
     position : relative;
-    top:5%;
+    top:-10%;
     left:0%;
    
 }
@@ -119,7 +119,7 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     padding: 0% 1% 2% 1%;
     width : 250px;
-    top : 130px;
+    top : 50px;
     height : 350px;
     border : 1px solid gray;
     float : left;
@@ -138,11 +138,11 @@ a:hover, a:active { text-decoration: none; }
 /* 검색과 관련된 영역 */
 #dsearch {
     position : relative;
+    top : 10%;
+    left : 7.5%;
     height : 8%;
-    width : 77%;
+    width :85%;
     border : 1px solid gray;
-    top : 0%;
-    left : 12%;
 }
  
 /* 검색 필드 */
