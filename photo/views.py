@@ -153,16 +153,6 @@ def yesterday_hashtag_click(request) :
         'search' : yesterdayhashtag
     })
 
-class PhotoList(ListView) :
-    print('come on') #지워야할것
-    
-    model = Photo
-    template_name_suffix='_list'
-
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-    search ="cute"
-
-
 def board_search(request) :
     print('board search')
     Photos = Photo.objects.all()
@@ -174,10 +164,10 @@ def board_search(request) :
             if(t == search) :
                 PhotosWithHashtag.append(p)
     
-    return render(request, 'photo/photo_list.html', {
-        'PhotosWithHashtag' : PhotosWithHashtag
+    return render(request, 'photo/search_list.html', {
+        'PhotosWithHashtag' : PhotosWithHashtag,
+        'search' : search
     })
-
 
 class PhotoList(ListView) :
     print('PhotoList')

@@ -9,6 +9,31 @@
             document.getElementById('frame').removeChild(obj.parentNode);
         }
     </script>
+
+<style>
+        .btn-like {
+            position: relative;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: url("/static/images/heart.png");
+            /* background-position: -30% -10%;*/
+            text-indent: -9999px; 
+            overflow: hidden;
+            border: none;
+        }
+
+        .btn-like.active {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: url("/static/images/shaded_heart.png");
+            /* background-position: -50px -400px; */
+            text-indent: -9999px;
+            overflow: hidden;
+            border: none;
+        }
+        </style>
 </head>
 
 <body>
@@ -26,10 +51,11 @@
         {% endif %}
     </div><br><br>
 
-    <div class="today-hashtag-container">
-        <h1> 검색결과 : </h1>
+    <br>
+    <div class="today-hashtag">
+        <h1> # {{search}} </h1>
     </div>
-
+    <br><br>
     <form id="search" action="{% url 'photo:search' %}" method="get">
         <div id="dsearch">
             <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
@@ -38,13 +64,13 @@
     </form>
 
     <div id="board">
-
+    <!-- 
         <div id="add">
             <button class="button"><a href="http://127.0.0.1:8000/photo_create/">
-                    <font size="80" text-align="center"> + </font>
+                <font size="80" text-align="center"> + </font>
                 </a></button>
-        </div>
-        {% for object in object_list %}
+        </div> -->
+        {% for object in PhotosWithHashtag %}
         <div id="frame_frame">
             <div id="frame">
                 <button id="report"> <a href="http://127.0.0.1:8000/accounts/report/"> 신고 </a></button>
@@ -59,7 +85,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 {{likecnt}}
