@@ -14,6 +14,13 @@ from datetime import datetime
 from datetime import date, timedelta
 from django.db import connection
 import json
+from urllib.parse import urlparse
+from django.core.files import File
+import urllib.request
+from django.shortcuts import render
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.template import RequestContext
 
 def main(request):
     print('main')
@@ -82,12 +89,21 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
+<<<<<<< HEAD
+            for t in p.hashtag['tag']:
+                if (t == i):
+                    bestPhotos.append(p)
+                    index += 1
+                    if index == 5 :
+                        break
+=======
             if (p.hashtag['tag'] == i):
                 bestPhotos.append(p)
                 index += 1
                 if index == 5 :
                     break
     # print(bestPhotos)
+>>>>>>> 58bb30e532092b8a431b178e13c7b671e295532e
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
     
@@ -222,43 +238,58 @@ def photo_list(request) :
     })
 
 def photo_insert(request) :
-    # request로 예지가 보내준 author, image, hashtag db에 저장
-    # 모델에 author는 id, 예지가 주는거는 username, username으로 auth_user에서 id 받아와야 함 
     print('photo create')
-    username = request.username
+    username = request.user
     Users = User.objects.all()
-    author = ""
+    authorid = ""
 
     for u in Users :
-        if(u.username == username) :
-            author = u.id
+        if(str(u.username) == str(username)) :
+            authorid = u.id
     
-    image = request.image
+    print(request.FILES['image'])
+    image = request.FILES['image']
+    tempurl = 'timeline_photo/2019/12/04/'
+    tempurl += str(image)
     
-    print(request.POST.get('hashtag1', ''))
-    print(request.POST.get('hashtag2', ''))
-    print(request.POST.get('hashtag3', ''))
+    # tempurl += str(dateemonth) 
+    # tempurl += '/'
+    # tempurl += str(date.day)
+    # tempurl += '/'
+    # tempurl += str(image)
+
+    print(tempurl)
+    image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
 
     hashtag1 = request.POST.get('hashtag1', '')
-    hashtag1 = request.POST.get('hashtag1', '')
-    hashtag1 = request.POST.get('hashtag1', '')
-
-    print(hashtag1, hashtag2, hashtag3)
+    hashtag2 = request.POST.get('hashtag2', '')
+    hashtag3 = request.POST.get('hashtag3', '')
 
     hashtag = {
         'tag' : []
     }
 
     if(hashtag1 != "") :
-        hashtag['tag'].append[hashtag1]
+        hashtag['tag'].append(hashtag1)
     if(hashtag2 != "") :
-        hashtag['tag'].append[hashtag2]
+        hashtag['tag'].append(hashtag2)
     if(hashtag3 != "") :
-        hashtag['tag'].append[hashtag3]
+       
+     print(authorid)
+     print(image)
+     print(hashtag)
 
-    data = Photo.objects.create(author = author, image = image, hashtag = hashtag)
-    
-    return render(request, 'photo/photo_list.html' )
+     myfile = request.FILES['image']
+     fs = FileSystemStorage()
+     filename = fs.save(myfile.name, myfile)
+    #  uploaded_file_url = fs.url(filename)
+     uploaded_file_url = fs.url(tempurl)
+
+     print(uploaded_file_url)
+
+
+     data = Photo.objects.create(author_id = authorid, image = uploaded_file_url, hashtag = hashtag)
+    return render(request, 'photo/photo_list.html')
 
 
 class PhotoList(ListView) :
@@ -266,30 +297,10 @@ class PhotoList(ListView) :
     model = Photo
     emplate_name_suffix='_list'
 
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-
-    # def photo_list(request) :
-    #     search = request.GET.get('search')
-    #     print(search)
-
-    #     Photos = Photo.objects.all()
-    #     PhotosWithHashtag = list()
-    
-    #     index = 0
-    #     for p in Photos :
-    #         for t in p.hashtag['tag'] :
-    #             if(t == search) : 
-    #                 PhotosWithHashtag.append(p)
-
-    #     return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-
     def search(request) :
         # search = request.POST.['search']
         print(' def fun inside')
         return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-    
-    # context_object_name = PhotosWithHashtag
-    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
 
 class PhotoUpdate(UpdateView):
@@ -323,21 +334,6 @@ class PhotoDetail(DetailView):
     model = Photo
     template_name_suffix='_detail'
 
-# class PhotoLikeList(ListView):
-#     model = Photo
-#     template_name = 'photo/photo_list.html'
-
-#     def dispatch(self, request, *args, **kwargs):
-#         if not request.user.is_authenticated:  # 로그인확인
-#             messages.warning(request, '로그인을 먼저하세요')
-#             return HttpResponseRedirect('/')
-#         return super(PhotoLikeList, self).dispatch(request, *args, **kwargs)
-
-#     def get_queryset(self):
-#         # 내가 좋아요한 글을 보여주
-#         user = self.request.user
-#         queryset = user.like_post.all()
-#         return queryset
 
 from django.views.generic.base import View
 from django.http import HttpResponseForbidden
@@ -365,21 +361,3 @@ class PhotoLike(ListView):
             referer_url = request.META.get('HTTP_REFERER')
             path = urlparse(referer_url).path
             return HttpResponseRedirect(path)
-            # return super(PhotoLike, self).get(request, *args, **kwargs)
-
-# class PhotoFavorite(ListView):
-#     def get(self, request, *args, **kwargs):
-#         if not request.user.is_authenticated:    #로그인확인
-#             return HttpResponseForbidden()
-#         else:
-#             if 'photo_id' in kwargs:
-#                 photo_id = kwargs['photo_id']
-#                 photo = Photo.objects.get(pk=photo_id)
-#                 user = request.user
-#                 if user in photo.favorite.all():
-#                     photo.favorite.remove(user)
-#                 else:
-#                     photo.favorite.add(user)
-#             referer_url = request.META.get('HTTP_REFERER')
-#             path = urlparse(referer_url).path
-#             return HttpResponseRedirect(path)
