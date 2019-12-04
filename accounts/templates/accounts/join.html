@@ -12,7 +12,7 @@
         <font id="long-title">_Photo Contest </font>
     </div>
     
-    <br><br><br><br>
+    <br><br>
     <center>
         <h2> 회원가입 </h2>
         <div id="notice">
@@ -24,28 +24,27 @@
             <table boder="" cellspacing="10">
                 <form id="join" method="POST" action="{%url 'accounts:join'%}">
                     {% csrf_token %}
-                    <tr>  
-                    <td>{{is_used}}</td>
-                    </tr>
+                   
                     <tr>
-                        <td>ID : </td>
-                        <td><input name="username" type="text" size="20"></td> 
-                        
+                        <td>ID </td>
+                        <td>: <input name="username" type="text" size="20"></td> 
+                        <td>{{is_used}}</td>
+
                     </tr>
 
                     <tr>
-                        <td>Password : </td>
-                        <td><input name="password1" type="password" size="20"></td>
+                        <td>Password </td>
+                        <td>: <input name="password1" type="password" size="20"></td>
                     </tr>
 
                     <tr>
-                        <td>Comfirm Password : </td>
-                        <td><input name="password2" type="password" size="20"></td>
+                        <td>Comfirm Password </td>
+                        <td>: <input name="password2" type="password" size="20"></td>
                     </tr>
 
                     <tr>
-                        <td>E-mail :</td>
-                        <td> <input name="email" type="E-mail" size="20"> </td>
+                        <td>E-mail </td>
+                        <td>: <input name="email" type="E-mail" size="20"> </td>
                     </tr>
 
                     <tr>                      

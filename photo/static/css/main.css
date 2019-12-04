@@ -5,6 +5,7 @@ html{
 body {
     margin: 0;
     padding: 0; 
+    /* background-color:#f2f2f2;  */
 }
 
 a { text-decoration: none; color: gray; }
@@ -62,6 +63,8 @@ a:hover, a:active { text-decoration: none; }
     left : 1%;
     font-size : 20px;
     font-weight : bold;
+    /* border-bottom : 3px solid #CAB4D6; */
+    border-radius : 5px;
 }
 
 #board_btn {
@@ -70,6 +73,7 @@ a:hover, a:active { text-decoration: none; }
     left : 4%;
     font-size : 20px;
     font-weight : bold;
+    border-radius : 5px;
 }
 
 #best_btn {
@@ -78,6 +82,7 @@ a:hover, a:active { text-decoration: none; }
     left : 6%;
     font-size : 20px;
     font-weight : bold;
+    border-radius : 5px;
 }
 
 .log {
@@ -190,6 +195,8 @@ input.underline {
     top : 45%;
     width : 80px;
     height : 80px;
+    /* float : left; */
+    text-align : left;
 }
 
 .yesterday-first img{
@@ -225,6 +232,10 @@ input.underline {
     left : 10%;
     padding : 1px;
 }
+
+#ranking {
+    border-style : 2px ridge;
+}
  
 /* 검색 필드 */
 #isearch {
@@ -254,7 +265,6 @@ input.underline {
 #wrapper {
 	position:relative;
     min-height:100%;
-    
 }
 
 #rank {
@@ -266,14 +276,13 @@ input.underline {
     position:absolute;
     bottom : 0;
     width : 100%;
-    height : 150px;
+    height : 120px;
     background-color : #CAB4D6;
     opacity : 0.8;
     margin-top : 0;
     margin-left : 0;
     margin-right : 0;
 }
-
 
 p {
     font-weight : bold;

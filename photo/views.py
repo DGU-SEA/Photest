@@ -14,6 +14,13 @@ from datetime import datetime
 from datetime import date, timedelta
 from django.db import connection
 import json
+from urllib.parse import urlparse
+from django.core.files import File
+import urllib.request
+from django.shortcuts import render
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.template import RequestContext
 
 def main(request):
     print('main')
@@ -82,12 +89,12 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-            if (p.hashtag['tag'] == i):
-                bestPhotos.append(p)
-                index +1
-                if index == 5 :
-                    break
-    # print(bestPhotos)
+            for t in p.hashtag['tag']:
+                if (t == i):
+                    bestPhotos.append(p)
+                    index += 1
+                    if index == 5 :
+                        break
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
     
@@ -222,24 +229,28 @@ def photo_list(request) :
     })
 
 def photo_insert(request) :
-    # request로 예지가 보내준 author, image, hashtag db에 저장
-    # 모델에 author는 id, 예지가 주는거는 username, username으로 auth_user에서 id 받아와야 함 
     print('photo create')
     username = request.user
     Users = User.objects.all()
-    print(Users)
     authorid = ""
 
     for u in Users :
         if(str(u.username) == str(username)) :
             authorid = u.id
     
-    image = ""
-    print(image)
+    print(request.FILES['image'])
+    image = request.FILES['image']
+    tempurl = 'timeline_photo/2019/12/04/'
+    tempurl += str(image)
+    
+    # tempurl += str(dateemonth) 
+    # tempurl += '/'
+    # tempurl += str(date.day)
+    # tempurl += '/'
+    # tempurl += str(image)
 
-    print(request.POST.get('hashtag1', ''))
-    print(request.POST.get('hashtag2', ''))
-    print(request.POST.get('hashtag3', ''))
+    print(tempurl)
+    image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
 
     hashtag1 = request.POST.get('hashtag1', '')
     hashtag2 = request.POST.get('hashtag2', '')
@@ -259,9 +270,17 @@ def photo_insert(request) :
      print(image)
      print(hashtag)
 
-     data = Photo.objects.create(author_id = authorid, image = image, hashtag = hashtag)
-    
-     return render(request, 'photo/photo_list.html', {'Message' : "photo insert success"})
+     myfile = request.FILES['image']
+     fs = FileSystemStorage()
+     filename = fs.save(myfile.name, myfile)
+    #  uploaded_file_url = fs.url(filename)
+     uploaded_file_url = fs.url(tempurl)
+
+     print(uploaded_file_url)
+
+
+     data = Photo.objects.create(author_id = authorid, image = uploaded_file_url, hashtag = hashtag)
+    return render(request, 'photo/photo_list.html')
 
 
 class PhotoList(ListView) :
