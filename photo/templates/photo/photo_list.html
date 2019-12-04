@@ -61,7 +61,7 @@
     <Br><Br><br></br></br></br>
 
 
-    <div id="board">
+    <!-- <div id="board"> -->
         <form id="search" action="{% url 'photo:search' %}" method="get">
             <div id="dsearch">
                 <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
@@ -74,14 +74,12 @@
             <button class="button">
                 <div class="plus">
                     <font size=80px >
-                        <a href="http://127.0.0.1:8000/photo_create/"> + </a>
+                        <a href="http://127.0.0.1:8000/upload/"> + </a>
                     </font>
-<<<<<<< HEAD
                 </div>
             </button>
         </div>
         {% for object in PhotosWithHashtag %}
-        <div id="frame_frame">
             <div id="frame">
                 <form method="GET" action="">
                     <button id="report"> <a href=""> 신고 </a></button>
@@ -115,32 +113,6 @@
 
                     <div class="card-header" align="left">
                         {{ object.author }} >
-=======
-                </button>
-            </div>
-            {% for object in PhotosWithHashtag %}
-            <div id="frame_frame">
-                <div id="frame">
-                    <form method="GET" action="{% url 'accounts:report' %}">
-                        <input type="hidden" name="path" value="{{request.path}}"/>
-                        <input type="hidden" name="author" value="{{object.author}}"/>
-                        <button id="report">신고</button> 
-                        <!-- <button id="report"> <a href="{}"> 신고 </a></button> -->
-                    </form>
-                    <div class="card">
-                        <div id="photos">
-                            <div class='container'>
-                                <div class="row">
-                                    <div class="col"></div>
-                                    <div class="col-5">
-                                        <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px
-                                            height=260px />
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
->>>>>>> 6a82b087a077b483c03890ba47673525117ff664
                     </div>
 
                     <div class="card-body">
@@ -149,11 +121,9 @@
                     </div>
 
             </div>
-        </div>
-
         {% endfor %}
 
-    </div>
+    <!-- </div> -->
 </body>
 
 </html>

@@ -24,34 +24,7 @@
             var div = document.createElement('div');
             div.innerHTML = document.getElementById('frame').innerHTML;
             document.getElementById('frame').appendChild(div);
-<<<<<<< HEAD
         }
-=======
-        }      
-
-     /*   //X 클릭하면 화면 잠근 풀기로바꿔야함!!!!!!!!
-        $(document).onclick(function(event){ 
-            if(event.which=='27'){ 
-                $("#loadingDiv").fadeOut(300); 
-                $(".backLayer").fadeOut(1000); 
-            }
-        });  */
-    
-        </script>
-    </head>
-    <body>
-        <div class="title">
-            <font id="short-title"> Photest</a></font>
-            <font id="long-title">_Photo Contest </font>
-        </div>
-        <div id="category">
-            {% if user.is_authenticated %}
-            <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
-            <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
-            <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-            {% endif %}
-        </div><br><br>
->>>>>>> 6a82b087a077b483c03890ba47673525117ff664
 
     </script>
 </head>
@@ -70,12 +43,21 @@
     <center>
         <div id="uploadDiv">
             <div class="data">
-                {% block content %}
-                {% endblock %}
+                <div class="button">
+                    <form action="" method="post" enctype="multipart/form-data" action="">
+                        Author : {{user.username}} <br><Br>
+                        image : <input type="file" name="image" id="image" /> <Br><Br>
+                        Hashtag :
+                        # <input class="underline" name="hashtag1" type="text">
+                        # <input class="underline" name="hashtag2" type="text">
+                        # <input class="underline" name="hashtag3" type="text"> <Br><Br>
+                        <input type="submit" id="post" onclick="add_div()" value="POST" />
+                    </form>
+                </div>
+                <div class="col"></div>
             </div>
         </div>
     </center>
-    </div>
 </body>
 
 </html>

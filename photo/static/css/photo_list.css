@@ -15,13 +15,13 @@ a:hover, a:active { text-decoration: none; }
 }
 
 #short-title {
-    font-size : 250%;
+    font-size : 330%;
     color : gray;
     font-weight : bold;
 }
 
 #long-title {
-    font-size : 100%;
+    font-size : 150%;
     color : gray;
 }
 
@@ -62,9 +62,9 @@ a:hover, a:active { text-decoration: none; }
 
 #report {
     position : relative;
-    top:5%;
+    top:25%;
     left:85%;
-    font-size: 10;
+    font-size: 12;
     width : 15%;
     height : 6%;
     /* border-radius : 5px; */
@@ -115,7 +115,7 @@ a:hover, a:active { text-decoration: none; }
 
 #frame_frame{
     position : relative;
-    top:0%;
+    top:-100%;
     /* left:-9%;
     right:-5%; */
 }
@@ -138,23 +138,28 @@ a:hover, a:active { text-decoration: none; }
     width : 250px;
     height : 260px;
     position : relative;
+    margin-top:-5%;
     /* border : 1px solid gray; */
 }
 
+#search{
+    height:800px;
+}
 /* 검색과 관련된 영역 */
 #dsearch {
     position : relative;
     top : 10%;
     left : 7.5%;
-    height : 8%;
-    width :85%;
+    height : 6%;
+    width :77%;
     border : 1px solid gray;
 }
  
 /* 검색 필드 */
 #isearch {
     font-size : 16px;
-    width : 80%;
+    width : 77%;
+    height:10%;
     padding : 10px;
     border : 0px;
     outline : none;
@@ -164,7 +169,7 @@ a:hover, a:active { text-decoration: none; }
 /* 검색 버튼 */
 #bsearch {
     width : 8%;
-    height : 100%;
+    height:80%;
     border : 0px;
     outline: none;
     float: right;
