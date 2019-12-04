@@ -119,12 +119,15 @@
 
                     <div class="card-body">
                         <p class="card-text" align="left"> 
-                            <!-- {% for object in hashtag %}
-                             #{{object.hashtag.tag}}
-                             {% endfor %} -->
+                            {% if object.hashtag.tag.0 %}
                             # {{ object.hashtag.tag.0 }} 
+                            {% endif %}
+                            {% if object.hashtag.tag.1 %}
                             # {{object.hashtag.tag.1}} 
+                            {% endif %}
+                            {% if object.hashtag.tag.2 %}
                             # {{object.hashtag.tag.2}}
+                            {% endif %}
                         </p> 
                     </div>
 

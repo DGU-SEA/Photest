@@ -109,13 +109,13 @@
     <div id="div4">
         <h2> Reward </h2>
         {{user.profile.rewardCnt}} 번<br><br>
-        {%if user.profile.rewardCnt == 1 %} 
         <form id = "reward" method = "get" action = "">
         지정할 해시태그 : # <input type = "text" size = "15"><br>
         지정할 날짜 : <input type = "date"><br>
+        {%if user.profile.rewardCnt == 3 %} 
         <input type="submit" value="OK" id = "confirm">
-        </form>
         {% endif %}
+        </form>
     </div>
 
 </body>
