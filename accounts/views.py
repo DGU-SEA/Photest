@@ -6,6 +6,7 @@ from django.contrib import auth
 from .models import * 
 from django.contrib.auth.hashers import check_password
 from photo.models import Photo
+from hashtag.models import hashtag
 
 def join(request):
     if request.method == "POST":
@@ -77,4 +78,28 @@ def report(request) :
         user.profile.reportCnt += 1
         user.profile.save()
         return HttpResponseRedirect(request.GET['path'])
+
+#
+# def reward(request) :
+#     if request.method == "GET":
+#         date = request.GET['user_date']
+#         tag = ""
+#
+#         for h in hashtag.objects.all():
+#             if (h.tagDate == date):
+#                 tag = h.tagName
+#                 print(tag)
+#                 # tags.append(h.tagName)
+#                 # print(h.tagName)
+#
+#         photos = Photo.objects.all().order_by('-like')
+#         bestPhotos =[]
+#         index = 0
+#         for p in photos :
+#             if (p.hashtag['tag'] == i):
+#                 bestPhotos.append(p)
+#                 index += 1
+#                 if index == 5 :
+#                     break
+#         return render(request, 'accounts/mypage.html', {'bestPhotos': bestPhotos})
 
