@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
 from .models import User
+from accounts.models import Profile
 from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -21,6 +22,8 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.template import RequestContext
+from django.utils.dateparse import parse_date
+
 
 def main(request):
     print('main')
@@ -89,21 +92,12 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-<<<<<<< HEAD
             for t in p.hashtag['tag']:
                 if (t == i):
                     bestPhotos.append(p)
                     index += 1
                     if index == 5 :
                         break
-=======
-            if (p.hashtag['tag'] == i):
-                bestPhotos.append(p)
-                index += 1
-                if index == 5 :
-                    break
-    # print(bestPhotos)
->>>>>>> 58bb30e532092b8a431b178e13c7b671e295532e
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
     
@@ -290,6 +284,58 @@ def photo_insert(request) :
 
      data = Photo.objects.create(author_id = authorid, image = uploaded_file_url, hashtag = hashtag)
     return render(request, 'photo/photo_list.html')
+
+
+def reward(request) :
+    print('reward')
+    # 사용자가 지정한 날짜, 해시태그 이름, 해시태그 테이블에 추가 혹은 수정
+   
+    global hashtag
+    hashtags = hashtag.objects.all()
+    requestdate = request.GET.get('user_date', '')
+    convertdate = datetime.strptime(requestdate, "%Y-%m-%d")
+  
+    requesttag = request.GET.get('user_hashtag','')
+    username = request.user
+    Users = User.objects.all()
+    authorid = ""
+
+    for u in Users :
+        if(str(u.username) == str(username)) :
+            authorid = u.id
+
+    set_instance = Profile.objects.get(user = authorid)
+    set_instance.rewardCnt = 0
+    set_instance.save()    
+    
+    print(requestdate, requesttag, username)
+
+    index =0
+    temp =""
+    length = len(hashtags)
+    for h in hashtags :
+        #있으면 update
+        if(h.tagName == requesttag) :
+            temp = convertdate.date()
+            h.tagDate = temp
+            
+            update_instance = hashtag.objects.get(tagName = requesttag)
+            update_instance.tagDate = temp
+            update_instance.save()
+            break
+
+        index += 1
+    
+    print(index, length)
+    #없으면 insert
+    if(index == length) :
+        print('insert')
+        insert_instance = hashtag(tagName = requesttag, tagDate = convertdate.date())
+        insert_instance.save()
+
+    
+
+    return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
 
 
 class PhotoList(ListView) :

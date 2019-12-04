@@ -211,6 +211,17 @@ a:hover, a:active { text-decoration: none; }
     background-color: white;
 }
 
+#rconfirm { 
+    position : relative;
+    top : 35%;
+    left : 5%;
+    width : 40%;
+    height : 8%;
+    border-radius : 5px;
+    border-color : #CAB4D6;
+    background-color: white;
+}
+
 #ok_confirm { 
     position : relative;
     left : 2%;
