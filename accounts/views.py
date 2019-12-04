@@ -79,27 +79,31 @@ def report(request) :
         user.profile.save()
         return HttpResponseRedirect(request.GET['path'])
 
-#
-# def reward(request) :
-#     if request.method == "GET":
-#         date = request.GET['user_date']
-#         tag = ""
-#
-#         for h in hashtag.objects.all():
-#             if (h.tagDate == date):
-#                 tag = h.tagName
-#                 print(tag)
-#                 # tags.append(h.tagName)
-#                 # print(h.tagName)
-#
-#         photos = Photo.objects.all().order_by('-like')
-#         bestPhotos =[]
-#         index = 0
-#         for p in photos :
-#             if (p.hashtag['tag'] == i):
-#                 bestPhotos.append(p)
-#                 index += 1
-#                 if index == 5 :
-#                     break
-#         return render(request, 'accounts/mypage.html', {'bestPhotos': bestPhotos})
+
+def reward(request) :
+    if request.method == "GET":
+        date = request.GET['user_date']
+        print("date" + date)
+        type(date)
+        tag = ""
+
+        for h in hashtag.objects.all():
+            if (str(h.tagDate) == date):
+                tag = h.tagName
+                print("tag : " + tag)
+                # tags.append(h.tagName)
+                # print(h.tagName)
+
+        photos = Photo.objects.all().order_by('-like')
+        bestPhotos =[]
+        index = 0
+        for p in photos :
+            for h in p.hashtag['tag']:
+                print(p.hashtag['tag'])
+                if (h == tag):
+                    bestPhotos.append(p)
+                    index += 1
+                    if index == 5:
+                        break
+        return render(request, 'accounts/mypage.html', {'bestPhotos': bestPhotos})
 

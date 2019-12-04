@@ -13,6 +13,7 @@ urlpatterns = [
     path('join/', views.join, name='join'),
     path('mypage/', views.mypage, name='mypage'),
     path('report/', views.report, name='report'),
+    path('reward/', views.reward, name='reward'),
 ]
 
 

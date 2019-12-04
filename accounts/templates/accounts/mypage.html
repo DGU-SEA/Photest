@@ -142,13 +142,17 @@
 
     {% if user.username == "hyex" %}
     <div id="div5">
-        <form id="rewardCnt" method="get" action="accounts:reward"> <!-- action으로 url-->
+        <form id="rewardCnt" method="get" action="{% url 'accounts:reward' %}"> <!-- action으로 url-->
             <input type="date" name="user_date" style="border: 3px solid gray; width:150px; height:30px;">
             <input type="submit" value="OK" id="confirm" />
         </form>
+
     </div>
     {% endif %}
-
+    {% for object in bestPhotos %}
+        {{ object.image.url }}
+        <img src=" {{ object.image.url }}" width=250px height=260px />
+    {% endfor %}
 </body>
 
 </html>
