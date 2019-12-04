@@ -1,27 +1,30 @@
 {%extends 'photo/upload.html'%}
 {%block content%}
-<script language="javascript">
-    function save_fr(f) {
-        f.target = "hid_fun"
-        f.action = "title_son_ok.asp";
-        f.submit();
-        return false;
-    }
-</script>
-<iframe name="hid_fun" style="display:none"></iframe>
 
 <form action="" method="post">
     Hashtag :
     # <input class="underline" name="hashtag1" type="text">
     # <input class="underline" name="hashtag2" type="text">
     # <input class="underline" name="hashtag3" type="text">
+<<<<<<< HEAD
+            {%csrf_token%}
+
+            {{form.as_p}}
+            <button type="submit" id="post" onclick="add_div()"> POST </button>
+        </form>
+=======
     <form action="" method="post" enctype='multipart/form-data'>
         {%csrf_token%}
 
         {{form.as_p}}
         <button type="submit" id="post" onclick="add_div()"> POST </button>
     </form>
+>>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
     <div class="col"></div>
     </div>
 
+<<<<<<< HEAD
+{%endblock%}
+=======
     {%endblock%}
+>>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace

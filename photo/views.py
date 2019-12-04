@@ -23,7 +23,6 @@ def main(request):
     # # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
     todaytag = ""
     todayDate = str(date.today())
-    # todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
 
     yesterdaytag = ""
     today = date.today()
@@ -35,7 +34,7 @@ def main(request):
         
         if(str(h.tagDate) == yesterday) :
             yesterdaytag = h.tagName
-    # print(todaytag)
+            
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
     BestPhotos = list()
@@ -81,11 +80,12 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-            if (p.hashtag['tag'] == i):
-                bestPhotos.append(p)
-                index +1
-                if index == 5 :
-                    break
+            for t in p.hashtag['tag'] :
+                if (t == i):
+                    bestPhotos.append(p)
+                    index +1
+                    if index == 5 :
+                        break
     # print(bestPhotos)
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
@@ -225,44 +225,29 @@ class PhotoList(ListView) :
     model = Photo
     emplate_name_suffix='_list'
 
-    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
-
-    # def photo_list(request) :
-    #     search = request.GET.get('search')
-    #     print(search)
-
-    #     Photos = Photo.objects.all()
-    #     PhotosWithHashtag = list()
-    
-    #     index = 0
-    #     for p in Photos :
-    #         for t in p.hashtag['tag'] :
-    #             if(t == search) : 
-    #                 PhotosWithHashtag.append(p)
-
-    #     return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-
-    def search(request) :
-        # search = request.POST.['search']
-        print(' def fun inside')
-        return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-    
-    # context_object_name = PhotosWithHashtag
-    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-
 class PhotoCreate(CreateView):
+    print('photo crete')
     model = Photo
 
     fields = ['author', 'image']
     template_name_suffix = '_create'
+<<<<<<< HEAD
+    success_url = '/'        
+    
+    def form_valid(self, form):
+        print(self.request)
+        form.instance.author_id=self.request.user.id
+=======
 
     success_url = '/photo_list/'
+>>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
 
-    def gethashtag(request) :
         index = 0
-        hashtag1 = request.GET["hashtag1"]
-        hashtag2 = request.GET["hashtag2"]
-        hashtag3 = request.GET["hashtag3"]
+        hashtag1 = self.request.POST["hashtag1"]
+        hashtag2 = self.request.POST["hashtag2"]
+        hashtag3 = self.request.POST["hashtag3"]
+
+        print(hashtag1, hashtag2, hashtag3)
 
         hashtag = {
             'tag' : []
@@ -273,6 +258,10 @@ class PhotoCreate(CreateView):
             hashtag['tag'].append[hashtag2]
         if(hashtag3 != "") :
             hashtag['tag'].append[hashtag3]
+<<<<<<< HEAD
+        
+        print(hashtag)
+=======
 
         Photo.objects._create()
 
@@ -280,6 +269,7 @@ class PhotoCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.author_id=self.request.user.id
+>>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
         if form.is_valid():
             form.instance.save()
             return redirect('/')
