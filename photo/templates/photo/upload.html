@@ -44,8 +44,10 @@
         <div id="uploadDiv">
             <div class="data">
                 <div class="button">
-                    <form action="" method="post" enctype="multipart/form-data" action="{% url 'photo:photo_insert' %}">
-                        Author : {{user.username}} <br><Br>
+                    <form  method="post" enctype="multipart/form-data" action="{% url 'photo:photo_insert' %}">
+                        {% csrf_token %}
+                        
+                        Author : <span name="username"> {{user.username}} </span><br><Br>
                         image : <input type="file" name="image" id="image" /> <Br><Br>
                         Hashtag :
                         # <input class="underline" name="hashtag1" type="text">

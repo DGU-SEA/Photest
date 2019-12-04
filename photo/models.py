@@ -8,7 +8,7 @@ class Photo(models.Model):
     image = models.ImageField(upload_to= 'timeline_photo/%Y/%m/%d')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    hashtag = jsonfield.JSONField(blank = True)
+    hashtag = jsonfield.JSONField(blank = True, null = True)
     like = models.ManyToManyField(User, related_name='like_post', blank=True)
     # favorite=models.IntegerField(User,blank=True, default=0)
    

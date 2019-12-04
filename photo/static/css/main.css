@@ -195,8 +195,8 @@ input.underline {
 .yesterday-first img{
     position:relative;
     left: 10%;
-    height: 550px; 
-    width: 550px;
+    height: 560px; 
+    width: 560px;
     float : left ;
     padding : 1px;
 }
@@ -208,8 +208,8 @@ input.underline {
 }
 
 .yesterday-else img{
-    height: 260px;
-    width: 260px;
+    height: 300px;
+    width: 300px;
     float : left;
     /* padding: 0px 50px 10px 10px; */
     padding : 1px;
