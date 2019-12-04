@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import * 
 from django.contrib.auth.hashers import check_password
+from photo.models import Photo
 
 def join(request):
     if request.method == "POST":
@@ -38,9 +39,20 @@ def logout(request):
     return redirect('/')   
 
 def mypage(request):
+    global Photo
+
     if not request.user.is_authenticated:
-        print("usernone")
+        print("user is not authenticated")
         return redirect('/')
+
+    allphotos = Photo.objects.all().order_by('-like')
+    photos = [] 
+
+    for p in allphotos:
+        if request.user == p.author :
+            print(p.author)
+            photos.append(p)
+            
     if request.method == "POST":
         password=request.POST["password"]
         email=request.POST["email"]
@@ -52,11 +64,11 @@ def mypage(request):
         if email != "":
             request.user.email = email
             request.user.save()
-            return render(request, 'accounts/mypage.html', {})
-        return render(request, 'accounts/mypage.html', {})
+            return render(request, 'accounts/mypage.html', {'photos' : photos})
+        return render(request, 'accounts/mypage.html', {'photos' : photos})
         
     #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
-    return render(request, 'accounts/mypage.html', {})
+    return render(request, 'accounts/mypage.html', {'photos' : photos})
 
 def report(request) :
     if request.method == "GET":

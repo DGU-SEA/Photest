@@ -6,6 +6,7 @@
     # <input class="underline" name="hashtag1" type="text">
     # <input class="underline" name="hashtag2" type="text">
     # <input class="underline" name="hashtag3" type="text">
+<<<<<<< HEAD
     {%csrf_token%}
 
     {{form.as_p}}
@@ -15,3 +16,27 @@
 </div>
 
 {%endblock%}
+=======
+<<<<<<< HEAD
+            {%csrf_token%}
+
+            {{form.as_p}}
+            <button type="submit" id="post" onclick="add_div()"> POST </button>
+        </form>
+=======
+    <form action="" method="post" enctype='multipart/form-data'>
+        {%csrf_token%}
+
+        {{form.as_p}}
+        <button type="submit" id="post" onclick="add_div()"> POST </button>
+    </form>
+>>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
+    <div class="col"></div>
+    </div>
+
+<<<<<<< HEAD
+{%endblock%}
+=======
+    {%endblock%}
+>>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
+>>>>>>> b317991d466b0a852f04963577fe33ad4abd45ca

@@ -78,7 +78,7 @@ a:hover, a:active { text-decoration: none; }
     /* border : 1px solid black; */
     width : 16%;
     height : 100%;
-    left : 18%;
+    left : 10%;
     float : left;
     margin-right : 10px;
 }
@@ -109,7 +109,7 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     float : left;
     /* top : 15%; */
-    left : 20%; 
+    left : 10%; 
     width : 50%;
     /* border : 1px solid gray; */
 }
@@ -122,8 +122,8 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     float : left;
     /* top : 15%; */
-    left : 20%; 
-    width : 50%;
+    left : 10%; 
+    width : 70%;
     /* border : 1px solid gray; */
 }
 
@@ -135,12 +135,25 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     float : left;
     /* top : 15%; */
-    left : 20%; 
+    left : 10%; 
+    width : 50%;
+    /* border : 1px solid gray; */
+}
+
+#div4 {
+    position : relative;
+    float : left;
+    /* top : 15%; */
+    left : 10%; 
     width : 50%;
     /* border : 1px solid gray; */
 }
 
 #div3 h2 {
+    color : gray;
+}
+
+#div4 h2 {
     color : gray;
 }
 
