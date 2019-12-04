@@ -6,7 +6,7 @@ from .views import main, best, hashtag_board, search_list
 
 app_name="photo"
 urlpatterns = [
-    path("photo_create/", PhotoCreate.as_view(), name='create'),
+    path("photo_create/", views.photo_create, name='create'),
     path("photo_detail/<int:pk>/", PhotoDetail.as_view(), name='detail'),
     path("photo_delete/<int:pk>/", PhotoDelete.as_view(), name='delete'),
     path("photo_update/<int:pk>/", PhotoUpdate.as_view(), name='update'),

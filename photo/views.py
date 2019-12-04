@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
+from .models import User
 from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -220,61 +221,97 @@ def photo_list(request) :
         'todaytag' : todaytag
     })
 
+def photo_create(request) :
+    # request로 예지가 보내준 author, image, hashtag db에 저장
+    # 모델에 author는 id, 예지가 주는거는 username, username으로 auth_user에서 id 받아와야 함 
+    print('photo create')
+    username = request.username
+    Users = User.objects.all()
+    author = ""
+
+    for u in Users :
+        if(u.username == username) :
+            author = u.id
+    
+    image = request.image
+    
+    print(request.POST.get('hashtag1', ''))
+    print(request.POST.get('hashtag2', ''))
+    print(request.POST.get('hashtag3', ''))
+
+    hashtag1 = request.POST.get('hashtag1', '')
+    hashtag1 = request.POST.get('hashtag1', '')
+    hashtag1 = request.POST.get('hashtag1', '')
+
+    print(hashtag1, hashtag2, hashtag3)
+
+    hashtag = {
+        'tag' : []
+    }
+
+    if(hashtag1 != "") :
+        hashtag['tag'].append[hashtag1]
+    if(hashtag2 != "") :
+        hashtag['tag'].append[hashtag2]
+    if(hashtag3 != "") :
+        hashtag['tag'].append[hashtag3]
+
+    data = Photo.objects.create(author = author, image = image, hashtag = hashtag)
+    
+    return render(request, 'photo/photo_create.html' )
+
+
 class PhotoList(ListView) :
     print('PhotoList')
     model = Photo
     emplate_name_suffix='_list'
 
 class PhotoCreate(CreateView):
-    print('photo crete')
+    print('photo create')
     model = Photo
-
-    fields = ['author', 'image']
-    template_name_suffix = '_create'
-<<<<<<< HEAD
-    success_url = '/'        
-    
-    def form_valid(self, form):
-        print(self.request)
-        form.instance.author_id=self.request.user.id
-=======
-
     success_url = '/photo_list/'
->>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
 
-        index = 0
-        hashtag1 = self.request.POST["hashtag1"]
-        hashtag2 = self.request.POST["hashtag2"]
-        hashtag3 = self.request.POST["hashtag3"]
+    def form_valid(self, form) :
+        form.instance.author = self.request.author
+        form.instance.image = self.request.image
+    # print('photo crete')
+    # model = Photo
 
-        print(hashtag1, hashtag2, hashtag3)
+    # fields = ['test', 'image']
+    # template_name_suffix = '_create'
+    # success_url = '/'        
 
-        hashtag = {
-            'tag' : []
-        }
-        if(hashtag1 != "") :
-            hashtag['tag'].append[hashtag1]
-        if(hashtag2 != "") :
-            hashtag['tag'].append[hashtag2]
-        if(hashtag3 != "") :
-            hashtag['tag'].append[hashtag3]
-<<<<<<< HEAD
-        
-        print(hashtag)
-=======
+    # def form_valid(self, form):
 
-        Photo.objects._create()
+    #     form.instance.author = self.request.user.id
+    #     form.instance.image = self.request.image
+    #     print(self.request)
 
+    #     index = 0
+    #     hashtag1 = self.request.POST.get("hashtag1")
+    #     hashtag2 = self.request.POST.get("hashtag2")
+    #     hashtag3 = self.request.POST.get("hashtag3")
 
+    #     print(hashtag1, hashtag2, hashtag3)
 
-    def form_valid(self, form):
-        form.instance.author_id=self.request.user.id
->>>>>>> d19a64e0734db78e697fb69c9b62fc96c70c4ace
-        if form.is_valid():
-            form.instance.save()
-            return redirect('/')
-        else:
-            return self.render_to_response({'form':form})
+    #     hashtag = {
+    #         'tag' : []
+    #     }
+    #     if(hashtag1 != "") :
+    #         hashtag['tag'].append[hashtag1]
+    #     if(hashtag2 != "") :
+    #         hashtag['tag'].append[hashtag2]
+    #     if(hashtag3 != "") :
+    #         hashtag['tag'].append[hashtag3]
+
+    #     m = Photo.object.get_or_create(author = form.instance.author, image = form.instance.image, hashtag = hashtag)[0]
+
+    #     if form.is_valid():
+    #         form.instance.save()
+    #         return redirect('/')
+    #     else:
+    #         # return self.render_to_response({'form':form})
+    #         return self.render_to_response('here??')
 
 
 
