@@ -161,9 +161,9 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     float : left;
     /* top : 15%; */
-    left : 10%; 
+    left : 20%; 
     width : 50%;
-    /* border : 1px solid gray; */
+    border : 1px solid gray;
 }
 
 #dup-check { 
