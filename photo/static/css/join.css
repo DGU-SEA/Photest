@@ -2,6 +2,13 @@ html{
     scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    padding: 0; 
+    /* background-color:#f2f2f2;  */
+    opacity : 0.8;
+}
+
 a { text-decoration: none; color: gray; }
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
@@ -15,16 +22,15 @@ a:hover, a:active { text-decoration: none; }
 }
 
 #short-title {
-    font-size : 250%;
+    font-size : 330%;
     color : gray;
     font-weight : bold;
 }
 
 #long-title {
-    font-size : 100%;
+    font-size : 150%;
     color : gray;
 }
-
 #category {
     position : relative;
     top : 3%;
@@ -43,14 +49,16 @@ a:hover, a:active { text-decoration: none; }
     width : 45%;
     height : 8%;
     padding : 2%;
+    font-weight : bold;
 }
 
 #join {
     position : relative;
     padding : 2%;
-    border : 1px solid gray;
+    border : 3px solid gray;
+    top : 5%;
     width : 45%;
-    height : 35%;
+    height : 33%;
 }
 
 .button {
@@ -61,8 +69,8 @@ a:hover, a:active { text-decoration: none; }
 
 #join_btn {
     position : relative;
-    width : 30%;
-    height : 15%;
+    width : 35%;
+    height : 25%;
     border-radius : 5px;
     border-color : #CAB4D6;
     background-color: white;

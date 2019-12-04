@@ -82,38 +82,35 @@
         {% endif %}
     </div>
 
-    <br><br><br><br><br>
-    <div><img src="{% static 'image/crown.png' %}" id="first-rank">
-        <div id = "rank">
-            <h2> 1등 : {{BestPhotos.0.author}}</h2> 
+    <br><br><br>
+    <div id="crown"><img src="{% static 'image/crown.png' %}" id="first-rank"/></div>
+        <div id="rank">
+            <h2> 1등 : {{BestPhotos.0.author}} </h2>
         </div>
     </div>
+    <div class="image">
+        <div class="yesterday-first">
+            <img src="{{ BestPhotos.0.image.url }}" />
+        </div>
 
-    <div class="yesterday-first">
-        <img src="{{ BestPhotos.0.image.url }}" />
+        <div class="yesterday-else">
+            <img src="{{ BestPhotos.1.image.url }}" />
+            <img src="{{ BestPhotos.2.image.url }}" />
+            <img src="{{ BestPhotos.3.image.url }}" />
+            <img src="{{ BestPhotos.4.image.url }}" />
+        </div>
     </div>
-
-    <div class="yesterday-else">
-        <img src="{{ BestPhotos.1.image.url }}" />
-        <img src="{{ BestPhotos.2.image.url }}" />
-        <img src="{{ BestPhotos.3.image.url }}" />
-        <img src="{{ BestPhotos.4.image.url }}" />
-    </div>
-
     <br><br><br><br><br><br>
     <div id="wrapper">
-        <div id = "banner">
-            <div id = "wave">
-                <br>
+        <div id="banner">
             <center>
-                <img src = "{% static 'image/sea.png' %}" id = "sea_logo">
+                <img src="{% static 'image/sea.png' %}" id="sea_logo">
                 <p class="copyright">Copyright ©2019 SEA <br>
                     https://github.com/DGU-SEA/Photest </p>
-                </center>
-        </div>
+            </center>
         </div>
     </div>
-    
+
 </body>
 
 </html>
