@@ -96,6 +96,7 @@
     <div id="div2">
         <h2> 내 게시글 </h2>
         {% for object in photos %}
+<!--        {{ object.image.url }}-->
         <img src=" {{ object.image.url }}" width=250px height=260px />
         {% endfor %}
     </div>
