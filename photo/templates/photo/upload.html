@@ -44,7 +44,7 @@
         <div id="uploadDiv">
             <div class="data">
                 <div class="button">
-                    <form action="" method="post" enctype="multipart/form-data" action="">
+                    <form action="" method="post" enctype="multipart/form-data" action="{% url 'photo:photo_insert' %}">
                         Author : {{user.username}} <br><Br>
                         image : <input type="file" name="image" id="image" /> <Br><Br>
                         Hashtag :
