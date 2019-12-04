@@ -157,6 +157,15 @@ a:hover, a:active { text-decoration: none; }
     color : gray;
 }
 
+#div5 {
+    position : relative;
+    float : left;
+    /* top : 15%; */
+    left : 10%; 
+    width : 50%;
+    /* border : 1px solid gray; */
+}
+
 #dup-check { 
     position : relative;
     top : 35%;

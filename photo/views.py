@@ -84,7 +84,7 @@ def best(request):
         for p in photos :
             if (p.hashtag['tag'] == i):
                 bestPhotos.append(p)
-                index +1
+                index += 1
                 if index == 5 :
                     break
     # print(bestPhotos)

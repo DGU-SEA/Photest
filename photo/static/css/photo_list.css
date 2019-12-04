@@ -148,11 +148,11 @@ a:hover, a:active { text-decoration: none; }
 /* 검색과 관련된 영역 */
 #dsearch {
     position : relative;
-    top : 10%;
+    /* top : 10%; */
     left : 7.5%;
     height : 6%;
     width :77%;
-    border : 1px solid gray;
+    border : 3px solid #999999;
 }
  
 /* 검색 필드 */

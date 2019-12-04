@@ -31,6 +31,12 @@
                 $("#div4").toggle();
             });
         });
+        $(document).ready(function () {
+            $("#div5").hide();
+            $("#adminReward").click(function () {
+                $("#div5").toggle();
+            });
+        });
 
     </script>
 </head>
@@ -79,6 +85,9 @@
 
         <button id="report" type="button"> Report </button><br><br><br>
         <button id="reward" type="button"> Reward </button><br><br><br>
+        {% if user.username == "hyex" %}
+        <button id="adminReward" type="button"> AdminReward </button><br><br><br>
+        {% endif %}
 
     </div><br><br>
     <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
@@ -130,6 +139,15 @@
             </table>
         </form>
     </div>
+
+    {% if user.username == "hyex" %}
+    <div id="div5">
+        <form id="rewardCnt" method="get" action="accounts:reward"> <!-- action으로 url-->
+            <input type="date" name="user_date" style="border: 3px solid gray; width:150px; height:30px;">
+            <input type="submit" value="OK" id="confirm" />
+        </form>
+    </div>
+    {% endif %}
 
 </body>
 
