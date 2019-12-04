@@ -99,11 +99,19 @@ def reward(request) :
         index = 0
         for p in photos :
             for h in p.hashtag['tag']:
-                print(p.hashtag['tag'])
+                # print(p.hashtag['tag'])
                 if (h == tag):
                     bestPhotos.append(p)
                     index += 1
-                    if index == 5:
-                        break
+                if index == 5:
+                    break
+
+        for bp in bestPhotos:
+            user = User.objects.get(username=bp.author)
+            print(user.profile.rewardCnt)
+            user.profile.rewardCnt += 1
+            print(user.profile.rewardCnt)
+            user.profile.save()
+
         return render(request, 'accounts/mypage.html', {'bestPhotos': bestPhotos})
 
