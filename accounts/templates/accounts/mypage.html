@@ -31,6 +31,12 @@
                 $("#div4").toggle();
             });
         });
+        $(document).ready(function () {
+            $("#div5").hide();
+            $("#adminReward").click(function () {
+                $("#div5").toggle();
+            });
+        });
 
     </script>
 </head>
@@ -48,10 +54,10 @@
         {% else %}
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% endif %}
-    </div><br><br><br>
+    </div><br><br><br><br>
 
     <div class="ranking-reward">
-        <font> Ranking Reward</font>
+        <font><b> Ranking Reward </b></font>
         <div class="ranking-reward-check">
             {% if user.profile.rewardCnt == 1 %}
             <img src="{% static 'image/reward_check.png' %}" />
@@ -79,6 +85,9 @@
 
         <button id="report" type="button"> Report </button><br><br><br>
         <button id="reward" type="button"> Reward </button><br><br><br>
+        {% if user.username == "hyex" %}
+        <button id="adminReward" type="button"> AdminReward </button><br><br><br>
+        {% endif %}
 
     </div><br><br>
     <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
@@ -87,11 +96,11 @@
         <div id="div1">
             <h2> 개인 정보 수정 </h2>
             <table cellspacing="10">
-            <tr><td>User ID </td><td>: {{user.username}} </td></tr>
+            <tr><td><b>User ID </b></td><td>: {{user.username}} </td></tr>
             <br>
-            <tr><td>Password </td><td>: <input type="password" name="password" size="10"></td></tr>
+            <tr><td><b>Password </b></td><td>: <input type="password" name="password" size="10" style="border: 3px solid gray; width:150px; height:30px;"></td></tr>
             <tr></tr>
-            <tr><td>E-mail </td><td>: <input type="text" name="email" size="20" placeholder="{{user.email}}"></td></tr>
+            <tr><td><b>E-mail </b></td><td>: <input type="text" name="email" size="20" placeholder="{{user.email}}" style="border: 3px solid gray; width:150px; height:30px;"></td></tr>
             <!-- <button id="cancel"> 취소 </button> -->
         </table>
             <input type="submit" value="OK" id="ok_btn" />
@@ -112,9 +121,8 @@
     </div>
 
     <div id="div4">
-        <h2> Reward 받은 횟수 </h2>
-        {{user.profile.rewardCnt}} 번<br><br>
-        <form id="reward" method="get" action=""> <!-- action으로 url-->
+        <h2> Reward 받은 횟수 : {{user.profile.rewardCnt}} 번</h2><br><br>
+        <form id="reward" method="get" action=""> <!-- action으로  % url 'accounts:mypage' % 같이 넣기 -->
             <table boder="" cellspacing="10">
                 <tr>
                     <td> <b>지정할 해시태그 </b></td>
@@ -131,6 +139,20 @@
         </form>
     </div>
 
+    {% if user.username == "hyex" %}
+    <div id="div5">
+        <form id="rewardCnt" method="get" action="{% url 'accounts:reward' %}">
+            <input type="date" name="user_date" style="border: 3px solid gray; width:150px; height:30px;">
+            <input type="submit" value="OK" id="ok_confirm" />
+            <input type="hidden" name="path" value="{{request.path}}"/>
+        </form>
+
+    {% endif %}
+    {% for object in bestPhotos %}
+        <b>{{ object.author }}</b><br>
+    {% endfor %}
+    </div>
+    
 </body>
 
 </html>
