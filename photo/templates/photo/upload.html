@@ -1,96 +1,54 @@
 {% load static %}
 <html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/upload.css' %}">
-        <title> Photest </title> 
-        <meta charset = "utf-8">
-        <!-- <style>
-            input.underline {border:0px; border-bottom:5px;}
-        </style> -->
 
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        
-        <script type="text/javascript"> //window onload 
-        $(document).ready(function(){ 
-            
-                var width = $(window).width(); 
-                var height = $(window).height(); //화면을 가리는 레이어의 사이즈 조정 
-                $(".backLayer").width(width); 
-                $(".backLayer").height(height); //화면을 가리는 레이어를 보여준다 (0.5초동안 30%의 농도의 투명도) 
-                $(".backLayer").fadeTo(500, 0.3); //팝업 레이어 보이게 
-                var uploadDivObj = $("#uploadDiv"); 
-               // uploadDivObj.css("top", $(document).height()/2-150); 
-               // uploadDivObj.css("left",$(document).width()/2-150); 
-                uploadDivObj.fadeIn(500); 
-       
+<head>
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+    <title> Photest </title>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script type="text/javascript"> //window onload 
+        $(document).ready(function () {
+
+            var width = $(window).width();
+            var height = $(window).height(); //화면을 가리는 레이어의 사이즈 조정 
+            $(".backLayer").width(width);
+            $(".backLayer").height(height); //화면을 가리는 레이어를 보여준다 (0.5초동안 30%의 농도의 투명도) 
+            $(".backLayer").fadeTo(500, 0.3); //팝업 레이어 보이게 
+            var uploadDivObj = $("#uploadDiv");
+            uploadDivObj.fadeIn(500);
+
         });
-        
-        function add_div(){
+
+        function add_div() {
             var div = document.createElement('div');
             div.innerHTML = document.getElementById('frame').innerHTML;
             document.getElementById('frame').appendChild(div);
-        }      
+        }
 
-     /*   //X 클릭하면 화면 잠근 풀기로바꿔야함!!!!!!!!
-        $(document).onclick(function(event){ 
-            if(event.which=='27'){ 
-                $("#loadingDiv").fadeOut(300); 
-                $(".backLayer").fadeOut(1000); 
-            }
-        });  */
-    
-        </script>
-    </head>
-    <body>
+    </script>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden">
         <div class="title">
-            <font id="short-title"> Photest</a></font>
-            <font id="long-title">_Photo Contest </font>
-        </div>
-        <div id="category">
-            {% if user.is_authenticated %}
-            <button id="mypage_btn" class="button"><a href="http://127.0.0.1:8000/mypage/">MyPage</a></button>
-            <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
-            <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-            {% else %}
-            <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-            {% endif %}
-        </div><br><br>
-
-        <div class="today-hashtag-container">
-            <h2>오늘의 해시태그</h2>
-        </div>
-
-        <div class="today-hashtag">
-            <h1><a href="/" style="color:black"># {{todaytag}} </a></h1>
-        </div>
-        <Br><Br><br></br></br></br>
-
-        <div id = "search">
-            <input type = "text" id = "isearch" placeholder = "# Hashtag를 입력하세요">
-            <button id = "bsearch"> 검색 </button>
-        </div>
-
-        <div class="backLayer"> 
-        </div> 
+        <font id="short-title"> Photest</a></font>
+        <font id="long-title">_Photo Contest </font>
+    </div>
 
 
-        <center>
-        
-        <div id="uploadDiv"> 
-            <div id = "uploadFrame"><a href="http://127.0.0.1:8000/photo_create/">
-                <font id="plus" size=80px>+</font>
-            </a>
+    <div class="backLayer">
+    </div>
+
+
+    <center>
+        <div id="uploadDiv">
+            <div class="data">
+                {% block content %}
+                {% endblock %}
             </div>
-            <br>
-            <!-- <label for="ex_file">image</label> 
-            <input type="file" id="ex_file"> <br><Br> -->
-            <!-- <form method="GET" action="">
-                
-            </form> -->
-            {% block content %}
-            {% endblock %}
         </div>
     </center>
     </div>
-    </body>
+</body>
+
 </html>

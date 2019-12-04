@@ -25,11 +25,17 @@
                 $("#div3").toggle();
             });
         });
+        $(document).ready(function () {
+            $("#div4").hide();
+            $("#reward").click(function () {
+                $("#div4").toggle();
+            });
+        });
 
     </script>
 </head>
 
-<body>
+<body style="overflow-x:hidden">
     <div class="title">
         <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
         <font id="long-title">_Photo Contest </font>
@@ -42,21 +48,38 @@
         {% else %}
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% endif %}
-    </div><br><br>
+    </div><br><br><br>
 
     <div class="ranking-reward">
         <font> Ranking Reward</font>
         <div class="ranking-reward-check">
+            {% if user.profile.rewardCnt == 1 %}
             <img src="{% static 'image/reward_check.png' %}" />
             <img src="{% static 'image/reward.png' %}" />
             <img src="{% static 'image/reward.png' %}" />
+            {% elif user.profile.rewardCnt == 2 %}
+            <img src="{% static 'image/reward_check.png' %}" />
+            <img src="{% static 'image/reward_check.png' %}" />
+            <img src="{% static 'image/reward.png' %}" />
+            {% elif user.profile.rewardCnt == 3 %}
+            <img src="{% static 'image/reward_check.png' %}" />
+            <img src="{% static 'image/reward_check.png' %}" />
+            <img src="{% static 'image/reward_check.png' %}" />
+            {% else %}
+            <img src="{% static 'image/reward.png' %}" />
+            <img src="{% static 'image/reward.png' %}" />
+            <img src="{% static 'image/reward.png' %}" />
+            {% endif %}
         </div>
     </div>
 
     <div class="buttons">
         <button id="myinfo" type="button"> 개인정보 수정 </button><br><br><br>
         <button id="myphoto" type="button"> 내 게시글 </button><br><br><br>
-        <button id="report" type="button"> 신고 </button><br><br><br>
+    
+        <button id="report" type="button"> Report </button><br><br><br>
+        <button id="reward" type="button"> Reward </button><br><br><br>
+
     </div><br><br>
     <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
         {% csrf_token %}
@@ -72,12 +95,27 @@
     </form>
     <div id="div2">
         <h2> 내 게시글 </h2>
-
+        {% for object in photos %}
+        <img src=" {{ object.image.url }}" width=250px height=260px />
+        {% endfor %}
     </div>
 
     <div id="div3">
-        <h2> 신고 당한 횟수 </h2>
+        <h2> Report 당한 횟수 </h2>
         {{user.profile.reportCnt}} 번
+        <!-- <input type="submit" value="OK" id="ok_btn" /> -->
+    </div>
+
+    <div id="div4">
+        <h2> Reward </h2>
+        {{user.profile.rewardCnt}} 번<br><br>
+        {%if user.profile.rewardCnt == 1 %} 
+        <form id = "reward" method = "get" action = "">
+        지정할 해시태그 : # <input type = "text" size = "15"><br>
+        지정할 날짜 : <input type = "date"><br>
+        <input type="submit" value="OK" id = "confirm">
+        </form>
+        {% endif %}
     </div>
 
 </body>
