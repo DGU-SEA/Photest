@@ -46,11 +46,11 @@ def mypage(request):
         return redirect('/')
 
     allphotos = Photo.objects.all().order_by('-like')
-    photos = [] 
+    photos = []
 
     for p in allphotos:
         if request.user == p.author :
-            print(p.author)
+            # print(p.image.url)
             photos.append(p)
             
     if request.method == "POST":

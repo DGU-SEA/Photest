@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
+from .models import User
 from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -220,6 +221,46 @@ def photo_list(request) :
         'todaytag' : todaytag
     })
 
+def photo_insert(request) :
+    # request로 예지가 보내준 author, image, hashtag db에 저장
+    # 모델에 author는 id, 예지가 주는거는 username, username으로 auth_user에서 id 받아와야 함 
+    print('photo create')
+    username = request.username
+    Users = User.objects.all()
+    author = ""
+
+    for u in Users :
+        if(u.username == username) :
+            author = u.id
+    
+    image = request.image
+    
+    print(request.POST.get('hashtag1', ''))
+    print(request.POST.get('hashtag2', ''))
+    print(request.POST.get('hashtag3', ''))
+
+    hashtag1 = request.POST.get('hashtag1', '')
+    hashtag1 = request.POST.get('hashtag1', '')
+    hashtag1 = request.POST.get('hashtag1', '')
+
+    print(hashtag1, hashtag2, hashtag3)
+
+    hashtag = {
+        'tag' : []
+    }
+
+    if(hashtag1 != "") :
+        hashtag['tag'].append[hashtag1]
+    if(hashtag2 != "") :
+        hashtag['tag'].append[hashtag2]
+    if(hashtag3 != "") :
+        hashtag['tag'].append[hashtag3]
+
+    data = Photo.objects.create(author = author, image = image, hashtag = hashtag)
+    
+    return render(request, 'photo/photo_list.html' )
+
+
 class PhotoList(ListView) :
     print('PhotoList')
     model = Photo
@@ -249,43 +290,6 @@ class PhotoList(ListView) :
     
     # context_object_name = PhotosWithHashtag
     # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
-
-class PhotoCreate(CreateView):
-    model = Photo
-
-    fields = ['author', 'image']
-    template_name_suffix = '_create'
-
-    success_url = '/photo_list/'
-
-    def gethashtag(request) :
-        index = 0
-        hashtag1 = request.GET["hashtag1"]
-        hashtag2 = request.GET["hashtag2"]
-        hashtag3 = request.GET["hashtag3"]
-
-        hashtag = {
-            'tag' : []
-        }
-        if(hashtag1 != "") :
-            hashtag['tag'].append[hashtag1]
-        if(hashtag2 != "") :
-            hashtag['tag'].append[hashtag2]
-        if(hashtag3 != "") :
-            hashtag['tag'].append[hashtag3]
-
-        Photo.objects._create()
-
-
-
-    def form_valid(self, form):
-        form.instance.author_id=self.request.user.id
-        if form.is_valid():
-            form.instance.save()
-            return redirect('/')
-        else:
-            return self.render_to_response({'form':form})
-
 
 
 class PhotoUpdate(UpdateView):
