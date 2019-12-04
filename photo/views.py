@@ -24,6 +24,7 @@ def main(request):
     # # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
     todaytag = ""
     todayDate = str(date.today())
+    # todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
 
     yesterdaytag = ""
     today = date.today()
@@ -35,7 +36,7 @@ def main(request):
         
         if(str(h.tagDate) == yesterday) :
             yesterdaytag = h.tagName
-            
+    # print(todaytag)
     # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
     BestPhotos = list()
@@ -81,12 +82,11 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-            for t in p.hashtag['tag'] :
-                if (t == i):
-                    bestPhotos.append(p)
-                    index +1
-                    if index == 5 :
-                        break
+            if (p.hashtag['tag'] == i):
+                bestPhotos.append(p)
+                index +1
+                if index == 5 :
+                    break
     # print(bestPhotos)
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
@@ -221,7 +221,7 @@ def photo_list(request) :
         'todaytag' : todaytag
     })
 
-def photo_create(request) :
+def photo_insert(request) :
     # request로 예지가 보내준 author, image, hashtag db에 저장
     # 모델에 author는 id, 예지가 주는거는 username, username으로 auth_user에서 id 받아와야 함 
     print('photo create')
@@ -258,7 +258,7 @@ def photo_create(request) :
 
     data = Photo.objects.create(author = author, image = image, hashtag = hashtag)
     
-    return render(request, 'photo/photo_create.html' )
+    return render(request, 'photo/photo_list.html' )
 
 
 class PhotoList(ListView) :
@@ -266,53 +266,30 @@ class PhotoList(ListView) :
     model = Photo
     emplate_name_suffix='_list'
 
-class PhotoCreate(CreateView):
-    print('photo create')
-    model = Photo
-    success_url = '/photo_list/'
+    # 넘어오는 search 검색어 -> photo 모델에서 list 받아와서 hashtag 필드에 search 있는 애들 전달 
 
-    def form_valid(self, form) :
-        form.instance.author = self.request.author
-        form.instance.image = self.request.image
-    # print('photo crete')
-    # model = Photo
+    # def photo_list(request) :
+    #     search = request.GET.get('search')
+    #     print(search)
 
-    # fields = ['test', 'image']
-    # template_name_suffix = '_create'
-    # success_url = '/'        
-
-    # def form_valid(self, form):
-
-    #     form.instance.author = self.request.user.id
-    #     form.instance.image = self.request.image
-    #     print(self.request)
-
+    #     Photos = Photo.objects.all()
+    #     PhotosWithHashtag = list()
+    
     #     index = 0
-    #     hashtag1 = self.request.POST.get("hashtag1")
-    #     hashtag2 = self.request.POST.get("hashtag2")
-    #     hashtag3 = self.request.POST.get("hashtag3")
+    #     for p in Photos :
+    #         for t in p.hashtag['tag'] :
+    #             if(t == search) : 
+    #                 PhotosWithHashtag.append(p)
 
-    #     print(hashtag1, hashtag2, hashtag3)
+    #     return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
-    #     hashtag = {
-    #         'tag' : []
-    #     }
-    #     if(hashtag1 != "") :
-    #         hashtag['tag'].append[hashtag1]
-    #     if(hashtag2 != "") :
-    #         hashtag['tag'].append[hashtag2]
-    #     if(hashtag3 != "") :
-    #         hashtag['tag'].append[hashtag3]
-
-    #     m = Photo.object.get_or_create(author = form.instance.author, image = form.instance.image, hashtag = hashtag)[0]
-
-    #     if form.is_valid():
-    #         form.instance.save()
-    #         return redirect('/')
-    #     else:
-    #         # return self.render_to_response({'form':form})
-    #         return self.render_to_response('here??')
-
+    def search(request) :
+        # search = request.POST.['search']
+        print(' def fun inside')
+        return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
+    
+    # context_object_name = PhotosWithHashtag
+    # return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
 
 class PhotoUpdate(UpdateView):
