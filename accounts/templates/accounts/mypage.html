@@ -1,6 +1,5 @@
 {% load static %}
 <html>
-
 <head>
     <title>Photest</title>
     <meta charset="utf-8">
@@ -37,7 +36,6 @@
                 $("#div5").toggle();
             });
         });
-
     </script>
 
     <style>
@@ -47,18 +45,15 @@
             width: 25px;
             height: 25px;
             background: url("/static/images/heart.png");
-            /* background-position: -30% -10%; */
             text-indent: -9999px;
             overflow: hidden;
             border: none;
         }
-
         .btn-like.active {
             display: inline-block;
             width: 25px;
             height: 25px;
             background: url("/static/images/shaded_heart.png");
-            /* background-position: -50px -400px; */
             text-indent: -9999px;
             overflow: hidden;
             border: none;
@@ -107,13 +102,13 @@
     <div class="buttons">
         <button id="myinfo" type="button"> 개인정보 수정 </button><br><br><br>
         <button id="myphoto" type="button"> 내 게시글 </button><br><br><br>
-
         <button id="report" type="button"> Report </button><br><br><br>
         <button id="reward" type="button"> Reward </button><br><br><br>
         {% if user.username == "hyex" %}
         <button id="adminReward" type="button"> AdminReward </button><br><br><br>
         {% endif %}
     </div><br><br>
+
     <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -123,24 +118,21 @@
                 <tr>
                     <td><b>User ID </b></td>
                     <td>: {{user.username}} </td>
-                </tr>
-                <br>
+                </tr><br>
                 <tr>
                     <td><b>Password </b></td>
-                    <td>: <input type="password" name="password" size="10"
-                            style="border: 3px solid gray; width:150px; height:30px;"></td>
+                    <td>: <input type="password" name="password" size="10" style="border: 3px solid gray; width:150px; height:30px;"></td>
                 </tr>
                 <tr></tr>
                 <tr>
                     <td><b>E-mail </b></td>
-                    <td>: <input type="text" name="email" size="20" placeholder="{{user.email}}"
-                            style="border: 3px solid gray; width:150px; height:30px;"></td>
+                    <td>: <input type="text" name="email" size="20" placeholder="{{user.email}}" style="border: 3px solid gray; width:150px; height:30px;"></td>
                 </tr>
-                <!-- <button id="cancel"> 취소 </button> -->
             </table>
             <input type="submit" value="OK" id="ok_btn" />
         </div>
     </form>
+    
     <div id="div2">
         <h2> 내 게시글 </h2>
         {% for object in photos %}
