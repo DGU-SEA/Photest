@@ -146,11 +146,9 @@
         {% for object in photos %}
         <div id="frame">
             <form method="GET" action="{% url 'photo:delete' object.id %}">
-                <input type="hidden" name="path" value="{{object.id}}" />
                 <button id="delete"> 삭제 </button>
                 <!-- <button id="report"> <a href="{}"> 신고 </a></button> -->
             </form>
-            <!-- 이새끼 어따 넣지 시볼새끼 -->
             {% block content %}
             {% endblock %}
             <div id="photos">

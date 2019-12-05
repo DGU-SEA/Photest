@@ -74,7 +74,11 @@ def mypage(request):
             return render(request, 'accounts/mypage.html', {'photos' : photos})
         return render(request, 'accounts/mypage.html', {'photos' : photos})
 
+    # if request.method == "GET":
+    #     return HttpResponseRedirect('/')
+
     return render(request, 'accounts/mypage.html', {'photos' : photos})
+
 
 # 신고받은 사진의 작성자 신고받은 횟수 +1
 def report(request) :
