@@ -132,41 +132,34 @@
             <input type="submit" value="OK" id="ok_btn" />
         </div>
     </form>
-    
+
     <div id="div2">
         <h2> 내 게시글 </h2>
         {% for object in photos %}
         <div id="frame">
             <form method="GET" action="{% url 'photo:delete' object.id %}">
-                <input type="hidden" name="path" value="{{object.id}}" />
                 <button id="delete"> 삭제 </button>
-                <!-- <button id="report"> <a href="{}"> 신고 </a></button> -->
             </form>
-            <!-- 이새끼 어따 넣지 시볼새끼 -->
             {% block content %}
             {% endblock %}
             <div id="photos">
-                <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px height=260px />
+                <img src=" {{ object.image.url }}" class="card-img-top" width=250px height=260px />
             </div>
             <li class="list-group-item">
                 {%if user in object.like.all %}
-                <!-- <br> -->
                 <a href="{% url 'photo:like' object.id %}">
-                    <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px height=25px
-                        align="right"></img></a>
+                    <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px height=25px align="right"></img></a>
                 {% else %}
-                <!-- <br> -->
                 <a href="{% url 'photo:like' object.id %}">
-                    <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px
-                        align="right"></img></a>
+                    <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px align="right"></img></a>
                 {%endif%}
                 {% if object.like.all.count %}
                 <span class="float-right">
                     {{object.like.all.count}}
                 </span>
                 {%endif%}
-            </li>
-
+            </li><br>
+            
             <div class="card-body">
                 <p class="card-text" align="left">
                     {% if object.hashtag.tag.0 %}
@@ -180,34 +173,25 @@
                     {% endif %}
                 </p>
             </div>
-
         </div>
-
-        <!--        {{ object.image.url }}-->
-        <!-- <img src=" {{ object.image.url }}" width=250px height=260px /> -->
         {% endfor %}
     </div>
 
     <div id="div3">
         <h2> Report 당한 횟수 : {{user.profile.reportCnt}} 번</h2>
-
-        <!-- <input type="submit" value="OK" id="ok_btn" /> -->
     </div>
 
     <div id="div4">
         <h2> Reward 받은 횟수 : {{user.profile.rewardCnt}} 번</h2><br><br>
         <form id="reward" method="get" action="{% url 'photo:reward' %}">
-            <!-- action으로  % url 'accounts:mypage' % 같이 넣기 -->
             <table boder="" cellspacing="10">
                 <tr>
-                    <td> <b>지정할 해시태그 </b></td>
-                    <td> : <font weight="bold"> # </font><input type="text" name="user_hashtag" size="15"
-                            style="border: 3px solid gray; width:150px; height:30px;"></td>
+                    <td><b>지정할 해시태그 </b></td>
+                    <td> : <font weight="bold"> # </font><input type="text" name="user_hashtag" size="15" style="border: 3px solid gray; width:150px; height:30px;"></td>
                 </tr>
                 <tr>
                     <td> <b>지정할 날짜 </b></td>
-                    <td> : <input type="date" name="user_date"
-                            style="border: 3px solid gray; width:150px; height:30px;"></td>
+                    <td> : <input type="date" name="user_date" style="border: 3px solid gray; width:150px; height:30px;"></td>
                 </tr>
                 {%if user.profile.rewardCnt == 3 %}
                 <tr>
@@ -217,7 +201,6 @@
                 {% endif %}
             </table>
         </form>
-        {{message}}
     </div>
 
     {% if user.username == "hyex" %}
@@ -227,13 +210,10 @@
             <input type="submit" value="OK" id="ok_confirm" />
             <input type="hidden" name="path" value="{{request.path}}" />
         </form>
-
         {% endif %}
         {% for object in bestPhotos %}
         <b>{{ object.author }}</b><br>
         {% endfor %}
     </div>
-
 </body>
-
 </html>
