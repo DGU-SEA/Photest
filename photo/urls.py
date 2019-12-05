@@ -2,7 +2,7 @@ from django.urls import path
 from .views import PhotoList, PhotoDelete, PhotoDetail, PhotoUpdate, PhotoLike
 
 from . import views
-from .views import main, best, hashtag_board, search_list
+from .views import main, best, hashtag_board, search_list, reward
 
 app_name="photo"
 urlpatterns = [
@@ -20,7 +20,8 @@ urlpatterns = [
     path('search/', views.search_list, name='search'),
     path('today_hashtag_search/', views.today_hashtag_click, name='today_hashtag_search'),
     path('yesterday_hashtag_search/', views.yesterday_hashtag_click, name='yesterday_hashtag_search'),
-    path('photo_insert/', views.photo_insert, name='photo_insert'),
+    path('photo_inserts/', views.photo_insert, name='photo_insert'),
+    path('reward/', views.reward, name = 'reward')
 ]
 
 from django.conf.urls.static import static

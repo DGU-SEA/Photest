@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
 from .models import User
+from accounts.models import Profile
 from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -21,6 +22,8 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.template import RequestContext
+from django.utils.dateparse import parse_date
+
 
 def main(request):
     print('main')
@@ -91,6 +94,7 @@ def best(request):
         for p in photos :
             if (p.hashtag['tag'] == i):
                 bestPhotos.append(p)
+                # p.author
                 index += 1
                 if index == 5 :
                     break
@@ -228,6 +232,8 @@ def photo_list(request) :
     })
 
 def photo_insert(request) :
+    # if request.method == "POST":
+    #     print("**********************************************************************")
     print('photo create')
     username = request.user
     Users = User.objects.all()
@@ -235,25 +241,33 @@ def photo_insert(request) :
 
     for u in Users :
         if(str(u.username) == str(username)) :
-            authorid = u.id
-    
-    print(request.FILES['image'])
+            authorid = u
+    # print(authorid)
+    # print("request.FILES : "+ request.FILES['image'])
     image = request.FILES['image']
-    tempurl = 'timeline_photo/2019/12/04/'
-    tempurl += str(image)
-    
+    # print(image)
+    # tempurl = 'timeline_photo/2019/12/04/'
+    # tempurl += str(image)
     # tempurl += str(dateemonth) 
     # tempurl += '/'
     # tempurl += str(date.day)
     # tempurl += '/'
     # tempurl += str(image)
 
-    print(tempurl)
-    image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
+    # print(tempurl)
+    # image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
 
     hashtag1 = request.POST.get('hashtag1', '')
     hashtag2 = request.POST.get('hashtag2', '')
     hashtag3 = request.POST.get('hashtag3', '')
+    # hashtag1 = request.POST['hashtag1']
+    # hashtag2 = request.POST['hashtag2']
+    # hashtag3 = request.POST.get('hashtag3')
+
+    
+    print(hashtag1)
+    print(hashtag2)
+    print(hashtag3)
 
     hashtag = {
         'tag' : []
@@ -264,22 +278,80 @@ def photo_insert(request) :
     if(hashtag2 != "") :
         hashtag['tag'].append(hashtag2)
     if(hashtag3 != "") :
-       
-     print(authorid)
-     print(image)
-     print(hashtag)
+        hashtag['tag'].append(hashtag3)
 
-     myfile = request.FILES['image']
-     fs = FileSystemStorage()
-     filename = fs.save(myfile.name, myfile)
-     uploaded_file_url = fs.url(filename)
-    #  uploaded_file_url = fs.url(tempurl)
+    print(hashtag['tag'])
+    
+    # myfile = request.FILES['image']
+    # fs = FileSystemStorage('photo/media/timeline_photo/')
+    # filename = fs.save(myfile.name, myfile)
+    # uploaded_file_url = fs.url(filename)
+    # uploaded_file_url = fs.url(tempurl)
 
-     print(uploaded_file_url)
+    # print(uploaded_file_url)
+
+    print(type(authorid))
+    print(type(image))
+    print(type(hashtag))
+    # print(type(Photo.objects.get(username)))
+
+    data = Photo.objects.create(author = authorid, image = image, hashtag = hashtag)
+
+    # print(request.POST['path'])
+    return HttpResponseRedirect('/photo_list/')
 
 
-     data = Photo.objects.create(author_id = authorid, image = uploaded_file_url, hashtag = hashtag)
-    return render(request, 'photo/photo_list.html')
+
+def reward(request) :
+    print('reward')
+    # 사용자가 지정한 날짜, 해시태그 이름, 해시태그 테이블에 추가 혹은 수정
+   
+    global hashtag
+    hashtags = hashtag.objects.all()
+    requestdate = request.GET.get('user_date', '')
+    convertdate = datetime.strptime(requestdate, "%Y-%m-%d")
+  
+    requesttag = request.GET.get('user_hashtag','')
+    username = request.user
+    Users = User.objects.all()
+    authorid = ""
+
+    for u in Users :
+        if(str(u.username) == str(username)) :
+            authorid = u.id
+
+    set_instance = Profile.objects.get(user = authorid)
+    set_instance.rewardCnt = 0
+    set_instance.save()    
+    
+    print(requestdate, requesttag, username)
+
+    index =0
+    temp =""
+    length = len(hashtags)
+    for h in hashtags :
+        #있으면 update
+        if(h.tagName == requesttag) :
+            temp = convertdate.date()
+            h.tagDate = temp
+            
+            update_instance = hashtag.objects.get(tagName = requesttag)
+            update_instance.tagDate = temp
+            update_instance.save()
+            break
+
+        index += 1
+    
+    print(index, length)
+    #없으면 insert
+    if(index == length) :
+        print('insert')
+        insert_instance = hashtag(tagName = requesttag, tagDate = convertdate.date())
+        insert_instance.save()
+
+    
+
+    return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
 
 
 class PhotoList(ListView) :

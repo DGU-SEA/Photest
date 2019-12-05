@@ -121,7 +121,7 @@
 
     <div id="div4">
         <h2> Reward 받은 횟수 : {{user.profile.rewardCnt}} 번</h2><br><br>
-        <form id="reward" method="get" action=""> <!-- action으로  % url 'accounts:mypage' % 같이 넣기 -->
+        <form id="reward" method="get" action="{% url 'photo:reward' %}"> <!-- action으로  % url 'accounts:mypage' % 같이 넣기 -->
             <table boder="" cellspacing="10">
                 <tr>
                     <td> <b>지정할 해시태그 </b></td>
@@ -132,10 +132,14 @@
                     <td> : <input type="date" name="user_date" style="border: 3px solid gray; width:150px; height:30px;"></td>
                 </tr>
                 {%if user.profile.rewardCnt == 3 %}
-                <input type="submit" value="OK" id="confirm" />
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="OK" id="rconfirm" /></td>
+                </tr>
                 {% endif %}
             </table>
         </form>
+        {{message}}
     </div>
 
     {% if user.username == "hyex" %}
