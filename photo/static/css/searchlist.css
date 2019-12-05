@@ -2,6 +2,12 @@ html{
     scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    padding: 0; 
+    /* background-color:;  */
+}
+
 a { text-decoration: none; color: gray; }
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
@@ -15,13 +21,13 @@ a:hover, a:active { text-decoration: none; }
 }
 
 #short-title {
-    font-size : 250%;
+    font-size : 330%;
     color : gray;
     font-weight : bold;
 }
 
 #long-title {
-    font-size : 100%;
+    font-size : 150%;
     color : gray;
 }
 
@@ -35,18 +41,24 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     top : 3%;
     left : 1%;
+    font-size : 20px;
+    font-weight : bold;
 }
 
 #board_btn {
     position : relative;
     top : 3%;
     left : 4%;
+    font-size : 20px;
+    font-weight : bold;
 }
 
 #best_btn {
     position : relative;
     top : 3%;
     left : 6%;
+    font-size : 20px;
+    font-weight : bold;
 }
 
 .button {
@@ -81,6 +93,10 @@ a:hover, a:active { text-decoration: none; }
     position:relative;
     /* text-align: center; */
     left : 40%;
+}
+
+.today-hashtag h1{
+    font-size : 45px;
 }
 
 #board {
