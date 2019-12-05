@@ -49,24 +49,25 @@
         <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
         <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
         {% endif %}
-    </div><br><br>
-
-    <div class="today-hashtag-container">
-        <h2>오늘의 해시태그</h2>
     </div>
+
+    <!-- <div class="today-hashtag-container">
+        <h2>오늘의 해시태그</h2>
+    </div> -->
 
     <div class="today-hashtag">
-        <h1><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:black"> # {{todaytag}} </a></h1>
+        <h1 style="color:white">Today's Hashtag &nbsp;&nbsp;<a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:white"> # 음식</a></h1>
     </div>
-    <br><br><br></br></br></br>
+    <br><br>
 
     <!-- <div id="board"> -->
         <form id="search" action="{% url 'photo:search' %}" method="get">
             <div id="dsearch">
                 <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
                 <input type="submit" value="search" id="bsearch" />
+            </div>
         </form>
-
+    <div id="board">
         <div id="add">
             <button class="button">
                 <div class="plus">
@@ -77,6 +78,7 @@
             </button>
         </div>
         {% for object in PhotosWithHashtag %}
+        <div id="frame-frame">
             <div id="frame">
                 <form method="GET" action="{% url 'accounts:report' %}">
                     <input type="hidden" name="path" value="{{request.path}}"/>
@@ -130,8 +132,10 @@
                     </div>
 
             </div>
+        </div>
         {% endfor %}
-
+    </div>
+    <!-- </div> -->
     <!-- </div> -->
 </body>
 
