@@ -92,13 +92,13 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-            for t in p.hashtag['tag']:
-                if (t == i):
-                    bestPhotos.append(p)
-                    index += 1
-                    if index == 5 :
-                        break
-
+            if (p.hashtag['tag'] == i):
+                bestPhotos.append(p)
+                # p.author
+                index += 1
+                if index == 5 :
+                    break
+    # print(bestPhotos)
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
     
 def hashtag_board(request):
@@ -232,6 +232,8 @@ def photo_list(request) :
     })
 
 def photo_insert(request) :
+    # if request.method == "POST":
+    #     print("**********************************************************************")
     print('photo create')
     username = request.user
     Users = User.objects.all()
@@ -239,25 +241,33 @@ def photo_insert(request) :
 
     for u in Users :
         if(str(u.username) == str(username)) :
-            authorid = u.id
-    
-    print(request.FILES['image'])
+            authorid = u
+    # print(authorid)
+    # print("request.FILES : "+ request.FILES['image'])
     image = request.FILES['image']
-    tempurl = 'timeline_photo/2019/12/04/'
-    tempurl += str(image)
-    
+    # print(image)
+    # tempurl = 'timeline_photo/2019/12/04/'
+    # tempurl += str(image)
     # tempurl += str(dateemonth) 
     # tempurl += '/'
     # tempurl += str(date.day)
     # tempurl += '/'
     # tempurl += str(image)
 
-    print(tempurl)
-    image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
+    # print(tempurl)
+    # image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
 
     hashtag1 = request.POST.get('hashtag1', '')
     hashtag2 = request.POST.get('hashtag2', '')
     hashtag3 = request.POST.get('hashtag3', '')
+    # hashtag1 = request.POST['hashtag1']
+    # hashtag2 = request.POST['hashtag2']
+    # hashtag3 = request.POST.get('hashtag3')
+
+    
+    print(hashtag1)
+    print(hashtag2)
+    print(hashtag3)
 
     hashtag = {
         'tag' : []
@@ -268,22 +278,28 @@ def photo_insert(request) :
     if(hashtag2 != "") :
         hashtag['tag'].append(hashtag2)
     if(hashtag3 != "") :
-       
-     print(authorid)
-     print(image)
-     print(hashtag)
+        hashtag['tag'].append(hashtag3)
 
-     myfile = request.FILES['image']
-     fs = FileSystemStorage()
-     filename = fs.save(myfile.name, myfile)
-    #  uploaded_file_url = fs.url(filename)
-     uploaded_file_url = fs.url(tempurl)
+    print(hashtag['tag'])
+    
+    # myfile = request.FILES['image']
+    # fs = FileSystemStorage('photo/media/timeline_photo/')
+    # filename = fs.save(myfile.name, myfile)
+    # uploaded_file_url = fs.url(filename)
+    # uploaded_file_url = fs.url(tempurl)
 
-     print(uploaded_file_url)
+    # print(uploaded_file_url)
 
+    print(type(authorid))
+    print(type(image))
+    print(type(hashtag))
+    # print(type(Photo.objects.get(username)))
 
-     data = Photo.objects.create(author_id = authorid, image = uploaded_file_url, hashtag = hashtag)
-    return render(request, 'photo/photo_list.html')
+    data = Photo.objects.create(author = authorid, image = image, hashtag = hashtag)
+
+    # print(request.POST['path'])
+    return HttpResponseRedirect('/photo_list/')
+
 
 
 def reward(request) :
@@ -292,14 +308,9 @@ def reward(request) :
    
     global hashtag
     hashtags = hashtag.objects.all()
-<<<<<<< HEAD
-
-    requestdate = request.GET.get('user_date', '')
-=======
     requestdate = request.GET.get('user_date', '')
     convertdate = datetime.strptime(requestdate, "%Y-%m-%d")
   
->>>>>>> 8bd78dac1d177357d2067c51549003a0131516e8
     requesttag = request.GET.get('user_hashtag','')
     username = request.user
     Users = User.objects.all()
@@ -308,18 +319,6 @@ def reward(request) :
     for u in Users :
         if(str(u.username) == str(username)) :
             authorid = u.id
-<<<<<<< HEAD
-    
-    print(requestdate, requesttag, username)
-
-    for h in hashtags :
-        if(str(h.tagName) == requesttag) :
-            h.tagDate = requestdate
-
-    
-    return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
-
-=======
 
     set_instance = Profile.objects.get(user = authorid)
     set_instance.rewardCnt = 0
@@ -355,7 +354,6 @@ def reward(request) :
     return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
 
 
->>>>>>> 8bd78dac1d177357d2067c51549003a0131516e8
 class PhotoList(ListView) :
     print('PhotoList')
     model = Photo
