@@ -76,18 +76,21 @@ li {
     list-style:none;
 }
 .today-hashtag-container {
-    position:relative;
-    left: 20%;
-    top: 0%;
-    color: gray;
-    font-size: 15pt;
-    /*padding: 0px 20px 10px 200px;*/
+    /* border : 1px solid black; */
+    width : 300px;
+    position : relative;
+    left : 10%;
+    top : -10%;
+    font-size: 20pt;
+    color : gray;
+    float : left;
 }
-
+ 
 .today-hashtag {
     position:relative;
-    /* text-align: center; */
-    text-align: center;
+    top: -2%;
+    left : 15%;
+    font-size: 20pt;
 }
 
 #board {

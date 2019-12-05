@@ -1,0 +1,17 @@
+{%extends 'photo/upload.html'%}
+{%block content%}
+
+<form action="" method="post">
+    Hashtag :
+    # <input class="underline" name="hashtag1" type="text">
+    # <input class="underline" name="hashtag2" type="text">
+    # <input class="underline" name="hashtag3" type="text">
+        {%csrf_token%}
+
+        {{form.as_p}}
+    <button type="submit" id="post" onclick="add_div()"> POST </button>
+    </form>
+    <div class="col"></div>
+    </div>
+
+{%endblock%}

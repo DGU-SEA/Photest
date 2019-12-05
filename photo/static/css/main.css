@@ -61,7 +61,7 @@ a:hover, a:active { text-decoration: none; }
 #mypage_btn {
     position : relative;
     top : 3%;
-    left : 1%;
+    left : 2%;
     font-size : 20px;
     font-weight : bold;
     /* border-bottom : 3px solid #CAB4D6; */
@@ -92,7 +92,7 @@ a:hover, a:active { text-decoration: none; }
     color : gray;
     position : relative;
     width : 20%;
-    height : 18%;
+    height : 14%;
     top : -15%;
     left : 72%; 
     /* background-color : #dee2e6; */
@@ -141,7 +141,7 @@ input.underline {
 #logout_btn{ 
     font-weight : bold;
     position : relative;
-    top : 35%;
+    top : -10%;
     left : 0%;
     width : 30%;
     height : 30%;
@@ -154,25 +154,25 @@ input.underline {
     /* border : 1px solid black; */
     width : 300px;
     position : relative;
-    left : 7%;
-    top : -15%;
-    font-size: 20pt;
+    left : 20%;
+    top : -6%;
+    font-size: 18pt;
     color : gray;
     float : left;
 }
  
 .today-hashtag {
     position:relative;
-    top: -17%;
-    left : 15%;
-    font-size: 20pt;
+    top: -7%;
+    left : 22%;
+    font-size: 18pt;
 }
 
 .yesterday-hashtag-container{
     /* border : 1px solid black; */
     position:relative;
-    left: 7%;
-    top : -10%;
+    left: 28%;
+    top : 60%;
     font-size: 20pt;
     width : 250px;
     color : gray;
@@ -181,30 +181,42 @@ input.underline {
 
 .yesterday-hashtag {
     position:relative;
-    left: 17%;
-    top: -12%;
-    font-size: 20pt;
+    left: 30%;
+    top: 0%;
+    font-size: 15pt;
     width : 900px;
     height : 100px;
     float : left;
+    /* text-align:center; */
     /* padding: 40px 20px 10px 550px; */
 }
 
+#clown{
+    position : relative;
+    top : 50%;
+}
 #first-rank {
     position : relative;
-    left : -10%;
-    top : 45%;
-    width : 80px;
-    height : 80px;
+    left : -60%;
+    top : 0%;
+    width : 40px;
+    height : 50px;
     /* float : left; */
     text-align : left;
+}
+
+.image{
+    position:relative;
+    width: 1400px;
+    left:3%;
+    top:-3%;
 }
 
 .yesterday-first img{
     position:relative;
     left: 10%;
-    height: 521px; 
-    width: 520px;
+    height: 560px; 
+    width: 560px;
     float : left ;
     padding : 1px;
 }
@@ -216,8 +228,8 @@ input.underline {
 }
 
 .yesterday-else img{
-    height: 260px;
-    width: 260px;
+    height: 280px;
+    width: 280px;
     float : left;
     /* padding: 0px 50px 10px 10px; */
     padding : 1px;
@@ -227,7 +239,7 @@ input.underline {
 #dsearch {
     position : relative;
     height : 8%;
-    width : 82%;
+    width : 80%;
     border : 3px solid #999999;
     top :-10%;
     left : 10%;
@@ -242,7 +254,7 @@ input.underline {
 #isearch {
     font-size : 16px;
     width : 80%;
-    padding : 10px;
+    padding : 20px;
     border : 0px;
     outline : none;
     float : left;
@@ -270,7 +282,8 @@ input.underline {
 
 #rank {
     position : relative;
-    left : 10%;
+    left : 13%;
+    top:-3%;
 }
 
 #banner {

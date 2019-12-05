@@ -113,7 +113,6 @@
         {% if user.username == "hyex" %}
         <button id="adminReward" type="button"> AdminReward </button><br><br><br>
         {% endif %}
-
     </div><br><br>
     <form id="editInfo" action="{% url 'accounts:mypage' %}" method="post">
         {% csrf_token %}
@@ -191,9 +190,6 @@
             </div>
 
         </div>
-
-
-
 
         <!--        {{ object.image.url }}-->
         <!-- <img src=" {{ object.image.url }}" width=250px height=260px /> -->

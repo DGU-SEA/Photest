@@ -20,7 +20,7 @@ urlpatterns = [
     path('search/', views.search_list, name='search'),
     path('today_hashtag_search/', views.today_hashtag_click, name='today_hashtag_search'),
     path('yesterday_hashtag_search/', views.yesterday_hashtag_click, name='yesterday_hashtag_search'),
-    path('photo_insert/', views.photo_insert, name='photo_insert'),
+    path('photo_inserts/', views.photo_insert, name='photo_insert'),
     path('reward/', views.reward, name = 'reward')
 ]
 
