@@ -96,19 +96,9 @@ def best(request):
                     break
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
-    
-def hashtag_board(request):
-    return render(request, 'photo/hashtag_board.html', {}) 
 
 def upload(request):
     return render(request, 'photo/upload.html', {})
-
-def edit_profile(request):
- return render(request, 'photo/edit_profile.html', {})
-
-def detail(request):
-    model = Photo
-    return render(request, 'photo/detail.html', {})
 
 def search_list(request):
     print('search list')
@@ -322,7 +312,24 @@ class PhotoUpdate(UpdateView):
         else:
             return super(PhotoUpdate, self).dispatch(request, *args, **kwargs)
 
+def delete(request, photo_id):
+    photo = Photo.objects.get(id=photo_id)
+    print(photo.author)
+    photo.delete()
+
+    allphotos = Photo.objects.all().order_by('-like')
+    photos = []
+
+    for p in allphotos:
+        if request.user == p.author:
+            # print(p.image.url)
+            photos.append(p)
+
+    return HttpResponseRedirect('/accounts/mypage')
+
+
 class PhotoDelete(DeleteView):
+    print("delete")
     model = Photo
     template_name_suffix = '_delete'
     success_url = '/'
@@ -334,10 +341,6 @@ class PhotoDelete(DeleteView):
             return HttpResponseRedirect('/')
         else:
             return super(PhotoDelete, self).dispatch(request, *args, **kwargs)
-
-class PhotoDetail(DetailView):
-    model = Photo
-    template_name_suffix='_detail'
 
 class PhotoLike(ListView):
     model = Photo

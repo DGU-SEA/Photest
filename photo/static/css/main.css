@@ -5,7 +5,8 @@ html{
 body {
     margin: 0;
     padding: 0; 
-    /* background-color:;  */
+    /* background-color: black; */
+    opacity : 0.8; 
 }
 
 a { text-decoration: none; color: gray; }
@@ -40,7 +41,7 @@ a:hover, a:active { text-decoration: none; }
     width: 62%;
     overflow : hidden;
     height : auto;
-    background-color: #CAB4D6;
+    background-color: #edb940;
     opacity : 0.9;
     border-radius : 15px;
     z-index : 1;
