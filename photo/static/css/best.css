@@ -27,7 +27,6 @@ a:hover, a:active { text-decoration: none; }
 
 #category {
     position : relative;
-    /* top : 3%; */
     left : 71%;
 }
 
@@ -64,7 +63,7 @@ h1 {
     background-color: white;
     color: #777777;
     border: 2px solid #ffffff; 
-  }
+}
 
 #day {
     position : relative;

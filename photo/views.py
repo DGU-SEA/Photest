@@ -379,7 +379,24 @@ class PhotoUpdate(UpdateView):
         else:
             return super(PhotoUpdate, self).dispatch(request, *args, **kwargs)
 
+def delete(request, photo_id):
+    photo = Photo.objects.get(id=photo_id)
+    print(photo.author)
+    photo.delete()
+
+    allphotos = Photo.objects.all().order_by('-like')
+    photos = []
+
+    for p in allphotos:
+        if request.user == p.author:
+            # print(p.image.url)
+            photos.append(p)
+
+    return HttpResponseRedirect('/accounts/mypage')
+
+
 class PhotoDelete(DeleteView):
+    print("delete")
     model = Photo
     template_name_suffix = '_delete'
     success_url = '/'

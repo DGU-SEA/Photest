@@ -122,13 +122,13 @@ a:hover, a:active { text-decoration: none; }
     margin-bottom: 5%;
     float : left;
 }
+
 #frame_frame{
     position : relative;
     top:0%;
     /* left:-9%;
     right:-5%; */
 }
-
 
 #frame {
     position : relative;

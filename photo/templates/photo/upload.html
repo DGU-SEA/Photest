@@ -1,15 +1,12 @@
 {% load static %}
 <html>
-
 <head>
     <link rel="stylesheet" href="{% static 'css/upload.css' %}">
     <title> Photest </title>
     <meta charset="utf-8">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-
     <script type="text/javascript"> //window onload 
         $(document).ready(function () {
-
             var width = $(window).width();
             var height = $(window).height(); //화면을 가리는 레이어의 사이즈 조정 
             $(".backLayer").width(width);
@@ -25,35 +22,31 @@
             div.innerHTML = document.getElementById('frame').innerHTML;
             document.getElementById('frame').appendChild(div);
         }
-
     </script>
 </head>
 
 <body style="overflow-x:hidden;overflow-y:hidden">
-        <div class="title">
+    <div class="title">
         <font id="short-title"> Photest</a></font>
         <font id="long-title">_Photo Contest </font>
     </div>
 
-
-    <div class="backLayer">
-    </div>
-
+    <div class="backLayer"></div>
 
     <center>
         <div id="uploadDiv">
             <div class="data">
                 <div class="button">
-                    <form  method="post" enctype="multipart/form-data" action="{% url 'photo:photo_insert' %}">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'photo:photo_insert' %}">
                         {% csrf_token %}
                         {{form.as_p}}
                         Author : {{user.username}} <br><Br>
-                        image : <input type="file" name="image" id="imagee"  /> <Br><Br>
+                        image : <input type="file" name="image" id="imagee" /> <Br><Br>
                         Hashtag :
                         # <input class="underline" name="hashtag1" type="text">
                         # <input class="underline" name="hashtag2" type="text">
                         # <input class="underline" name="hashtag3" type="text"> <Br><Br>
-                        <input type="hidden" name="path" value="{{request.path}}"/>
+                        <input type="hidden" name="path" value="{{request.path}}" />
                         <input type="submit" id="post" onclick="add_div()" value="POST" />
                     </form>
                 </div>
@@ -62,5 +55,4 @@
         </div>
     </center>
 </body>
-
 </html>

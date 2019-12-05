@@ -7,7 +7,7 @@ from .views import main, best, hashtag_board, search_list, reward
 app_name="photo"
 urlpatterns = [
     path("photo_detail/<int:pk>/", PhotoDetail.as_view(), name='detail'),
-    path("photo_delete/<int:pk>/", PhotoDelete.as_view(), name='delete'),
+    path("photo_delete/<int:photo_id>", views.delete, name='delete'),
     path("photo_update/<int:pk>/", PhotoUpdate.as_view(), name='update'),
     path('', views.main, name='main'),
     path('photo_list/', views.photo_list, name='photo_list'),
@@ -28,3 +28,5 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# path("photo_delete/<int:pk>/", PhotoDelete.as_view(), name='delete'),
