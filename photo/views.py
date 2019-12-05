@@ -89,21 +89,12 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-<<<<<<< HEAD
             for t in p.hashtag['tag']:
                 if (t == i):
                     bestPhotos.append(p)
                     index += 1
                     if index == 5 :
                         break
-=======
-            if (p.hashtag['tag'] == i):
-                bestPhotos.append(p)
-                index += 1
-                if index == 5 :
-                    break
-    # print(bestPhotos)
->>>>>>> 58bb30e532092b8a431b178e13c7b671e295532e
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
     
@@ -291,6 +282,32 @@ def photo_insert(request) :
      data = Photo.objects.create(author_id = authorid, image = uploaded_file_url, hashtag = hashtag)
     return render(request, 'photo/photo_list.html')
 
+
+def reward(request) :
+    print('reward')
+    # 사용자가 지정한 날짜, 해시태그 이름, 해시태그 테이블에 추가 혹은 수정
+   
+    global hashtag
+    hashtags = hashtag.objects.all()
+
+    requestdate = request.GET.get('user_date', '')
+    requesttag = request.GET.get('user_hashtag','')
+    username = request.user
+    Users = User.objects.all()
+    authorid = ""
+
+    for u in Users :
+        if(str(u.username) == str(username)) :
+            authorid = u.id
+    
+    print(requestdate, requesttag, username)
+
+    for h in hashtags :
+        if(str(h.tagName) == requesttag) :
+            h.tagDate = requestdate
+
+    
+    return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
 
 class PhotoList(ListView) :
     print('PhotoList')
