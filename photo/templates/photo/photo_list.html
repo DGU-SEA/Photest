@@ -56,31 +56,18 @@
     </div> -->
 
     <div class="today-hashtag">
-<<<<<<< HEAD
-        <h1 style="color:white">Today's Hashtag &nbsp;&nbsp;<a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:white"> # 음식</a></h1>
-=======
-        <h1 style="color:white">Today's Hashtag &nbsp;&nbsp;<a href="http://127.0.0.1:8000/today_hashtag_search/"
-                style="color:white"> # 음식</a></h1>
->>>>>>> 66d62b66711d7f2d551b809e0b7221f742a1cc16
+        <h1 style="color:white">Today's Hashtag &nbsp;&nbsp;<a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:white"> # {{todaytag}}</a></h1>
     </div>
     <br><br>
 
     <!-- <div id="board"> -->
-<<<<<<< HEAD
-        <form id="search" action="{% url 'photo:search' %}" method="get">
-            <div id="dsearch">
-                <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
-                <input type="submit" value="search" id="bsearch" />
-            </div>
-        </form>
-=======
+
     <form id="search" action="{% url 'photo:search' %}" method="get">
         <div id="dsearch">
             <input type="text" id="isearch" name="search" value="{{search}}" placeholder="# Hashtag를 입력하세요" />
             <input type="submit" value="search" id="bsearch" />
         </div>
     </form>
->>>>>>> 66d62b66711d7f2d551b809e0b7221f742a1cc16
     <div id="board">
         <div id="add">
             <button class="button">
@@ -149,10 +136,5 @@
         </div>
         {% endfor %}
     </div>
-<<<<<<< HEAD
-    <!-- </div> -->
-    <!-- </div> -->
-=======
->>>>>>> 66d62b66711d7f2d551b809e0b7221f742a1cc16
 </body>
 </html>
