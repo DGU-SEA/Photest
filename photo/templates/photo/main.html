@@ -4,64 +4,80 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 
 <body style="overflow-x:hidden">
-    <div class="title">
-        <font id="short-title"><a href="/" class="title-text"> Photest</a></font>
-        <font id="long-title">_Photo Contest </font>
-    </div><br>
-    <div id="category">
-        {% if user.is_authenticated %}
-        <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">MyPage</a></button>
-        <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">Board </a></button>
-        <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/"> Best </a></button>
-        {% endif %}
-    </div><br><br>
-
-    <div id="intro">
-        <center>
-            <h3> 당신이 찍은 사진을 자유롭게 업로드, 다운로드 할 수 있습니다. <br><br>
-                오늘의 해시태그에 적합한 사진들을 랭크하는 사진 콘테스트 웹입니다. </h3>
-        </center>
-    </div>
-
     <script type="text/javascript">
-        function div2Resize() {
-            var div2 = document.getElementById('div2');
-            div2.style.width = window.innerWidth - 200 + 'px';
+        function scroll_follow(id) {
+            $(window).scroll(function ()  //스크롤이 움직일때마다 이벤트를 발생시키고   
+            {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.       
+                $(id).stop().animate({ top: position + "px" }, 1); //해당 오브젝트 위치값 재설정    
+            });
         }
-        window.onload = function () {
-            div2Resize();
-            // 브라우저 크기가 변할 시 동적으로 사이즈를 조절해야 하는 경우
-            window.addEventListener('resize', div2Resize);
-        }
-    </script>
+        scroll_follow("#scroll");
+        //스크롤이 생기도록 <br> 을 여러개 넣은 부분..
+        $(document).ready(function () { for (var i = 0; i < 200; i++) { $('#brr').html($('#brr').html() + "<br>" + i); } });
+        //////////////////////////////////////////////////////
+        
 
-    <div class="log">
+    </script>
+    <div id="scroll" style="position:absolute;left:0;">
+        <div class="menu-bar">
+            <font class="short-title"><a href="/" class="title-text"> Photest</a></font>
+            <font id="long-title">_Photo Contest </font>
+
+            {% if user.is_authenticated %}
+            <button id="board_btn" class="button"><a href="http://127.0.0.1:8000/photo_list/">
+                    <font color="gray"> Board </font>
+                </a></button>
+            <button id="best_btn" class="button"><a href="http://127.0.0.1:8000/best/">
+                    <font color="gray"> Best </font>
+                </a></button>
+            <button id="mypage_btn" class="button"><a href="{%url 'accounts:mypage'%}">
+                    <font color="gray">MyPage</font>
+                </a></button>
+            {% endif %}
+        </div>
+    </div>
+    <!-- <div class="box"> -->
+    <div id="title">
+        <font id="short"> Photest</font>
+        <!-- <font id="long">_Photo Contest </font> -->
+    </div>
+    <div id="intro">
+        <font id="main_intro"> Photest는 타인과의 연결없이 즐기는<Br> 당신만을 위한 공간입니다.</font><br><br><br>
+        <font id="sub_intro">매일 달라지는 해시태그에 따라 이 공간의 주인공이 되어보세요. </font>
+    </div>
+    <div id="login-join">
         {% if user.is_authenticated %}
-        <center>
-            <br>{{user.username}}님 환영합니다. <br><br>
-            <button id="logout_btn"><a href="{% url 'accounts:logout'%}">Logout </a></button>
-        </center>
+        <font id="userid" style="color:gray">"</font>
+        <font id="userid" style="color:#edb928">{{user.username}}</font>
+        <font id="userid" style="color:gray">님 환영합니다." </font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="logout"><a href="{% url 'accounts:logout'%}">Logout </a></button>
         {% else %}
-        <button id="join_btn"> <a href="http://127.0.0.1:8000/accounts/join/"> Join </a></button>
-        <button id="login_btn"> <a href="http://127.0.0.1:8000/accounts/login/"> Login </a></button>
+        <button id="login"><a href="http://127.0.0.1:8000/accounts/login/" style="color:gray"> Login </a></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="join"><a href="http://127.0.0.1:8000/accounts/join/" style="color:white"> Join </a></button>
         {% endif %}
     </div>
-
-    <div class="today-hashtag-container">
-        <h2>오늘의 해시태그</h2>
-    </div>
-    <div class="today-hashtag">
+    <!-- </div>
+    <div class="box"> -->
+    <div id="today-hashtag">
+        <font id="today-container">today's hastag </font> &nbsp;&nbsp;
         {% if user.is_authenticated %}
-        <h1><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:black"> # {{todaytag}}</a></h1>
+        <font id="today_hashtag"><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:#edb928">#
+                {{todaytag}} </a></font>
         {% else %}
-        <h1> # {{todaytag}} </h1>
+        <font id="today_hashtag2"> # {{todaytag}} </font>
         {% endif %}
     </div>
 
     {% if user.is_authenticated %}
+    <font id="board" style="color:gray">오늘의 사진 올리러 가기</font>
+    <a href="http://127.0.0.1:8000/photo_list/"><img src="{% static 'image/next.png' %}" id="board_img"></a>
     <form id="search" action="{% url 'photo:search' %}" method="get">
         {% endif %}
         <div id="dsearch">
@@ -69,48 +85,55 @@
             <input type="submit" value="search" id="bsearch" />
         </div>
     </form>
-    <br>
-    
-    <div class="yesterday-hashtag-container">
-        <h4>어제의 해시태그</h4>
-    </div>
-
-    <div class="yesterday-hashtag">
+    <!-- </div>
+    <div class="box"> -->
+    <div id="yesterday-hashtag">
+        <font id="yesterday-container">yesterday's hastag </font> &nbsp;&nbsp;
         {% if user.is_authenticated %}
-        <h1><a href="http://127.0.0.1:8000/yesterday_hashtag_search/" style="color:black"> # {{yesterdaytag}}</a></h1>
+        <font id="yesterday_hashtag" style="color:#edb928"><a href="http://127.0.0.1:8000/yesterday_hashtag_search/" style="color:#edb928">
+                # {{yesterdaytag}}</a></font>
         {% else %}
-        <h1> # {{yesterdaytag}} </h1>
+        <font id="yesterday_hashtag" style="color:#edb928"> # {{yesterdaytag}} </font>
         {% endif %}
     </div>
-
-    <br><br><br>
-    <div id="crown"><img src="{% static 'image/crown.png' %}" id="first-rank"/></div>
+        <img src="{% static 'image/crown.png' %}" id="first-rank" />
         <div id="rank">
-            <h2> 1등 : {{BestPhotos.0.author}} </h2>
+            <h1> 1등 : {{BestPhotos.0.author}} </h1>
         </div>
-    </div>
-    <div class="image">
+    
+
+    <div id="image">
         <div class="yesterday-first">
             <img src="{{ BestPhotos.0.image.url }}" />
         </div>
 
         <div class="yesterday-else">
-            <img src="{{ BestPhotos.1.image.url }}" />
-            <img src="{{ BestPhotos.2.image.url }}" />
-            <img src="{{ BestPhotos.3.image.url }}" />
-            <img src="{{ BestPhotos.4.image.url }}" />
+            <div class="yesterday-else1">
+                <img src="{{ BestPhotos.1.image.url }}" />
+            </div>
+            <div class="yesterday-else2">
+                <img src="{{ BestPhotos.2.image.url }}" />
+            </div>
+            <div class="yesterday-else3">
+                <img src="{{ BestPhotos.3.image.url }}" />
+            </div>
+            <div class="yesterday-else4">
+                <img src="{{ BestPhotos.4.image.url }}" />
+            </div>
+
         </div>
+
     </div>
-    <br><br><br><br><br><br>
-    <div id="wrapper">
-        <div id="banner">
+    <!-- </div> -->
+    <br><br><br><br><br>
+        <div id="banner"><br>
             <center>
                 <img src="{% static 'image/sea.png' %}" id="sea_logo">
                 <p class="copyright">Copyright ©2019 SEA <br>
                     https://github.com/DGU-SEA/Photest </p>
             </center>
         </div>
-    </div>
+
 
 </body>
 
