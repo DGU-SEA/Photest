@@ -1,6 +1,6 @@
 # Photest
 
-> 소프트웨어공학 프로젝트
+> 동국대학교 소프트웨어공학 프로젝트 SEA 팀
 
 ## Photo contest
 
