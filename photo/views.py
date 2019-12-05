@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Photo
 from .models import User
+from accounts.models import Profile
 from hashtag.models import hashtag
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -21,6 +22,8 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.template import RequestContext
+from django.utils.dateparse import parse_date
+
 
 def main(request):
     print('main')
@@ -289,8 +292,14 @@ def reward(request) :
    
     global hashtag
     hashtags = hashtag.objects.all()
+<<<<<<< HEAD
 
     requestdate = request.GET.get('user_date', '')
+=======
+    requestdate = request.GET.get('user_date', '')
+    convertdate = datetime.strptime(requestdate, "%Y-%m-%d")
+  
+>>>>>>> 8bd78dac1d177357d2067c51549003a0131516e8
     requesttag = request.GET.get('user_hashtag','')
     username = request.user
     Users = User.objects.all()
@@ -299,6 +308,7 @@ def reward(request) :
     for u in Users :
         if(str(u.username) == str(username)) :
             authorid = u.id
+<<<<<<< HEAD
     
     print(requestdate, requesttag, username)
 
@@ -309,6 +319,43 @@ def reward(request) :
     
     return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
 
+=======
+
+    set_instance = Profile.objects.get(user = authorid)
+    set_instance.rewardCnt = 0
+    set_instance.save()    
+    
+    print(requestdate, requesttag, username)
+
+    index =0
+    temp =""
+    length = len(hashtags)
+    for h in hashtags :
+        #있으면 update
+        if(h.tagName == requesttag) :
+            temp = convertdate.date()
+            h.tagDate = temp
+            
+            update_instance = hashtag.objects.get(tagName = requesttag)
+            update_instance.tagDate = temp
+            update_instance.save()
+            break
+
+        index += 1
+    
+    print(index, length)
+    #없으면 insert
+    if(index == length) :
+        print('insert')
+        insert_instance = hashtag(tagName = requesttag, tagDate = convertdate.date())
+        insert_instance.save()
+
+    
+
+    return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
+
+
+>>>>>>> 8bd78dac1d177357d2067c51549003a0131516e8
 class PhotoList(ListView) :
     print('PhotoList')
     model = Photo
