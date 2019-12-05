@@ -5,7 +5,8 @@ html{
 body {
     margin: 0;
     padding: 0; 
-    /* background-color:;  */
+    /* background-color: black; */
+    opacity : 0.8; 
 }
 
 a { text-decoration: none; color: gray; }
