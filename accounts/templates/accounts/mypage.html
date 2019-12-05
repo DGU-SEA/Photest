@@ -39,6 +39,31 @@
         });
 
     </script>
+
+<style>
+    .btn-like {
+        position: relative;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background: url("/static/images/heart.png");
+        /* background-position: -30% -10%; */
+        text-indent: -9999px;
+        overflow: hidden;
+        border: none;
+    }
+
+    .btn-like.active {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background: url("/static/images/shaded_heart.png");
+        /* background-position: -50px -400px; */
+        text-indent: -9999px;
+        overflow: hidden;
+        border: none;
+    }
+</style>
 </head>
 
 <body style="overflow-x:hidden">
@@ -108,8 +133,50 @@
     <div id="div2">
         <h2> 내 게시글 </h2>
         {% for object in photos %}
+        <div id="frame">
+            <div id="photos">
+                <img src=" {{ object.image.url }}" class="card-img-top" alt="..." width=250px height=260px />
+            </div>
+                <li class="list-group-item">
+                    {%if user in object.like.all %}
+                    <!-- <br> -->
+                    <a href="{% url 'photo:like' object.id %}">
+                        <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px
+                            height=25px align="right"></img></a>
+                    {% else %}
+                    <!-- <br> -->
+                    <a href="{% url 'photo:like' object.id %}">
+                        <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px
+                            align="right"></img></a>
+                    {%endif%}
+                    {% if object.like.all.count %}
+                    <span class="float-right">  
+                        {{object.like.all.count}}
+                    </span>
+                    {%endif%}
+                </li>
+
+                <div class="card-body">
+                    <p class="card-text" align="left"> 
+                        {% if object.hashtag.tag.0 %}
+                        # {{ object.hashtag.tag.0 }} 
+                        {% endif %}
+                        {% if object.hashtag.tag.1 %}
+                        # {{object.hashtag.tag.1}} 
+                        {% endif %}
+                        {% if object.hashtag.tag.2 %}
+                        # {{object.hashtag.tag.2}}
+                        {% endif %}
+                    </p> 
+                </div>
+
+        </div>
+
+
+
+
 <!--        {{ object.image.url }}-->
-        <img src=" {{ object.image.url }}" width=250px height=260px />
+        <!-- <img src=" {{ object.image.url }}" width=250px height=260px /> -->
         {% endfor %}
     </div>
 
