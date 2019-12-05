@@ -23,6 +23,9 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.template import RequestContext
 from django.utils.dateparse import parse_date
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from urllib.parse import urlparse
 
 
 def main(request):
@@ -31,10 +34,9 @@ def main(request):
     global Photo
     hashtags = hashtag.objects.all()
 
-    # # ------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
+    #------------------------- 오늘의 해시태그 & 어제의 해시태그 처리 ----------------------------
     todaytag = ""
     todayDate = str(date.today())
-    # todayDate = str(datetime.now().year)+ '-' + str(datetime.now().month)+ '-' + str(datetime.now().day)
 
     yesterdaytag = ""
     today = date.today()
@@ -46,8 +48,8 @@ def main(request):
         
         if(str(h.tagDate) == yesterday) :
             yesterdaytag = h.tagName
-    # print(todaytag)
-    # ------------------------- 어제의 해시태그 -> photo에서 hashtag필드에 어제 해시태그 포함한 것들중에서 5개 전달 ----------------------------
+            
+    # ------------------------- 어제의 Best 5 ----------------------------
     Photos = Photo.objects.all().order_by('-like')
     BestPhotos = list()
 
@@ -60,17 +62,15 @@ def main(request):
                 break
             if(index == 5) : break
 
-    print(len(BestPhotos))
+    print('BestPhotos in main size : ', len(BestPhotos))
     for p in BestPhotos :
         print(p.image)
 
     return render(request, 'photo/main.html', context={'todaytag' : todaytag, 'yesterdaytag' : yesterdaytag, 'BestPhotos' : BestPhotos})
     
 def best(request):
-    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     yesterday = date.today() - timedelta(1)
-    # print(str(yesterday))
-
+    
     days = [yesterday]
     tags = []
     bestPhotos =[]
@@ -79,13 +79,10 @@ def best(request):
         temp = yesterday - timedelta(i)
         days.append(temp)
 
-    # print(days)
-
     for i in range(0, 7):
         for h in hashtag.objects.all():
             if (h.tagDate == days[i]):
                 tags.append(h.tagName)
-                # print(h.tagName)
 
     photos = Photo.objects.all().order_by('-like')
 
@@ -94,30 +91,14 @@ def best(request):
         for p in photos :
             if (p.hashtag['tag'] == i):
                 bestPhotos.append(p)
-                # p.author
                 index += 1
                 if index == 5 :
                     break
-    # print(bestPhotos)
+
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
-    
-def hashtag_board(request):
-    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
-    return render(request, 'photo/hashtag_board.html', {}) #, {'posts': posts}
 
 def upload(request):
-    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
     return render(request, 'photo/upload.html', {})
-
-
-def edit_profile(request):
-#best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
- return render(request, 'photo/edit_profile.html', {})
-
-def detail(request):
-    #best = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')*/
-    model = Photo
-    return render(request, 'photo/detail.html', {})
 
 def search_list(request):
     print('search list')
@@ -232,8 +213,6 @@ def photo_list(request) :
     })
 
 def photo_insert(request) :
-    # if request.method == "POST":
-    #     print("**********************************************************************")
     print('photo create')
     username = request.user
     Users = User.objects.all()
@@ -242,32 +221,11 @@ def photo_insert(request) :
     for u in Users :
         if(str(u.username) == str(username)) :
             authorid = u
-    # print(authorid)
-    # print("request.FILES : "+ request.FILES['image'])
+            
     image = request.FILES['image']
-    # print(image)
-    # tempurl = 'timeline_photo/2019/12/04/'
-    # tempurl += str(image)
-    # tempurl += str(dateemonth) 
-    # tempurl += '/'
-    # tempurl += str(date.day)
-    # tempurl += '/'
-    # tempurl += str(image)
-
-    # print(tempurl)
-    # image = "https://cdn.pixabay.com/photo/2016/08/27/11/17/bag-1623898_960_720.jpg"
-
     hashtag1 = request.POST.get('hashtag1', '')
     hashtag2 = request.POST.get('hashtag2', '')
     hashtag3 = request.POST.get('hashtag3', '')
-    # hashtag1 = request.POST['hashtag1']
-    # hashtag2 = request.POST['hashtag2']
-    # hashtag3 = request.POST.get('hashtag3')
-
-    
-    print(hashtag1)
-    print(hashtag2)
-    print(hashtag3)
 
     hashtag = {
         'tag' : []
@@ -281,29 +239,13 @@ def photo_insert(request) :
         hashtag['tag'].append(hashtag3)
 
     print(hashtag['tag'])
-    
-    # myfile = request.FILES['image']
-    # fs = FileSystemStorage('photo/media/timeline_photo/')
-    # filename = fs.save(myfile.name, myfile)
-    # uploaded_file_url = fs.url(filename)
-    # uploaded_file_url = fs.url(tempurl)
-
-    # print(uploaded_file_url)
-
-    print(type(authorid))
-    print(type(image))
-    print(type(hashtag))
-    # print(type(Photo.objects.get(username)))
 
     data = Photo.objects.create(author = authorid, image = image, hashtag = hashtag)
-
-    # print(request.POST['path'])
     return HttpResponseRedirect('/photo_list/')
 
 
 
 def reward(request) :
-    print('reward')
     # 사용자가 지정한 날짜, 해시태그 이름, 해시태그 테이블에 추가 혹은 수정
    
     global hashtag
@@ -323,8 +265,6 @@ def reward(request) :
     set_instance = Profile.objects.get(user = authorid)
     set_instance.rewardCnt = 0
     set_instance.save()    
-    
-    print(requestdate, requesttag, username)
 
     index =0
     temp =""
@@ -339,17 +279,12 @@ def reward(request) :
             update_instance.tagDate = temp
             update_instance.save()
             break
-
         index += 1
     
-    print(index, length)
     #없으면 insert
     if(index == length) :
-        print('insert')
         insert_instance = hashtag(tagName = requesttag, tagDate = convertdate.date())
         insert_instance.save()
-
-    
 
     return render(request, 'accounts/mypage.html', { 'Message' : 'reward complete' })
 
@@ -360,7 +295,6 @@ class PhotoList(ListView) :
     emplate_name_suffix='_list'
 
     def search(request) :
-        # search = request.POST.['search']
         print(' def fun inside')
         return render(request, 'photo/photo_list.html', {"PhotosWithHashtag" : PhotosWithHashtag})
 
@@ -369,7 +303,6 @@ class PhotoUpdate(UpdateView):
     model = Photo
     fields = ['author','text', 'image']
     template_name_suffix = '_update'
-    # success_url = '/'
 
     def dispatch(self, request, *args, **kwargs):
         object = self.get_object()
@@ -408,15 +341,6 @@ class PhotoDelete(DeleteView):
             return HttpResponseRedirect('/')
         else:
             return super(PhotoDelete, self).dispatch(request, *args, **kwargs)
-
-class PhotoDetail(DetailView):
-    model = Photo
-    template_name_suffix='_detail'
-
-
-from django.views.generic.base import View
-from django.http import HttpResponseForbidden
-from urllib.parse import urlparse
 
 class PhotoLike(ListView):
     model = Photo

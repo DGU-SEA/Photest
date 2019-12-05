@@ -8,7 +8,6 @@ html{
 body {
     margin: 0;
     padding: 0; 
-<<<<<<< HEAD
     width: 100%;
     height: 100%;
     /* background-color:black;  */
@@ -21,10 +20,8 @@ body {
     position: relative;
     color: #ffffff;
     font-size: 24pt;
-=======
     /* background-color: black; */
     opacity : 0.8; 
->>>>>>> 66d62b66711d7f2d551b809e0b7221f742a1cc16
 }
 
 a { text-decoration: none; color: gray; }
@@ -244,6 +241,7 @@ a:hover, a:active { text-decoration: none; }
     /* width: 1400px; */
     left:0px;
     top:1100px;
+    
 }
 
 .yesterday-first img{
@@ -300,7 +298,6 @@ a:hover, a:active { text-decoration: none; }
      min-height:100%;
  }
  
-
  
  #banner {
      position:absolute;
@@ -309,7 +306,7 @@ a:hover, a:active { text-decoration: none; }
      width : 100%;
      height : 180px;
      background-color : #edb928;
-     opacity : 0.8;
+     /* opacity : 0.8; */
      margin-top : 0;
      margin-left : 0;
      margin-right : 0;
