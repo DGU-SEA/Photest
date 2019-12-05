@@ -26,14 +26,26 @@ $ pip install virtualenv
 
 (2) 가상환경 생성, 실행
 <pre>
-// 원하는 경로로 이동
-$ python3 -m venv myvenv
+원하는 경로로 이동
+$ python3 -m venv myvenv // myvenv를 원하는 이름으로 변경
 $ source venv/bin/activate
+(myvenv) $ // 성공
 </pre>
 
 (3) 가상환경 종료
 <pre>
 $ deactivate
+</pre>
+
+### 2. 라이브러리 설치
+<pre>
+$ python3 -m pip install --upgrade pip
+$ myvenv/bin/pip install -r requirements.txt
+</pre>
+
+### 3. 실행하기
+<pre>
+$ python manage.py runserver
 </pre>
 
 ## 팀원
