@@ -94,15 +94,15 @@
                         </span>
                         {%endif%}
                     </li>
-
+                    
                     <div class="card-header" align="left">
-                        {{ object.author }} >
+                        &nbsp;&nbsp;{{ object.author }} >
                     </div>
 
                     <div class="card-body">
                         <p class="card-text" align="left">
                             {% if object.hashtag.tag.0 %}
-                            # {{ object.hashtag.tag.0 }}
+                            &nbsp;&nbsp;# {{ object.hashtag.tag.0 }}
                             {% endif %}
                             {% if object.hashtag.tag.1 %}
                             # {{object.hashtag.tag.1}}

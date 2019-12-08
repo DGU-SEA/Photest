@@ -1,6 +1,5 @@
 {% load static %}
 <html>
-
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -20,10 +19,8 @@
         scroll_follow("#scroll");
         //스크롤이 생기도록 <br> 을 여러개 넣은 부분..
         $(document).ready(function () { for (var i = 0; i < 200; i++) { $('#brr').html($('#brr').html() + "<br>" + i); } });
-        //////////////////////////////////////////////////////
-
-
     </script>
+
     <div id="scroll" style="position:absolute;left:0;">
         <div class="menu-bar">
             <font class="short-title"><a href="/" class="title-text"> Photest</a></font>
@@ -42,10 +39,9 @@
             {% endif %}
         </div>
     </div>
-    <!-- <div class="box"> -->
+
     <div id="title">
         <font id="short"> Photest</font>
-        <!-- <font id="long">_Photo Contest </font> -->
     </div>
     <div id="intro">
         <font id="main_intro"> Photest는 타인과의 연결없이 즐기는<Br> 당신만을 위한 공간입니다.</font><br><br><br>
@@ -63,21 +59,20 @@
         <button id="join"><a href="http://127.0.0.1:8000/accounts/join/" style="color:white"> Join </a></button>
         {% endif %}
     </div>
-    <!-- </div>
-    <div class="box"> -->
+
     <div id="today-hashtag">
         <font id="today-container">today's hastag </font> &nbsp;&nbsp;
         {% if user.is_authenticated %}
         <font id="today_hashtag"><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:#edb928">#
                 {{todaytag}} </a></font>
         {% else %}
-        <font id="today_hashtag2"> # {{todaytag}} </font>
+        <font id="today_hashtag2"><a href="/" style="color:#edb928"> # {{todaytag}} </a></font>
         {% endif %}
     </div>
 
     {% if user.is_authenticated %}
     <font id="board" style="color:gray">오늘의 사진 올리러 가기</font>
-    <a href="http://127.0.0.1:8000/photo_list/"><img src="{% static 'image/next.png' %}" id="board_img"></a>
+    <a href="http://127.0.0.1:8000/upload/"><img src="{% static 'image/next.png' %}" id="board_img"></a>
     <form id="search" action="{% url 'photo:search' %}" method="get">
         {% endif %}
         <div id="dsearch">
@@ -85,8 +80,7 @@
             <input type="submit" value="search" id="bsearch" />
         </div>
     </form>
-    <!-- </div>
-    <div class="box"> -->
+
     <div id="yesterday-hashtag">
         <font id="yesterday-container">yesterday's hastag </font> &nbsp;&nbsp;
         {% if user.is_authenticated %}
@@ -102,7 +96,6 @@
     <div id="rank">
         <h1> 1등 : {{BestPhotos.0.author}} </h1>
     </div>
-
 
     <div id="image">
         <div class="yesterday-first">
@@ -124,7 +117,6 @@
             </div>
         </div>
     </div>
-    <!-- </div> -->
 
     <div id="banner">
         <br><br>
@@ -134,7 +126,5 @@
                 https://github.com/DGU-SEA/Photest </p>
         </center>
     </div>
-
 </body>
-
 </html>

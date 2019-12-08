@@ -10,12 +10,12 @@ a:hover, a:active { text-decoration: none; }
 
 .title{
     position : relative;
-    left : 3%;
+    left : 7%;
     top : 5%;
 }
 
 #short-title {
-    font-size : 330%;
+    font-size : 400%;
     color : gray;
     font-weight : bold;
 }
@@ -27,31 +27,35 @@ a:hover, a:active { text-decoration: none; }
 
 #category {
     position : relative;
-    left : 71%;
+    top : 0%;
+    left : 70%;
 }
 
 #mypage_btn {
     position : relative;
-    top : 2%;
-    left : 1%;
+    top : 3%;
+    left : 2%;
     font-size : 20px;
     font-weight : bold;
+    border-radius : 5px;
 }
 
 #board_btn {
     position : relative;
-    top : 2%;
+    top : 3%;
     left : 4%;
     font-size : 20px;
     font-weight : bold;
+    border-radius : 5px;
 }
 
 #best_btn {
     position : relative;
-    top : 2%;
+    top : 3%;
     left : 6%;
     font-size : 20px;
     font-weight : bold;
+    border-radius : 5px;
 }
 
 h1 {
@@ -68,31 +72,29 @@ h1 {
 #day {
     position : relative;
     width : 95%;
-    left : 3%;
+    left : 7%;
     height : auto;
-    /* border : 1px solid gray; */
-    /* margin-right : 5%; */
     float : left;
 }
 
 #date {
     position : relative;
-    left : 3%;
+    left : 7%;
 }
 
 #frame {
     position : relative;
     padding : 0.5%;
-    width : 200px;
-    height : 260px;
+    width : 250px;
+    height : 250px;
     border : 1px solid gray;
     float : left;
     margin-right : 1.2%;
 }
 
 #photos {
-    width : 230px;
-    height : 230px;
+    width : 250px;
+    height : 250px;
     position : relative;
     border : 1px solid gray;
     margin-right : 3px;

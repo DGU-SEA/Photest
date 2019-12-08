@@ -5,7 +5,6 @@ html{
 body {
     margin: 0;
     padding: 0; 
-    /* background-color:;  */
 }
 
 li {
@@ -47,7 +46,6 @@ a:hover, a:active { text-decoration: none; }
     left : 2%;
     font-size : 20px;
     font-weight : bold;
-    /* border-bottom : 3px solid #CAB4D6; */
     border-radius : 5px;
 }
 
@@ -60,14 +58,10 @@ a:hover, a:active { text-decoration: none; }
     border-radius : 5px;
 }
 
-
 #frame_frame{
     position : relative;
     top:-100%;
-    /* left:-9%;
-    right:-5%; */
 }
-
 
 #frame {
     position : relative;
@@ -83,13 +77,11 @@ a:hover, a:active { text-decoration: none; }
 }
 
 #photos {
-    /* top : 8%; */
     width : 250px;
     height : 260px;
     position : relative;
     margin-top:-5%;
     margin-bottom : 3px;
-    /* border : 1px solid gray; */
 }
 
 .float-right{
@@ -103,7 +95,6 @@ a:hover, a:active { text-decoration: none; }
     font-size : 20px;
     font-weight : bold;
     border-radius : 5px;
-
 }
 
 .button {
@@ -132,7 +123,6 @@ a:hover, a:active { text-decoration: none; }
 
 .buttons {
     position : relative;
-    /* border : 1px solid black; */
     width : 16%;
     height : 100%;
     left : 10%;
@@ -147,7 +137,7 @@ a:hover, a:active { text-decoration: none; }
     width : 60px;
     height : 30px;
     border-radius : 5px;
-    border-color : #CAB4D6;
+    border-color : #edb928;
     background-color: white;
 }
 
@@ -155,7 +145,7 @@ a:hover, a:active { text-decoration: none; }
     position : relative;
     top : 10%;
     left : 5%;
-    border-color: #CAB4D6;
+    border-color: #edb928;
     background-color: white;
     border-style : double;
     width : 60%;
@@ -165,10 +155,8 @@ a:hover, a:active { text-decoration: none; }
 #div1 {
     position : relative;
     float : left;
-    /* top : 15%; */
     left : 10%; 
     width : 50%;
-    /* border : 1px solid gray; */
 }
 
 #div1 h2 {
@@ -178,10 +166,8 @@ a:hover, a:active { text-decoration: none; }
 #div2 {
     position : relative;
     float : left;
-    /* top : 15%; */
     left : 10%; 
     width : 70%;
-    /* border : 1px solid gray; */
 }
 
 #div2 h2 {
@@ -191,19 +177,15 @@ a:hover, a:active { text-decoration: none; }
 #div3 {
     position : relative;
     float : left;
-    /* top : 15%; */
     left : 10%; 
     width : 50%;
-    /* border : 1px solid gray; */
 }
 
 #div4 {
     position : relative;
     float : left;
-    /* top : 15%; */
     left : 10%; 
     width : 50%;
-    /* border : 1px solid gray; */
 }
 
 #div3 h2 {
@@ -217,10 +199,8 @@ a:hover, a:active { text-decoration: none; }
 #div5 {
     position : relative;
     float : left;
-    /* top : 15%; */
     left : 10%; 
     width : 50%;
-    /* border : 1px solid gray; */
 }
 
 #dup-check { 
@@ -230,7 +210,7 @@ a:hover, a:active { text-decoration: none; }
     width : 13%;
     height : 6%;
     border-radius : 5px;
-    border-color : #CAB4D6;
+    border-color : #edb928;
     background-color: white;
 }
 
@@ -241,7 +221,7 @@ a:hover, a:active { text-decoration: none; }
     width : 10%;
     height : 6%;
     border-radius : 5px;
-    border-color : #CAB4D6;
+    border-color : #edb928;
     background-color: white;
 }
 
@@ -252,8 +232,7 @@ a:hover, a:active { text-decoration: none; }
     font-size: 12;
     width : 15%;
     height : 6%;
-    /* border-radius : 5px; */
-    border-color :white;/* #CAB4D6;*/
+    border-color :white;
     background-color: white;
     border-width: 0px;
 }
@@ -265,7 +244,7 @@ a:hover, a:active { text-decoration: none; }
     width : 10%;
     height : 6%;
     border-radius : 5px;
-    border-color : #CAB4D6;
+    border-color : #edb928;
     background-color: white;
 }
 
@@ -276,7 +255,7 @@ a:hover, a:active { text-decoration: none; }
     width : 40%;
     height : 8%;
     border-radius : 5px;
-    border-color : #CAB4D6;
+    border-color : #edb928;
     background-color: white;
 }
 
@@ -285,6 +264,6 @@ a:hover, a:active { text-decoration: none; }
     left : 2%;
     width : 8%;
     border-radius : 5px;
-    border-color : #CAB4D6;
+    border-color :#edb928;
     background-color: white;
 }
