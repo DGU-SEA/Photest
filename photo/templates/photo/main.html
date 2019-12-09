@@ -72,7 +72,11 @@
 
     {% if user.is_authenticated %}
     <font id="board" style="color:gray">오늘의 사진 올리러 가기</font>
+<<<<<<< HEAD
+    <img src="{% static 'image/next.png' %}" id="board_img" onclic="location='/photo_list/'"/>
+=======
     <a href="http://127.0.0.1:8000/upload/"><img src="{% static 'image/next.png' %}" id="board_img"></a>
+>>>>>>> 92ebcf9dec602079ba419ebc1e5a4993ac3e04a3
     <form id="search" action="{% url 'photo:search' %}" method="get">
         {% endif %}
         <div id="dsearch">
