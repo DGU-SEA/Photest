@@ -84,26 +84,21 @@ def best(request):
             if (h.tagDate == days[i]):
                 tags.append(h.tagName)
 
-    photos = Photo.objects.all().order_by('-like')
+    photos = Photo.objects.all().order_by('-likecnt')
 
     index = -1
     for t in tags :
-    index = 0
-    for p in photos :
-        print(p.image.name)
-        for h in p.hashtag['tag'] :
-            if t == h :
-                print("best :" + p.image.name)
-                bestPhotos.append(p)
-                index += 1
+        index = 0
+        for p in photos :
+            print(p.image.name)
+            for h in p.hashtag['tag'] :
+                if t == h :
+                    print("best :" + p.image.name)
+                    bestPhotos.append(p)
+                    index += 1
+                    break
+            if index == 5 :
                 break
-        if index == 5 :
-            break
-
-        
-    #print(len(bestPhotos))
-    # for b in bestPhotos :
-    #         print(bestPhotos.author)
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
 
@@ -366,10 +361,12 @@ class PhotoLike(ListView):
                 photo = Photo.objects.get(pk=photo_id)
                 user = request.user
                 if user in photo.like.all(): # user가 이미 좋아요 한 사람 중에 있으면 클릭했을 때 지워지도록 
-                    photo.like.remove(user) 
+                    photo.like.remove(user)
+                    photo.likecnt -= 1
                 else: # 새로운 user가 좋아요 한 것이라면 +1
-                    photo.like.add(user) 
-            
+                    photo.like.add(user)
+                    photo.likecnt += 1
+                photo.save()
     
             referer_url = request.META.get('HTTP_REFERER')
             path = urlparse(referer_url).path
