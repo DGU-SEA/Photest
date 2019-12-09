@@ -86,20 +86,22 @@ def best(request):
 
     photos = Photo.objects.all().order_by('-like')
 
+    index = -1
+    for t in tags :
     index = 0
-    for i in tags :
-        for p in photos :
-            for t in p.hashtag['tag'] :  
-                if (t  == i):
-                    bestPhotos.append(p)
-                    index += 1
-                if index == 5 :
-                    break
-            if index == 5 : 
-                break    
-        index = 0
+    for p in photos :
+        print(p.image.name)
+        for h in p.hashtag['tag'] :
+            if t == h :
+                print("best :" + p.image.name)
+                bestPhotos.append(p)
+                index += 1
+                break
+        if index == 5 :
+            break
+
         
-    print(len(bestPhotos))
+    #print(len(bestPhotos))
     # for b in bestPhotos :
     #         print(bestPhotos.author)
 
