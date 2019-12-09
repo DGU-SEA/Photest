@@ -116,8 +116,8 @@ def search_list(request):
             if(t == search) : 
                 PhotosWithHashtag.append(p)
 
-    print(PhotosWithHashtag)
-    print(search)
+    # print(PhotosWithHashtag)
+    # print(search)
 
     return render(request, 'photo/search_list.html', {
         'PhotosWithHashtag' : PhotosWithHashtag,

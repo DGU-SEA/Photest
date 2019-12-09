@@ -80,20 +80,22 @@
                 <a href="{{object.image.url}}" download="photo.jpg">
                     <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px align="right"></img>
 
-                    <li class="list-group-item">
-                        {%if user in object.like.all %}
-                        <a href="{% url 'photo:like' object.id %}">
-                            <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px height=25px align="right"></img></a>
-                        {% else %}
-                        <a href="{% url 'photo:like' object.id %}">
-                            <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px align="right"></img></a>
-                        {%endif%}
-                        {% if object.like.all.count %}
-                        <span class="float-right">
-                            {{object.like.all.count}}
-                        </span>
-                        {%endif%}
-                    </li>
+                <li class="list-group-item">
+                    {%if user in object.like.all %}
+                    <a href="{% url 'photo:like' object.id %}">
+                        <img src="{% static 'image/shaded_heart.png' %}" class="btn-like.active" width=25px
+                            height=25px align="right"></img></a>
+                    {% else %}
+                    <a href="{% url 'photo:like' object.id %}">
+                        <img src="{% static 'image/heart.png' %}" class="btn-like" width=25px height=25px
+                            align="right"></img></a>
+                    {%endif%}
+                    {% if object.like.all.count %}
+                    <span class="float-right">
+                        {{object.like.all.count}}
+                    </span>
+                    {%endif%}
+                </li>
                     
                     <div class="card-header" align="left">
                         &nbsp;&nbsp;{{ object.author }} >
