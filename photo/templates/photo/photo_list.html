@@ -18,7 +18,6 @@
             width: 25px;
             height: 25px;
             background: url("/static/images/heart.png");
-            /* background-position: -30% -10%; */
             text-indent: -9999px;
             overflow: hidden;
             border: none;
@@ -29,7 +28,6 @@
             width: 25px;
             height: 25px;
             background: url("/static/images/shaded_heart.png");
-            /* background-position: -50px -400px; */
             text-indent: -9999px;
             overflow: hidden;
             border: none;
@@ -51,16 +49,13 @@
         {% endif %}
     </div>
 
-    <!-- <div class="today-hashtag-container">
-        <h2>오늘의 해시태그</h2>
-    </div> -->
-
-    <div class="today-hashtag">
-        <h1 style="color:white">Today's Hashtag &nbsp;&nbsp;<a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:white"> # {{todaytag}}</a></h1>
+    <div id="today-hashtag">
+        <font id="today-container">today's hastag </font> &nbsp;&nbsp;
+        <font id="today_hashtag"><a href="http://127.0.0.1:8000/today_hashtag_search/" style="color:#edb928">#
+                {{todaytag}} </a></font>
     </div>
-    <br><br>
 
-    <!-- <div id="board"> -->
+    <br><br>
 
     <form id="search" action="{% url 'photo:search' %}" method="get">
         <div id="dsearch">
@@ -69,13 +64,13 @@
         </div>
     </form>
     <div id="board">
-        <div id="add">
+        <div class="add">
             <button class="button">
-                <div class="plus">
-                    <font size=80px>
+                <p class="plus">
+                    <!-- <font size=80px> -->
                         <a href="http://127.0.0.1:8000/upload/"> + </a>
-                    </font>
-                </div>
+                    <!-- </font> -->
+                </p>
             </button>
         </div>
         {% for object in PhotosWithHashtag %}
@@ -85,7 +80,6 @@
                     <input type="hidden" name="path" value="{{request.path}}" />
                     <input type="hidden" name="author" value="{{object.author}}" />
                     <button id="report">신고</button>
-                    <!-- <button id="report"> <a href="{}"> 신고 </a></button> -->
                 </form>
 
                 <div id="photos">
@@ -96,7 +90,6 @@
                     <img id="download" src="{% static 'image/download.png' %}" width=25px height=25px
                         align="right"></img>
 
-                    <!-- <img id="heart" src="{% static 'image/heart.png' %}" width=25px height=25px align="right" /> -->
                     <li class="list-group-item">
                         {%if user in object.like.all %}
                         <a href="{% url 'photo:like' object.id %}">
@@ -113,15 +106,15 @@
                         </span>
                         {%endif%}
                     </li>
-
+                    
                     <div class="card-header" align="left">
-                        {{ object.author }} >
+                        &nbsp;&nbsp;{{ object.author }} >
                     </div>
 
                     <div class="card-body">
                         <p class="card-text" align="left">
                             {% if object.hashtag.tag.0 %}
-                            # {{ object.hashtag.tag.0 }}
+                            &nbsp; # {{ object.hashtag.tag.0 }}
                             {% endif %}
                             {% if object.hashtag.tag.1 %}
                             # {{object.hashtag.tag.1}}
@@ -131,10 +124,10 @@
                             {% endif %}
                         </p>
                     </div>
-
             </div>
         </div>
         {% endfor %}
     </div>
 </body>
+
 </html>

@@ -10,7 +10,6 @@ body {
     padding: 0; 
     width: 100%;
     height: 100%;
-    /* background-color:black;  */
     font-family : 'NanumSquare', sans-serif;
 }
 
@@ -20,7 +19,10 @@ body {
     position: relative;
     color: #ffffff;
     font-size: 24pt;
+<<<<<<< HEAD
     /* background-color: black; */
+=======
+>>>>>>> 92ebcf9dec602079ba419ebc1e5a4993ac3e04a3
     opacity : 0.8; 
 }
 
@@ -103,12 +105,12 @@ a:hover, a:active { text-decoration: none; }
 }
 #main_intro{
     font-size:50px;
-    /* text-align:right; */
 }
+
 #sub_intro{
     font-size:30px;
-    /* text-align:right; */
 }
+
 #login-join{
     position: relative;
     top:240px;
@@ -168,11 +170,6 @@ a:hover, a:active { text-decoration: none; }
     font-weight: bolder;
 }
 
-/* #today_hashtag2{
-    color:#edb928;
-    font-weight: bolder;
-} */
-
 #board{
     position: relative;
     left:450px;
@@ -187,6 +184,7 @@ a:hover, a:active { text-decoration: none; }
     height:60px;
     top:615px;
 }
+
 /* 검색과 관련된 영역 */
 #dsearch {
     position : relative;
@@ -232,15 +230,14 @@ a:hover, a:active { text-decoration: none; }
 }
 
 #yesterday_hashtag{
-    /* color:#edb928; */
     font-weight: bolder;
 }
 
 #image{
     position:relative;
-    /* width: 1400px; */
     left:0px;
     top:1100px;
+    
 }
 
 .yesterday-first img{
@@ -253,42 +250,33 @@ a:hover, a:active { text-decoration: none; }
     margin-right : 10%;
 }
 
-/* .yesterday-else {
-    position:relative;
-    left: 150px;
-    top: 0%;
-    right:5px;
-    float:left;
-} */
-
 .yesterday-else1 img{
     height: 300px;
     width:300px;
     float : left;
-    /* padding: 0px 50px 10px 10px; */
     padding : 1px;
     margin-right : 0px;
     margin-bottom:0px;
 }
+
 .yesterday-else2 img{
     height: 300px;
     width:300px;
     float : left;
-    /* padding: 0px 50px 10px 10px; */
     padding : 1px;
 }
+
 .yesterday-else3 img{
     height: 300px;
     width:300px;
     float : left;
-    /* padding: 0px 50px 10px 10px; */
     padding : 1px;
 }
+
 .yesterday-else4 img{
     height: 300px;
     width:300px;
     float : left;
-    /* padding: 0px 50px 10px 10px; */
     padding : 1px;
 }
 
@@ -297,8 +285,6 @@ a:hover, a:active { text-decoration: none; }
      min-height:100%;
  }
  
-
- 
  #banner {
      position:absolute;
      top:2650px;
@@ -306,7 +292,6 @@ a:hover, a:active { text-decoration: none; }
      width : 100%;
      height : 180px;
      background-color : #edb928;
-     opacity : 0.8;
      margin-top : 0;
      margin-left : 0;
      margin-right : 0;
@@ -334,6 +319,5 @@ a:hover, a:active { text-decoration: none; }
      top:1170px;
     width : 80px;
     height : 80px;
-    /* float : left; */
     text-align : left;
 }
