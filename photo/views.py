@@ -89,11 +89,12 @@ def best(request):
     index = 0
     for i in tags :
         for p in photos :
-            if (p.hashtag['tag'] == i):
-                bestPhotos.append(p)
-                index += 1
-                if index == 5 :
-                    break
+            for t in p.hashtag['tag'] :  
+                if (t  == i):
+                    bestPhotos.append(p)
+                    index += 1
+                    if index == 5 :
+                        break
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
 
