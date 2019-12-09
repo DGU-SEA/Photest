@@ -15,7 +15,7 @@
     <center>
         <h2> 회원가입 </h2>
         <div id="notice">
-            본 사이트에 올리는 사진은 다른 사용자가 자유롭게 다운로드 할 수 있습니다.
+            본 사이트에 올리는 사진은 다른 사용자가 자유롭게 다운로드 할 수 있습니다.<br>
             이에 동의하는 사람만 회원가입 하시기 바랍니다.
         </div><br>
 
@@ -23,6 +23,7 @@
             <table boder="" cellspacing="10">
                 <form id="join" method="POST" action="{%url 'accounts:join'%}">
                     {% csrf_token %}
+                    <tr></tr><tr></tr>
                     <tr>
                         <td>ID </td>
                         <td>: <input name="username" type="text" size="20"></td>
@@ -43,7 +44,7 @@
                         <td>E-mail </td>
                         <td>: <input name="email" type="E-mail" size="20"> </td>
                     </tr>
-
+                    <tr></tr>
                     <tr>
                         <td></td>
                         <td><input type="submit" value="join" id="join_btn"></td>
