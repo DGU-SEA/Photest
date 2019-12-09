@@ -112,7 +112,7 @@ def reward(request) :
                     index += 1
                 if index == 5:
                     break
-            if index ==5 :
+            if index == 5 :
                 break
 
         for bp in bestPhotos:

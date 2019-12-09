@@ -1,0 +1,34 @@
+{% extends 'photo/photo_create.html' %}
+{% block content %}
+<style type="text/css">
+    #frame{
+        position : relative;
+        padding : 10px;
+        width : 250px;
+        top : 180px;
+        height : 330px;
+        border : 1px solid gray;
+        float : left;
+        margin-right : 50px;
+    }
+
+    #photos {
+        width : 250px;
+        height : 260px;
+        position : relative;
+        border : 1px solid gray;
+    }
+</style>
+<div id = "frame" >
+        <div id = "photos">
+            <img src=" {{ Photo.image.url }}" class="card-img-top" alt="..." z-index="-1" width=250px height=260px/>
+        </div>
+        <!-- <img src=" {{ object.image.url }}" class="card-img-top" alt="..." align = "right" z-index="-1"/>  -->
+        <!-- <img src=" {{ Photo.image.url }}" class="card-img-top" alt="..." align = "right" z-index="-1"/> -->
+                <img src="{% static 'image/heart.png' %}" width=250px height=260px class="card-img-top" alt="...">
+        </div>
+        <img id="heart" src="{% static 'image/heart.png' %}" width=30px height=30px align = "right"/>
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}

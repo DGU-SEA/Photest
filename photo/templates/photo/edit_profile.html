@@ -1,0 +1,112 @@
+{% load static %}
+<html>
+    <head>
+        <title>Photest</title>
+        <meta charset = "utf-8">
+        <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+        <script>
+        $(document).ready(function(){
+            $("#info_div").hide();
+            $("#myinfo").click(function(){
+                $("#info_div").toggle();
+            });
+        });
+
+        $(document).ready(function(){
+            $("#photo_div").hide();
+            $("#myphoto").click(function(){
+                $("#photo_div").toggle();
+            });
+        });
+
+        $(document).ready(function(){
+            $("#likedhash_div").hide();
+            $("#liked_hashtag").click(function(){
+                $("#likedhash_div").toggle();
+            });
+        });
+
+        $(document).ready(function(){
+            $("#report_div").hide();
+            $("#report").click(function(){
+                $("#report_div").toggle();
+            });
+        });
+
+        $(document).ready(function(){
+            $("#reward_div").hide();
+            $("#reward").click(function(){
+                $("#reward_div").toggle();
+            });
+        });
+
+
+        </script>
+    </head>
+    <body>
+            <div class = "title">
+                <font size = "30" color = "gray"><a href="/"> Photest </a></font>
+                <font size = "5" color = "gray"> _Photo Contest </font>
+            </div>
+            <div id = "category">
+                <button id = "best_btn" class = "button"><a href="http://127.0.0.1:8000/best/"> Best </a></button> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id = "board_btn" class = "button"><a href="http://127.0.0.1:8000/photo_list/"> Board </a></button>
+            </div><br><br>
+            <div class = "ranking-reward">
+                <font> Ranking Reward</font>
+            </div>
+            <div class="ranking-reward-check">
+                <img src="{% static 'image/reward_check.png' %}"/>
+                <img src="{% static 'image/reward.png' %}"/>
+                <img src="{% static 'image/reward.png' %}"/>
+            </div>
+
+            <div class = "button">
+                <button id = "myinfo" type="button" onclick="/"> 개인정보 수정 </button><br><br><br>
+                <button id = "myphoto" type="button" onclick="/"> 내 게시글 </button><br><br><br>
+                <button id = "liked_hashtag" type="button" onclick="/"> liked hashtag </button><br><br><br>
+                <button id = "report" type="button" onclick="/"> 신고 </button><br><br><br>
+                <button id = "reward" type="button" onclick="/"> Reward </button> 
+            </div><br><br>
+            <center>
+                <div id = "info_div">
+                <h2> 개인정보 수정 </h2>
+            
+                    ID : <input type = "text" size = "20"> <button> 중복확인</button> <br><br>
+                    Password : <input type = "text" size = "20"><br><br>
+                    E-mail : <input type = "text" size = "20"> <br><br>
+                
+        
+                <button> 취소 </button>
+                <button> 확인 </button>
+            </div>
+            
+
+            <div id = "photo_div">
+                <!-- photo display -->
+
+            </div>
+            
+            <div id = "likedhash_div">
+                
+                #신서유기 <br>
+                #하늘 <br>
+                #남산 <br>
+
+            </div>
+ 
+            <div id = "report_div">
+                신고당한 횟수 : 
+            </div>
+
+            <div id = "reward_div">
+                보상받은 횟수 : 
+            </div>
+
+
+            </center> 
+
+              
+    </body>
+</html>
