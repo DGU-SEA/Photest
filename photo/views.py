@@ -93,8 +93,15 @@ def best(request):
                 if (t  == i):
                     bestPhotos.append(p)
                     index += 1
-                    if index == 5 :
-                        break
+                if index == 5 :
+                    break
+            if index == 5 : 
+                break    
+        index = 0
+        
+    print(len(bestPhotos))
+    # for b in bestPhotos :
+    #         print(bestPhotos.author)
 
     return render(request, 'photo/best.html', context={'days': days, 'tags': tags, 'bestPhotos': bestPhotos})
 
